@@ -1,0 +1,35 @@
+{
+  "id": "/",
+  "name": "بلدتي - منصة المجتمع المصري",
+  "short_name": "بلدتي",
+  "description": "منصة مجتمعية لكل محافظات مصر - دليل خدمات، راصد مشكلات، أبطال البلدة، العمل الخيري، وسوق البلدة",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F8FC",
+  "theme_color": "#0A0A0A",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["social", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

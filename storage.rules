@@ -1,0 +1,46 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() &&
+        request.auth.token.email in [
+          'mkhtarahmdmukhtarahmed46@gmail.com',
+          'mokhtar51.ahmed51@gmail.com'
+        ];
+    }
+
+    function isAdmin() {
+      return isSuperAdmin() || (isSignedIn() &&
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin');
+    }
+
+    function isImageUnder5MB() {
+      return request.resource.size < 5 * 1024 * 1024 &&
+             request.resource.contentType.matches('image/.*');
+    }
+
+    // Public community photos (services, issues, events, heroes, market)
+    match /img/{allPaths=**} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && isImageUnder5MB();
+      allow delete: if isSignedIn();
+    }
+
+    // Private sensitive photos (IDs/Documents and Payment Receipts)
+    match /private/{userId}/{fileName} {
+      allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow write: if isSignedIn() && request.auth.uid == userId && isImageUnder5MB();
+      allow delete: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+    }
+
+    // Default deny for anything else
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

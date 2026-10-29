@@ -1,0 +1,16 @@
+{
+	"appId": "com.baldaty.app",
+	"appName": "بلدتي",
+	"webDir": "dist",
+	"bundledWebRuntime": false,
+	"server": {
+		"androidScheme": "https"
+	},
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 1500,
+			"backgroundColor": "#F3F8FC",
+			"showSpinner": false
+		}
+	}
+}

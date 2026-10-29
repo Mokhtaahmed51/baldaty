@@ -1,0 +1,6 @@
+{
+  "name": "بلدتي",
+  "description": "منصة مجتمعية لكل محافظات مصر - دليل خدمات، راصد مشكلات، أبطال البلدة، العمل الخيري، وسوق البلدة",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

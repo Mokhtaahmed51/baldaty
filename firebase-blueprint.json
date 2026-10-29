@@ -1,0 +1,381 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Public user profile in Baldaty platform",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 80, "minLength": 2 },
+        "gov": { "type": "string", "maxLength": 40 },
+        "role": { "type": "string", "enum": ["citizen", "pro", "gov", "charity", "admin"] },
+        "verify": { "type": "string", "enum": ["none", "pending", "approved", "rejected"] },
+        "points": { "type": "number" },
+        "banned": { "type": "boolean" },
+        "supporter": { "type": "boolean" },
+        "donor": { "type": "boolean" },
+        "btype": { "type": "string", "enum": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", ""] },
+        "fav": { "type": "array" },
+        "at": { "type": "number" }
+      },
+      "required": ["name", "role", "verify", "points", "banned"]
+    },
+    "UserPrivate": {
+      "title": "UserPrivate",
+      "description": "Sensitive personal identification information",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 120 },
+        "doc": { "type": "string", "maxLength": 300 },
+        "dphone": { "type": "string", "maxLength": 30 },
+        "fcmToken": { "type": "string", "maxLength": 300 }
+      },
+      "required": ["email"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "Professional or craftsman service entry",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 80 },
+        "cat": { "type": "string", "maxLength": 60 },
+        "spec": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "wa": { "type": "string", "maxLength": 30 },
+        "from": { "type": "number" },
+        "hours": { "type": "string", "maxLength": 60 },
+        "desc": { "type": "string", "maxLength": 1000 },
+        "photo": { "type": "string", "maxLength": 500 },
+        "gov": { "type": "string", "maxLength": 40 },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "premium": { "type": "boolean" },
+        "until": { "type": "number" },
+        "open": { "type": "boolean" },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["uid", "name", "cat", "spec", "phone", "desc", "ack", "fine"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer review on a service",
+      "type": "object",
+      "properties": {
+        "sid": { "type": "string", "maxLength": 128 },
+        "s": { "type": "number" },
+        "c": { "type": "string", "maxLength": 500 },
+        "by": { "type": "string", "maxLength": 128 },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["sid", "s", "by", "ack", "fine"]
+    },
+    "Issue": {
+      "title": "Issue",
+      "description": "Community issue report",
+      "type": "object",
+      "properties": {
+        "by": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 80 },
+        "desc": { "type": "string", "maxLength": 1000 },
+        "photo": { "type": "string", "maxLength": 500 },
+        "gov": { "type": "string", "maxLength": 40 },
+        "status": { "type": "string", "enum": ["pending", "resolved"] },
+        "ok": { "type": "boolean" },
+        "urgent": { "type": "boolean" },
+        "rev": { "type": "boolean" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "reply": { "type": "string", "maxLength": 1000 },
+        "gname": { "type": "string", "maxLength": 80 },
+        "after": { "type": "string", "maxLength": 500 },
+        "sname": { "type": "string", "maxLength": 80 },
+        "sdesc": { "type": "string", "maxLength": 1000 },
+        "by2": { "type": "string", "maxLength": 128 },
+        "rat": { "type": "number" },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["by", "name", "desc", "status", "ack", "fine"]
+    },
+    "Hero": {
+      "title": "Hero",
+      "description": "Town heroes initiative or achievement",
+      "type": "object",
+      "properties": {
+        "by": { "type": "string", "maxLength": 128 },
+        "doer": { "type": "string", "maxLength": 80 },
+        "body": { "type": "string", "maxLength": 1000 },
+        "photo": { "type": "string", "maxLength": 500 },
+        "gov": { "type": "string", "maxLength": 40 },
+        "ok": { "type": "boolean" },
+        "urgent": { "type": "boolean" },
+        "rev": { "type": "boolean" },
+        "likes": { "type": "array" },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["by", "doer", "body", "likes", "ack", "fine"]
+    },
+    "Charity": {
+      "title": "Charity",
+      "description": "Blood requests, lost and found, in-kind donations, campaigns",
+      "type": "object",
+      "properties": {
+        "by": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 80 },
+        "kind": { "type": "string", "enum": ["blood", "lost", "inkind", "project"] },
+        "title": { "type": "string", "maxLength": 120 },
+        "body": { "type": "string", "maxLength": 1000 },
+        "gov": { "type": "string", "maxLength": 40 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "btype": { "type": "string", "maxLength": 10 },
+        "units": { "type": "number" },
+        "hosp": { "type": "string", "maxLength": 100 },
+        "urg": { "type": "string", "maxLength": 20 },
+        "dir": { "type": "string", "maxLength": 20 },
+        "what": { "type": "string", "maxLength": 60 },
+        "place": { "type": "string", "maxLength": 100 },
+        "photo": { "type": "string", "maxLength": 500 },
+        "target": { "type": "number" },
+        "raised": { "type": "number" },
+        "bank": { "type": "string", "maxLength": 60 },
+        "wallet": { "type": "string", "maxLength": 60 },
+        "donors": { "type": "array" },
+        "ok": { "type": "boolean" },
+        "done": { "type": "boolean" },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["by", "kind", "title", "ack", "fine"]
+    },
+    "Market": {
+      "title": "Market",
+      "description": "Community marketplace listing",
+      "type": "object",
+      "properties": {
+        "by": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 80 },
+        "type": { "type": "string", "enum": ["sell", "give", "swap", "want"] },
+        "title": { "type": "string", "maxLength": 120 },
+        "desc": { "type": "string", "maxLength": 1000 },
+        "price": { "type": "number" },
+        "phone": { "type": "string", "maxLength": 30 },
+        "photo": { "type": "string", "maxLength": 500 },
+        "gov": { "type": "string", "maxLength": 40 },
+        "sold": { "type": "boolean" },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["by", "name", "type", "title", "desc", "phone", "ack", "fine"]
+    },
+    "Event": {
+      "title": "Event",
+      "description": "Community event or volunteering campaign",
+      "type": "object",
+      "properties": {
+        "by": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 80 },
+        "title": { "type": "string", "maxLength": 120 },
+        "kind": { "type": "string", "enum": ["vol", "event", "meet"] },
+        "when": { "type": "number" },
+        "place": { "type": "string", "maxLength": 120 },
+        "desc": { "type": "string", "maxLength": 1000 },
+        "need": { "type": "number" },
+        "going": { "type": "array" },
+        "gov": { "type": "string", "maxLength": 40 },
+        "ok": { "type": "boolean" },
+        "urgent": { "type": "boolean" },
+        "rev": { "type": "boolean" },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["by", "name", "title", "kind", "when", "place", "desc", "going", "ack", "fine"]
+    },
+    "Job": {
+      "title": "Job",
+      "description": "Local job posting",
+      "type": "object",
+      "properties": {
+        "by": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 80 },
+        "title": { "type": "string", "maxLength": 120 },
+        "kind": { "type": "string", "enum": ["full", "part", "day"] },
+        "pay": { "type": "string", "maxLength": 60 },
+        "desc": { "type": "string", "maxLength": 1000 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "gov": { "type": "string", "maxLength": 40 },
+        "open": { "type": "boolean" },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["by", "name", "title", "kind", "desc", "phone", "ack", "fine"]
+    },
+    "Phone": {
+      "title": "Phone",
+      "description": "Emergency or important local phone number",
+      "type": "object",
+      "properties": {
+        "gov": { "type": "string", "maxLength": 40 },
+        "label": { "type": "string", "maxLength": 100 },
+        "num": { "type": "string", "maxLength": 30 },
+        "at": { "type": "number" }
+      },
+      "required": ["label", "num"]
+    },
+    "Note": {
+      "title": "Note",
+      "description": "Urgent broadcast announcement / push notification",
+      "type": "object",
+      "properties": {
+        "gov": { "type": "string", "maxLength": 40 },
+        "title": { "type": "string", "maxLength": 120 },
+        "body": { "type": "string", "maxLength": 1000 },
+        "at": { "type": "number" }
+      },
+      "required": ["title", "body"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Content abuse report to admin",
+      "type": "object",
+      "properties": {
+        "t": { "type": "string", "maxLength": 40 },
+        "tid": { "type": "string", "maxLength": 128 },
+        "reason": { "type": "string", "maxLength": 1000 },
+        "by": { "type": "string", "maxLength": 128 },
+        "at": { "type": "number" }
+      },
+      "required": ["t", "tid", "reason", "by"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Etisalat Cash transfer receipt submission",
+      "type": "object",
+      "properties": {
+        "by": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 80 },
+        "kind": { "type": "string", "enum": ["service", "support", "fine"] },
+        "sid": { "type": "string", "maxLength": 128 },
+        "fid": { "type": "string", "maxLength": 128 },
+        "pkg": { "type": "string", "maxLength": 20 },
+        "days": { "type": "number" },
+        "amount": { "type": "number" },
+        "pname": { "type": "string", "maxLength": 80 },
+        "from": { "type": "string", "maxLength": 30 },
+        "ref": { "type": "string", "maxLength": 60 },
+        "img": { "type": "string", "maxLength": 300 },
+        "to": { "type": "string", "maxLength": 30 },
+        "anon": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["by", "name", "amount", "pname", "from", "ref", "img", "to", "status"]
+    },
+    "Fine": {
+      "title": "Fine",
+      "description": "Penalty fine issued for fraudulent or violating content",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "amount": { "type": "number" },
+        "reason": { "type": "string", "maxLength": 300 },
+        "status": { "type": "string", "enum": ["due", "paid"] },
+        "ack": { "type": "number" },
+        "fine": { "type": "number" },
+        "at": { "type": "number" }
+      },
+      "required": ["uid", "amount", "reason", "status"]
+    },
+    "CfgPay": {
+      "title": "CfgPay",
+      "description": "Official Etisalat Cash payment settings",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 80 },
+        "num": { "type": "string", "maxLength": 30 },
+        "pw": { "type": "number" },
+        "pm": { "type": "number" },
+        "pq": { "type": "number" }
+      },
+      "required": ["name", "num"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "Public user profiles"
+    },
+    "/users_private/{userId}": {
+      "schema": { "$ref": "UserPrivate" },
+      "description": "Private user credentials and documents"
+    },
+    "/services/{serviceId}": {
+      "schema": { "$ref": "Service" },
+      "description": "Services directory"
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "Review" },
+      "description": "Reviews on services"
+    },
+    "/issues/{issueId}": {
+      "schema": { "$ref": "Issue" },
+      "description": "Community problem tracker"
+    },
+    "/heroes/{heroId}": {
+      "schema": { "$ref": "Hero" },
+      "description": "Town heroes and initiatives"
+    },
+    "/charity/{charityId}": {
+      "schema": { "$ref": "Charity" },
+      "description": "Charity activities and emergency blood"
+    },
+    "/market/{marketId}": {
+      "schema": { "$ref": "Market" },
+      "description": "Local town marketplace"
+    },
+    "/events/{eventId}": {
+      "schema": { "$ref": "Event" },
+      "description": "Town events and volunteer work"
+    },
+    "/jobs/{jobId}": {
+      "schema": { "$ref": "Job" },
+      "description": "Employment opportunities"
+    },
+    "/phones/{phoneId}": {
+      "schema": { "$ref": "Phone" },
+      "description": "Directory of emergency and town numbers"
+    },
+    "/notes/{noteId}": {
+      "schema": { "$ref": "Note" },
+      "description": "Urgent broadcast notices"
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "Report" },
+      "description": "User abuse reports to admins"
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "Payment" },
+      "description": "Payment receipts via Etisalat Cash"
+    },
+    "/fines/{fineId}": {
+      "schema": { "$ref": "Fine" },
+      "description": "Penalties for false reports"
+    },
+    "/cfg/pay": {
+      "schema": { "$ref": "CfgPay" },
+      "description": "Payment configuration"
+    }
+  }
+}

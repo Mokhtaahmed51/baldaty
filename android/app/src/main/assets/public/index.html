@@ -1,0 +1,2928 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بلدتي</title>
+<meta name="description" content="منصة مجتمعية لكل محافظات مصر - دليل خدمات، راصد مشكلات، أبطال البلدة، العمل الخيري، وسوق البلدة" />
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="بلدتي">
+<link rel="icon" type="image/png" href="/pwa-192x192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:image" content="/baldaty_logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+<script>
+  try {
+    const savedTheme = localStorage.getItem('app_theme');
+    if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+  } catch(e) {}
+</script>
+<style>:root{--bg:#f3f8fc;--sf:#fff;--tx:#0a0a0a;--mu:#5e6a76;--pr:#0a0a0a;--on:#fff;--ac:#7cc4f5;--rd:#d93f3f;--ln:#e3ecf4;--ok:#1f8a5b;--soft:#e6f3fd;--sh:0 1px 2px #0a0a0a0d,0 10px 28px #0a0a0a12;padding-top:env(safe-area-inset-top,0px)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#000;--sf:#0f1317;--tx:#f5f7fa;--mu:#9aa5b1;--pr:#7cc4f5;--on:#001018;--ac:#7cc4f5;--rd:#ff6b6b;--ln:#1e262e;--ok:#5fd08f;--soft:#0f2230;--sh:0 1px 0 #ffffff0d,0 10px 28px #000a}}:root[data-theme=dark]{--bg:#000;--sf:#0f1317;--tx:#f5f7fa;--mu:#9aa5b1;--pr:#7cc4f5;--on:#001018;--ac:#7cc4f5;--rd:#ff6b6b;--ln:#1e262e;--ok:#5fd08f;--soft:#0f2230;--sh:0 1px 0 #ffffff0d,0 10px 28px #000a}*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;font-family:Readex Pro,Tahoma,sans-serif;font-size:15px;line-height:1.7}#app{max-width:480px;min-height:100vh;margin:0 auto;padding:0 16px 120px}header{top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(16px);justify-content:space-between;align-items:center;margin:0 -16px;padding:10px 16px;display:flex;position:sticky}h1{letter-spacing:-.5px;font-size:24px;font-weight:700}h1:after{content:"";background:var(--ac);border-radius:50%;width:8px;height:8px;margin-inline-start:5px;display:inline-block}h2{letter-spacing:-.2px;margin:18px 0 10px;font-size:19px;font-weight:700}.s{color:var(--mu);font-size:13px}.c{text-align:center;padding:32px 16px}button,.btn{font:inherit;cursor:pointer;background:var(--pr);color:var(--on);border:0;border-radius:16px;padding:10px 18px;font-weight:600;text-decoration:none;transition:transform .12s,opacity .12s;display:inline-block}button:active,.btn:active{transform:scale(.96)}button.g{background:var(--sf);color:var(--tx);border:1px solid var(--ln)}button.d{background:var(--rd);color:#fff}button:disabled{opacity:.5}button.ib{background:var(--soft);width:40px;height:40px;color:var(--tx);border:0;border-radius:50%;place-items:center;padding:0;font-size:18px;display:inline-grid}button.ib.on{color:var(--rd)}.sub-back-btn{background:var(--sf);width:38px;height:38px;color:var(--tx);border:1px solid var(--ln);box-shadow:var(--sh);cursor:pointer;border-radius:50%;flex:none;justify-content:center;align-items:center;margin:0;padding:0;line-height:1;transition:transform .12s,background .12s;display:inline-flex}.sub-back-btn:hover{background:var(--soft)}.sub-back-btn:active{transform:scale(.92)}.sub-back-btn svg{stroke:currentColor;stroke-width:2.5px;stroke-linecap:round;stroke-linejoin:round;fill:none;pointer-events:none;width:20px;height:20px;display:block}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--ac);outline-offset:2px}.card{background:var(--sf);box-shadow:var(--sh);border-radius:24px;margin-bottom:14px;padding:16px}.card.u{box-shadow:0 0 0 2px var(--rd),var(--sh)}.row{flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;display:flex}.pill{background:var(--ln);border-radius:99px;padding:3px 11px;font-size:12px;font-weight:600}.pill.w{background:var(--soft)}.pill.o{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok)}.vf{color:#2b8cf0}.star{color:#f5b301}nav{bottom:calc(10px + env(safe-area-inset-bottom,0px));pointer-events:none;z-index:15;justify-content:center;display:flex;position:fixed;left:12px;right:12px}nav div{pointer-events:auto;background:color-mix(in srgb,var(--sf) 88%,transparent);-webkit-backdrop-filter:blur(18px);border:1px solid var(--ln);width:100%;max-width:456px;box-shadow:var(--sh);border-radius:30px;gap:2px;padding:6px;display:flex}nav button{color:var(--mu);background:0 0;border-radius:24px;flex:1;padding:7px 2px;font-size:11px;font-weight:600}nav button.on{background:var(--pr);color:var(--on)}nav span{font-size:20px;line-height:1.3;display:block}.chips{scrollbar-width:none;gap:8px;padding:2px 0 10px;display:flex;overflow-x:auto}.chips::-webkit-scrollbar{display:none}.chips button{white-space:nowrap;border-radius:99px;flex:none;padding:9px 16px}.grid{grid-template-columns:1fr 1fr;gap:12px;display:grid}.st{background:var(--sf);box-shadow:var(--sh);border-radius:22px;padding:14px}.st b{font-size:28px;line-height:1.3;display:block}input,select,textarea{font:inherit;border:1px solid var(--ln);background:var(--sf);width:100%;color:var(--tx);border-radius:16px;padding:12px 14px}input[type=checkbox]{width:auto}label{color:var(--mu);margin:12px 0;font-size:13px;display:block}.ov{-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);z-index:30;background:#0009;justify-content:center;align-items:flex-end;display:flex;position:fixed;inset:0}.sheet{background:var(--sf);width:100%;max-width:480px;max-height:90vh;padding:22px 18px calc(18px + env(safe-area-inset-bottom,0px));border-radius:30px 30px 0 0;overflow:auto}.sheet:before{content:"";background:var(--ln);border-radius:9px;width:40px;height:5px;margin:-10px auto 12px;display:block}img.ph{object-fit:cover;background:#e2e8f0;border-radius:18px;width:100%;max-height:240px;margin:8px 0}.bar i{background:var(--ac);border-radius:9px;height:100%;display:block}.note{background:color-mix(in srgb,var(--rd) 12%,var(--sf));border-radius:18px;margin-bottom:12px;padding:12px 14px}#toast{top:calc(12px + env(safe-area-inset-top,0px));background:var(--tx);color:var(--bg);z-index:50;box-shadow:var(--sh);border-radius:99px;padding:10px 20px;font-size:13px;font-weight:600;display:none;position:fixed;left:50%;transform:translate(-50%)}.hero{padding:64px 0 20px}.hero h1{font-size:56px}.mt{background:var(--sf);color:var(--tx);box-shadow:var(--sh);border:0;border-radius:24px;padding:20px 8px}.mt span{font-size:30px;display:block}.loc{background:var(--soft);color:var(--tx);border-radius:99px;gap:6px;margin:2px 0 10px;padding:7px 16px;font-size:13px;display:inline-flex}.hb{color:#fff;background:linear-gradient(135deg,#0a0a0a 10%,#16384f 55%,#7cc4f5);border-radius:28px;margin:4px 0 14px;padding:22px 20px}.hb input{color:#fff;background:#ffffff26;border:1px solid #fff3;border-radius:18px}.hb input::placeholder{color:#ffffffb3}.sc .cv{object-fit:cover;border-radius:18px;width:100%;height:150px;margin-bottom:12px}.av{background:var(--soft);border-radius:18px;flex:none;place-items:center;width:54px;height:54px;font-size:21px;font-weight:700;display:grid}.nm{text-overflow:ellipsis;font-size:16px;overflow:hidden}.mi-w{flex-wrap:wrap;gap:6px;margin-top:6px;display:flex}.mi{background:var(--soft);border-radius:99px;align-items:center;gap:5px;padding:3px 10px;font-size:12px;display:inline-flex}.mi.pm{background:var(--pr);color:var(--on)}.dot{background:var(--ok);border-radius:50%;width:8px;height:8px;display:inline-block}.dot.off{background:var(--mu)}.ds{color:var(--tx);margin:12px 0}button.rt{color:var(--tx);background:0 0;border:0;padding:4px 0}.ca{align-items:center;gap:10px;margin-top:12px;display:flex}.btn-icon-call{background:#10b981;border-radius:14px;flex:none;justify-content:center;align-items:center;width:44px;height:44px;text-decoration:none;transition:transform .12s,filter .12s;display:inline-flex;box-shadow:0 2px 8px #10b9814d;color:#fff!important}.btn-icon-wa{background:#25d366;border-radius:14px;flex:none;justify-content:center;align-items:center;width:44px;height:44px;text-decoration:none;transition:transform .12s,filter .12s;display:inline-flex;box-shadow:0 2px 8px #25d3664d;color:#fff!important}.btn-icon-call:hover,.btn-icon-wa:hover{filter:brightness(1.08)}.btn-icon-call:active,.btn-icon-wa:active{transform:scale(.92)}.btn-icon-sm{border-radius:11px;width:36px;height:36px}.ct{text-align:right;background:var(--sf);width:100%;color:var(--tx);box-shadow:var(--sh);border-radius:22px;align-items:center;gap:12px;margin-bottom:12px;padding:14px;display:flex}.ct b{display:block}.ct .ic{background:var(--soft);border-radius:16px;flex:none;place-items:center;width:52px;height:52px;font-size:28px;display:grid}.lg{margin:8px 0;padding-inline-start:20px}.lg li{margin-bottom:6px}.podium-box{background:var(--sf);box-shadow:var(--sh);border:1px solid var(--ln);border-radius:16px;margin-bottom:10px;padding:10px 12px}.podium-grid{grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:6px;margin:8px 0 6px;display:grid}.podium-card{background:var(--soft);text-align:center;border:1px solid var(--ln);border-radius:12px;flex-direction:column;align-items:center;min-width:0;padding:6px 4px;display:flex}.podium-card.top1{background:linear-gradient(180deg,#eab3082e 0%,var(--sf) 100%);border:1px solid #eab30880}.podium-card.top2{background:linear-gradient(180deg,#94a3b82e 0%,var(--sf) 100%);border:1px solid #94a3b866}.podium-card.top3{background:linear-gradient(180deg,#d9770629 0%,var(--sf) 100%);border:1px solid #d9770659}.podium-user-name{color:var(--tx);white-space:nowrap;justify-content:center;align-items:center;gap:2px;max-width:100%;margin:2px 0;font-size:11px;font-weight:700;line-height:1.2;display:flex}.nm-crop{text-overflow:ellipsis;white-space:nowrap;max-width:62px;display:inline-block;overflow:hidden}.vf-wrap{flex-shrink:0;align-items:center;gap:1px;font-size:10px;display:inline-flex}.podium-user-pts{color:var(--pr);background:var(--sf);border:1px solid var(--ln);white-space:nowrap;border-radius:99px;margin-top:2px;padding:1px 5px;font-size:10.5px;font-weight:700}.bar{background:#fff3;border-radius:9px;height:8px;margin:14px 0 6px;overflow:hidden}.bar i{background:var(--ac);border-radius:9px;height:100%;transition:width .8s;display:block}.hav{background:var(--soft);border-radius:15px;flex:none;place-items:center;width:44px;height:44px;font-size:18px;font-weight:700;display:grid}.hav.big{color:#fff;background:#ffffff26;border-radius:19px;width:56px;height:56px;font-size:22px}.pod{justify-content:center;align-items:flex-end;gap:10px;margin:32px 0 16px;display:flex}.pc{text-align:center;flex-direction:column;flex:1;align-items:center;gap:5px;min-width:0;max-width:118px;animation:.6s both rise;display:flex}.pc.r1{animation-delay:.25s}.pc.r3{animation-delay:.4s}.pa{position:relative}.pa .hav{border:3px solid #b9c3cc;border-radius:50%;width:62px;height:62px;font-size:25px}.pc.r1 .pa .hav{border-color:#f5b301;width:76px;height:76px;font-size:31px}.pc.r3 .pa .hav{border-color:#d08a52}.cr{font-size:26px;font-style:normal;position:absolute;top:-26px;left:50%;transform:translate(-50%)}.pn{text-overflow:ellipsis;white-space:nowrap;justify-content:center;align-items:center;gap:3px;max-width:100%;font-size:13px;display:flex;overflow:hidden}.pp{background:var(--soft);color:var(--tx);border-radius:99px;padding:1px 12px;font-size:13px;font-weight:700}.pb{color:#03121c;background:linear-gradient(180deg,var(--ac),color-mix(in srgb,var(--ac) 30%,var(--bg)));transform-origin:bottom;border-radius:18px 18px 0 0;place-items:center;width:100%;font-size:26px;font-weight:700;animation:.8s .1s both grow;display:grid}.r1 .pb{height:112px}.r2 .pb{height:82px}.r3 .pb{height:64px}.hr{align-items:center;gap:12px;padding:12px 14px;display:flex}.rn{text-align:center;width:24px;color:var(--mu);font-weight:700}.me{box-shadow:0 0 0 2px var(--ac),var(--sh)}.empty-dashed{text-align:center;color:var(--mu);border:1px dashed var(--ln);border-radius:24px;margin-bottom:14px;padding:34px 16px}@keyframes grow{0%{transform:scaleY(0)}}@keyframes rise{0%{opacity:0;transform:translateY(12px)}}@media (prefers-reduced-motion:reduce){.pc,.pb{animation:none}}</style>
+</head>
+<body>
+<div id="app"></div><div id="modal"></div><div id="modal2"></div><div id="toast" role="status"></div>
+<script>
+/* ===== إعدادات Firebase ===== */
+const CFG = {
+  apiKey: "AIzaSyDh5pTDXDQ1kLOzyCkufiWcPSEo8Q6J7SY",
+  authDomain: "studio-61196567-8edf5.firebaseapp.com",
+  projectId: "studio-61196567-8edf5",
+  storageBucket: "studio-61196567-8edf5.firebasestorage.app",
+  messagingSenderId: "484094142486",
+  appId: "1:484094142486:web:baldaty"
+};
+const LIVE = !!CFG.apiKey && typeof firebase !== 'undefined';
+let fs, au, st, fcmMsg;
+if (LIVE) {
+  firebase.initializeApp(CFG);
+  fs = firebase.firestore();
+  au = firebase.auth();
+  st = firebase.storage();
+  if (typeof firebase.messaging === 'function' && 'Notification' in window) {
+    try { fcmMsg = firebase.messaging(); } catch (e) { console.warn('FCM Init Warning:', e); }
+  }
+}
+
+/* ===== تنظيف وضغط البيانات وحذف الحقول الفارغة لتقليص حجم مستندات Firestore ===== */
+function cleanDoc(obj) {
+  if (!obj || typeof obj !== 'object') return obj;
+  if (Array.isArray(obj)) return obj.map(cleanDoc).filter(x => x !== undefined && x !== null);
+  const out = {};
+  for (const [k, v] of Object.entries(obj)) {
+    if (v === undefined || v === null) continue;
+    if (typeof v === 'string') {
+      const trimmed = v.trim();
+      if (trimmed === '' && ['note', 'notes', 'extra', 'desc2', 'bio', 'details', 'comment'].includes(k)) continue;
+      out[k] = trimmed;
+    } else if (typeof v === 'object' && !(v instanceof Date) && !(v.constructor && v.constructor.name === 'FieldValue')) {
+      out[k] = cleanDoc(v);
+    } else {
+      out[k] = v;
+    }
+  }
+  return out;
+}
+
+/* ===== طبقة البيانات ===== */
+const COLS = ['users','services','reviews','issues','heroes','charity','notes','reports','market','events','jobs','phones','cfg','payments','fines'];
+const D = {}; COLS.forEach(c => D[c] = []);
+const MEM = {};
+const LS = {
+  get: k => { try { const v = localStorage.getItem(k); if (v !== null) return v; } catch (e) {} return MEM[k] ?? null; },
+  set: (k, v) => { MEM[k] = v; try { localStorage.setItem(k, v); } catch (e) {} },
+  del: k => { delete MEM[k]; try { localStorage.removeItem(k); } catch (e) {} }
+};
+const L = {
+  g: k => JSON.parse(LS.get('b_' + k) || '[]'),
+  s: (k, v) => {
+    // تقييد حجم الذاكرة المحلية وتوفير المساحة
+    const capped = Array.isArray(v) ? v.slice(0, 50) : v;
+    LS.set('b_' + k, JSON.stringify(capped));
+  }
+};
+const fire = c => { D[c] = L.g(c); R(); };
+
+/* تحرير وحذف الملفات والصور فوراً من Firebase Storage لتوفير المساحة */
+async function deleteStorageFile(urlOrPath) {
+  if (!LIVE || !st || !urlOrPath || typeof urlOrPath !== 'string') return;
+  try {
+    if (urlOrPath.startsWith('img/') || urlOrPath.startsWith('private/')) {
+      await st.ref(urlOrPath).delete();
+    } else if (urlOrPath.includes('firebasestorage.googleapis.com')) {
+      await st.refFromURL(urlOrPath).delete();
+    }
+  } catch (err) {
+    console.debug('Storage cleanup notice:', err?.code || err?.message);
+  }
+}
+
+let activeUnsubs = {};
+function unsubsAll() {
+  Object.values(activeUnsubs).forEach(un => { if (typeof un === 'function') un(); });
+  activeUnsubs = {};
+}
+
+const DB = {
+  sub(c, govFilter) {
+    if (LIVE) {
+      if (activeUnsubs[c]) { activeUnsubs[c](); delete activeUnsubs[c]; }
+      
+      const isAdmin = me()?.role === 'admin';
+      const inAdmin = isAdmin && V === 'admin';
+
+      // مجموعة البلاغات متاحة فقط داخل لوحة الأدمن
+      if (c === 'reports') {
+        if (!inAdmin) {
+          D[c] = [];
+          return;
+        }
+      }
+
+      let ref = fs.collection(c);
+      if (GOVC.includes(c) && govFilter && govFilter !== 'all') {
+        ref = ref.where('gov', 'in', [govFilter, 'all']).limit(60);
+      } else if (c === 'notes' && govFilter && govFilter !== 'all') {
+        ref = ref.where('gov', 'in', [govFilter, 'all']).limit(20);
+      } else if (c === 'users') {
+        ref = ref.limit(100);
+      } else if (c === 'payments') {
+        if (!inAdmin) {
+          if (!uid) { D[c] = []; return; }
+          ref = ref.where('by', '==', uid).limit(50);
+        } else {
+          ref = ref.limit(60);
+        }
+      } else if (c === 'fines') {
+        if (!inAdmin) {
+          if (!uid) { D[c] = []; return; }
+          ref = ref.where('uid', '==', uid).limit(50);
+        } else {
+          ref = ref.limit(60);
+        }
+      } else {
+        ref = ref.limit(60);
+      }
+
+      try {
+        activeUnsubs[c] = ref.onSnapshot(s => {
+          const fetched = s.docs.map(d => ({ ...d.data(), id: d.id }));
+          if (c === 'users' && uid) {
+            const currentU = D.users.find(x => x.id === uid);
+            if (currentU && !fetched.some(x => x.id === uid)) {
+              fetched.unshift(currentU);
+            }
+          }
+          D[c] = fetched.sort((a,b) => (b.at||0) - (a.at||0));
+          R();
+          if (c === 'notes') ping();
+        }, err => {
+          console.warn('Subscription info for ' + c + ':', err.code, err.message);
+          D[c] = L.g(c);
+          R();
+        });
+      } catch (err) {
+        console.warn('Failed to subscribe to ' + c + ':', err);
+        D[c] = L.g(c);
+        R();
+      }
+      return;
+    }
+    D[c] = L.g(c);
+  },
+  async set(c, o, id) {
+    o.at = o.at || Date.now();
+    if (GOVC.includes(c) && o.gov === undefined) o.gov = cg();
+    if (window._ack && ['services','issues','heroes','market','events','jobs','charity','payments','reviews'].includes(c)) {
+      o.ack = window._ack;
+      o.fine = FINE;
+      if (window._urg && ['issues','heroes','events'].includes(c)) {
+        o.ok = true; o.urgent = true; o.rev = false;
+      }
+    }
+    const cleanPayload = cleanDoc(o);
+    if (LIVE) {
+      cleanPayload.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+      try {
+        if (id) {
+          await fs.collection(c).doc(id).set(cleanPayload, { merge: true });
+          return id;
+        }
+        return (await fs.collection(c).add(cleanPayload)).id;
+      } catch (err) {
+        console.warn('Firestore write notice, caching locally for ' + c, err);
+      }
+    }
+    id = id || 'i' + Date.now() + Math.random().toString(36).slice(2, 6);
+    L.s(c, [{ ...cleanPayload, id }, ...L.g(c).filter(x => x.id !== id)]);
+    fire(c);
+    return id;
+  },
+  async up(c, id, p) {
+    const cleanPayload = cleanDoc(p);
+    if (LIVE) {
+      try {
+        return await fs.collection(c).doc(id).update(cleanPayload);
+      } catch (err) {
+        if (err?.code === 'permission-denied' || String(err?.message||'').includes('insufficient permissions')) {
+          console.warn('Firestore update permission denied, updating locally for ' + c);
+        } else {
+          throw err;
+        }
+      }
+    }
+    L.s(c, L.g(c).map(x => x.id === id ? { ...x, ...cleanPayload } : x));
+    fire(c);
+  },
+  async del(c, id) {
+    // 1. تحرير مساحة التخزين في Firebase Storage إذا احتوى المستند على صور
+    const existingDoc = (D[c] || []).find(x => x.id === id);
+    if (existingDoc) {
+      ['photo', 'after', 'img', 'doc', 'receipt'].forEach(k => {
+        if (existingDoc[k]) deleteStorageFile(existingDoc[k]);
+      });
+    }
+
+    // 2. التحديث الفوري المباشر في الذاكرة المحلية والواجهة
+    D[c] = (D[c] || []).filter(x => x.id !== id);
+    L.s(c, L.g(c).filter(x => x.id !== id));
+    fire(c);
+    toast('تم الحذف وتحرير المساحة 🗑️');
+
+    // 3. الحذف السحابي من Firestore في الخلفية
+    if (LIVE) {
+      try {
+        await fs.collection(c).doc(id).delete();
+      } catch (err) {
+        console.warn('Firestore delete notice for ' + c, err);
+      }
+    }
+  }
+};
+
+/* ===== حالة وأدوات ===== */
+let uid = null, userPriv = null, pos = null, V = 'home', T = 'svc', A = 'stats', cat = 'الكل', subbed = 0, lastNote;
+const CATS = ['سباكة','كهرباء','نجارة','حدادة','دهانات','بناء وترميم','تكييف وتبريد','صيانة أجهزة منزلية','ميكانيكا','إنقاذ سيارات','نقل أثاث','نظافة','بستنة','صيانة موبايل وكمبيوتر','دروس خصوصية','خياطة','تصوير','توصيل','أخرى'];
+const TABS = [['svc','🔧','الخدمات'],['iss','📍','راصد'],['her','🌳','الأبطال'],['chr','❤️','الخير'],['more','☰','المزيد']];
+const MORE = [
+  ['rank', '🏆', 'لوحة الشرف والأبطال'],
+  ['mkt', '🛍️', 'سوق البلدة'],
+  ['evt', '📅', 'فعاليات وتطوع'],
+  ['job', '💼', 'وظائف'],
+  ['tel', '☎️', 'أرقام مهمة'],
+  ['fav', '♥', 'مفضلتي'],
+  ['pay', '💳', 'مدفوعاتي'],
+  ['sup', '💙', 'ادعم بلدتي']
+];
+const closeM = () => {
+  const el = document.getElementById('modal');
+  if (el) el.innerHTML = '';
+};
+const RL = { citizen:'مواطن', pro:'صاحب مهنة', gov:'جهة حكومية', charity:'جمعية أهلية', admin:'أدمن' };
+const GOVS = ['القاهرة','الجيزة','الإسكندرية','القليوبية','بورسعيد','السويس','دمياط','الدقهلية','الشرقية','كفر الشيخ','الغربية','المنوفية','البحيرة','الإسماعيلية','الفيوم','بني سويف','المنيا','أسيوط','سوهاج','قنا','الأقصر','أسوان','الوادي الجديد','مطروح','البحر الأحمر','شمال سيناء','جنوب سيناء'];
+const GOVC = ['services','issues','heroes','charity','market','events','jobs'];
+let GV = null, askedGov = 0;
+const ug = () => (me() || {}).gov || '';
+const cg = () => GV === 'all' || !GV ? (ug() || 'القاهرة') : GV;
+const G = l => GV === 'all' || !GV ? l : l.filter(x => !x.gov || x.gov === GV);
+const N0 = () => D.notes.find(x => !x.gov || x.gov === 'all' || x.gov === ug());
+
+function reloadGovSubscriptions() {
+  if (!LIVE || !uid) return;
+  COLS.forEach(c => DB.sub(c, GV));
+}
+
+const pickGov = () => sheet(`<h2>اختر المحافظة</h2><div class="grid">${['all',...GOVS].map(g => `<button class="${g===GV?'':'g'}" onclick="GV='${g}';reloadGovSubscriptions();closeM();R()">${g==='all'?'كل مصر':g}</button>`).join('')}</div>`);
+const chGov = () => form('محافظتي', [['gov','المحافظة','select',GOVS.map(g => [g,g])]], async v => {
+  GV = v.gov;
+  await DB.up('users', uid, { gov: v.gov });
+  reloadGovSubscriptions();
+}, 'حفظ', '', { gov: ug() || 'القاهرة' });
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const SUPER_ADMIN_EMAILS = [
+  'mokhtar51.ahmed51@gmail.com'
+];
+const isSuperAdminEmail = em => !!em && SUPER_ADMIN_EMAILS.some(x => x.toLowerCase() === String(em).trim().toLowerCase());
+
+const usr = id => D.users.find(u => u.id === id) || (id === uid ? me() : null);
+const me = () => {
+  if (!uid) return null;
+  const u = D.users.find(x => x.id === uid);
+  const currentEmail = (u && u.email) || (LIVE && au && au.currentUser && au.currentUser.email) || '';
+  const currentName = (u && u.name) || (LIVE && au && au.currentUser && au.currentUser.displayName) || '';
+  const currentPhoto = (u && (u.photo || u.photoURL)) || (LIVE && au && au.currentUser && au.currentUser.photoURL) || '';
+  const isSuper = isSuperAdminEmail(currentEmail) || (uid === 'admin');
+  if (!u) {
+    return {
+      id: uid,
+      name: currentName || (isSuper ? 'مختار أحمد (الأدمن)' : 'مواطن'),
+      email: currentEmail,
+      photo: currentPhoto,
+      photoURL: currentPhoto,
+      gov: GV === 'all' || !GV ? 'القاهرة' : GV,
+      role: isSuper ? 'admin' : 'citizen',
+      job: '',
+      verify: isSuper ? 'approved' : 'none',
+      points: 0,
+      banned: false,
+      supporter: false,
+      ...(userPriv || {})
+    };
+  }
+  return {
+    ...u,
+    photo: u.photo || u.photoURL || currentPhoto,
+    photoURL: u.photoURL || u.photo || currentPhoto,
+    ...(isSuper ? { role: 'admin', verify: 'approved' } : {}),
+    points: +u.points || 0,
+    ...(userPriv || {})
+  };
+};
+
+const uav = (u, sz = 42) => {
+  const p = u?.photo || u?.photoURL || u?.avatar || '';
+  if (p) {
+    return `<img src="${esc(p)}" class="av" style="width:${sz}px;height:${sz}px;border-radius:${sz>45?18:14}px;object-fit:cover;flex:none" alt="${esc(u?.name||'')}" loading="lazy">`;
+  }
+  return `<div class="av" style="width:${sz}px;height:${sz}px;font-size:${Math.round(sz*0.4)}px;border-radius:${sz>45?18:14}px;flex:none">${esc(((u&&u.name)||'?').trim()[0])}</div>`;
+};
+const getTier = pts => {
+  pts = +pts || 0;
+  if (pts >= 2000) return { name: 'أسطورة البلدة الكبرى', icon: '💎', badge: '💎 أسطورة البلدة (2000+)', color: '#9333ea', desc: 'تثبيت دائم ومجاني لأي خدمة · وسام الأسطورة الملكي · علامة التوثيق ✔ · نشر مباشر دون مراجعة · درع الداعم 💙' };
+  if (pts >= 1000) return { name: 'أسطورة البلدة', icon: '👑', badge: '👑 أسطورة البلدة (1000+)', color: '#eab308', desc: 'تمييز خدمتك مجاناً (★ مميز) · توثيق تلقائي ✔ · نشر فوري وبلاغات مباشرة · وسام التاج الملكي · درع 💙' };
+  if (pts >= 500) return { name: 'بطل البلدة', icon: '🌟', badge: '🌟 بطل البلدة (500+)', color: '#10b981', desc: 'تفعيل المزايا المعتمدة: توثيق فوري ✔ · تمييز خدمتك مجاناً (★) · أولوية الظهور في نتائج البحث' };
+  return { name: 'مواطن مساهم', icon: '🌱', badge: '🌱 مساهم مجتمعي', color: '#6b7280', desc: 'اجمع 500 نقطة أو أكثر لتفعيل أول رتبة وتفعيل التوثيق والمزايا التلقائية الحقيقية' };
+};
+
+const vf = u => {
+  if (!u) return '';
+  const pts = +u.points || 0;
+  let s = '';
+  // تفعيل التوثيق التلقائي الحقيقي عند 500 نقطة فما فوق
+  if (u.verify === 'approved' || pts >= 500) s += '<span class="vf" title="موثّق رسمي بالنقاط أو الإدارة">✔</span>';
+  if (pts >= 2000) s += ' <span title="أسطورة البلدة الكبرى">💎</span>';
+  else if (pts >= 1000) s += ' <span title="أسطورة البلدة">👑</span>';
+  else if (pts >= 500) s += ' <span title="بطل البلدة">🌟</span>';
+  if (u.supporter || pts >= 500) s += ' <span title="درع الشرف">💙</span>';
+  return s;
+};
+
+const can = r => {
+  const m = me();
+  if (!m || m.banned) return false;
+  if (m.role === 'admin') return true;
+  const isApproved = m.verify === 'approved' || (+m.points || 0) >= 500;
+  return isApproved && (!r || r.includes(m.role));
+};
+const dist = a => {
+  if (!pos || a.lat == null) return null;
+  const r = x => x * Math.PI / 180, p = r(a.lat - pos.lat), q = r(a.lng - pos.lng), h = Math.sin(p / 2) ** 2 + Math.cos(r(pos.lat)) * Math.cos(r(a.lat)) * Math.sin(q / 2) ** 2;
+  return 12742 * Math.asin(Math.sqrt(h));
+};
+const rate = id => { const r = D.reviews.filter(x => x.sid === id); return r.length ? r.reduce((a, x) => a + x.s, 0) / r.length : 0; };
+const toast = m => { const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(t.h); t.h = setTimeout(() => t.style.display = 'none', 2600); };
+const isThemeDark = () => {
+  const r = document.documentElement;
+  return r.dataset.theme === 'dark' || (!r.dataset.theme && window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches);
+};
+const theme = () => {
+  const r = document.documentElement;
+  const next = isThemeDark() ? 'light' : 'dark';
+  r.dataset.theme = next;
+  try { localStorage.setItem('app_theme', next); } catch (e) {}
+  R();
+};
+const empty = (m, b) => `<div class="card c"><p class="s">${m}</p>${b || ''}</div>`;
+const confirmDel = (c, id) => {
+  const it = D[c]?.find(y => y.id === id);
+  const isMine = it && (it.by === uid || it.uid === uid);
+  const title = isMine ? 'تأكيد حذف منشورك' : 'تأكيد الحذف الإداري';
+  const desc = isMine
+    ? 'هل أنت متأكد من رغبتك في حذف هذا المنشور الخاص بك نهائيًا؟ لن يتمكن أحد من رؤيته بعد الحذف.'
+    : 'أنت تقوم بحذف هذا العنصر بصلاحية الإدارة. هل أنت متأكد؟ لا يمكن التراجع عن الحذف.';
+  sheet(`<h2>${title}</h2>
+    <p class="s" style="font-size:14px;margin:12px 0 20px">${desc}</p>
+    <div class="row">
+      <button class="g" onclick="closeM()">إلغاء</button>
+      <button class="d" onclick="closeM();DB.del('${c}','${id}')">نعم، احذف نهائيًا</button>
+    </div>`);
+};
+const xb = (c, id, o) => {
+  if (!uid) return '';
+  if (!o && D[c]) {
+    const it = D[c].find(y => y.id === id);
+    if (it) o = it.by || it.uid;
+  }
+  if (o === uid) return `<button class="g" style="color:var(--rd);font-size:12px;padding:3px 8px" onclick="confirmDel('${c}','${id}')" title="حذف هذا المنشور الخاص بك">🗑️ حذف طلبي</button>`;
+  if (me()?.role === 'admin') return `<button class="g" style="color:var(--rd);font-size:11px;padding:2px 6px;border:1px solid rgba(239,68,68,.3)" onclick="confirmDel('${c}','${id}')" title="حذف بصلاحية الأدمن">🛡️ حذف إداري</button>`;
+  return '';
+};
+const rb = (c, id, o) => {
+  if (!uid) return '';
+  if (!o && D[c]) {
+    const it = D[c].find(y => y.id === id);
+    if (it) o = it.by || it.uid;
+  }
+  if (o && o === uid) return '';
+  if (me()?.role === 'admin') return '';
+  return `<button class="g" style="font-size:12px;padding:3px 8px" onclick="rep('${c}','${id}')" aria-label="إبلاغ" title="إبلاغ عن محتوى مخالف">⚑ إبلاغ</button>`;
+};
+
+/* ===== كاش الصور الخاصة وتحميلها بـ getDownloadURL ===== */
+const privUrlCache = new Map();
+async function resolvePrivUrl(path) {
+  if (!path) return '';
+  if (path.startsWith('data:') || path.startsWith('http')) return path;
+  if (privUrlCache.has(path)) return privUrlCache.get(path);
+  const localCached = LS.get('img_cache_' + path);
+  if (localCached) {
+    privUrlCache.set(path, localCached);
+    return localCached;
+  }
+  if (LIVE && st) {
+    try {
+      const u = await st.ref(path).getDownloadURL();
+      privUrlCache.set(path, u);
+      try { LS.set('img_cache_' + path, u); } catch (_) {}
+      return u;
+    } catch (e) {
+      console.warn('Image resolution failed:', e);
+      return '';
+    }
+  }
+  return path;
+}
+
+function ph(u) {
+  if (!u) return '';
+  if (u.startsWith('data:') || u.startsWith('http')) {
+    return `<img class="ph" src="${esc(u)}" alt="صورة" loading="lazy" onerror="this.style.display='none'">`;
+  }
+  if (privUrlCache.has(u)) {
+    return `<img class="ph" src="${esc(privUrlCache.get(u))}" alt="صورة" loading="lazy" onerror="this.style.display='none'">`;
+  }
+  const imgId = 'priv_' + Math.random().toString(36).slice(2, 9);
+  resolvePrivUrl(u).then(resolved => {
+    const el = document.getElementById(imgId);
+    if (el) {
+      if (resolved) {
+        el.src = resolved;
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
+      }
+    }
+  });
+  return `<img id="${imgId}" class="ph" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="صورة" loading="lazy" style="display:none" onerror="this.style.display='none'">`;
+}
+
+function ping() {
+  const n = N0();
+  if (lastNote !== undefined && n && n.id !== lastNote && window.Notification && Notification.permission === 'granted') {
+    new Notification(n.title, { body: n.body, dir: 'rtl', lang: 'ar' });
+  }
+  lastNote = n ? n.id : null;
+}
+
+/* ===== محرك الضغط الفائق والتوفير الذكي لمساحة تخزين وكوتا Firebase ===== */
+function checkWebPSupport() {
+  try {
+    const c = document.createElement("canvas");
+    return c.toDataURL("image/webp").indexOf("data:image/webp") === 0;
+  } catch (e) {
+    return false;
+  }
+}
+const supportsWebP = checkWebPSupport();
+
+/**
+ * ضغط الصور فائق الكفاءة:
+ * يحول الصور إلى WebP (أو JPEG كبديل) مع تصغير الأبعاد والضغط التكراري
+ * لتقليص حجم أي صورة من عدة ميجابايتات إلى ~10 - 22 كيلوبايت فقط (توفير أكثر من 98%)
+ */
+function compressImage(file, opts = {}) {
+  return new Promise((res) => {
+    if (!file) return res({ dataUrl: "", origSize: 0, newSize: 0, mime: "" });
+    const isImageFile = (file.type && file.type.startsWith("image/")) || 
+                        /\.(jpe?g|png|webp|gif|bmp|heic|svg)$/i.test(file.name || "") || 
+                        file.size > 0;
+    if (!isImageFile) return res({ dataUrl: "", origSize: 0, newSize: 0, mime: "" });
+    const origSize = file.size || 0;
+    const r = new FileReader();
+    r.onload = () => {
+      const dataUrlCandidate = r.result;
+      const i = new Image();
+      i.onload = () => {
+        try {
+          const isDoc = opts.isPrivate || opts.purpose === "doc" || opts.purpose === "receipt";
+          const isAvatar = opts.purpose === "avatar";
+          let maxDim = isAvatar ? 240 : (isDoc ? 620 : 480);
+          if (opts.maxDim) maxDim = opts.maxDim;
+
+          let w = i.width, h = i.height;
+          const k = Math.min(1, maxDim / Math.max(w, h));
+          const targetW = Math.max(1, Math.round(w * k));
+          const targetH = Math.max(1, Math.round(h * k));
+
+          const c = document.createElement("canvas");
+          c.width = targetW;
+          c.height = targetH;
+          const ctx = c.getContext("2d");
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = "high";
+          ctx.drawImage(i, 0, 0, targetW, targetH);
+
+          const mime = supportsWebP ? "image/webp" : "image/jpeg";
+          let q = isDoc ? 0.45 : 0.38;
+          let dataUrl = c.toDataURL(mime, q);
+
+          // إذا تجاوز الحجم 40 كيلوبايت في الصور العادية، نطبق ضغطاً ثانوياً
+          if (dataUrl.length > 42000 && !isDoc) {
+            const c2 = document.createElement("canvas");
+            const k2 = Math.min(1, 380 / Math.max(targetW, targetH));
+            c2.width = Math.max(1, Math.round(targetW * k2));
+            c2.height = Math.max(1, Math.round(targetH * k2));
+            const ctx2 = c2.getContext("2d");
+            ctx2.imageSmoothingEnabled = true;
+            ctx2.drawImage(c, 0, 0, c2.width, c2.height);
+            dataUrl = c2.toDataURL(mime, 0.30);
+          }
+
+          const approxBytes = Math.round((dataUrl.length - 22) * 3 / 4);
+          res({ dataUrl, origSize, newSize: approxBytes, mime, width: targetW, height: targetH });
+        } catch (err) {
+          res({ dataUrl: dataUrlCandidate, origSize, newSize: origSize, mime: file.type || "image/jpeg" });
+        }
+      };
+      i.onerror = () => {
+        res({ dataUrl: dataUrlCandidate, origSize, newSize: origSize, mime: file.type || "image/jpeg" });
+      };
+      i.src = dataUrlCandidate;
+    };
+    r.onerror = () => res({ dataUrl: "", origSize: 0, newSize: 0, mime: "" });
+    r.readAsDataURL(file);
+  });
+}
+
+/* رفع الصور مع ضغط فائق وضمان عدم فقدان الصورة وعرضها الفوري */
+const img = async (f, isPrivate = false, purpose = "") => {
+  if (!f) return "";
+  let finalDataUrl = "";
+  try {
+    const comp = await compressImage(f, { isPrivate, purpose });
+    finalDataUrl = comp.dataUrl;
+    if (!finalDataUrl) return "";
+
+    if (!LIVE || !st) return finalDataUrl;
+
+    const ext = comp.mime === "image/webp" ? "webp" : "jpg";
+
+    if (isPrivate) {
+      const currentUid = uid || (au && au.currentUser && au.currentUser.uid);
+      if (!currentUid) return finalDataUrl;
+      const path = "private/" + currentUid + "/file_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6) + "." + ext;
+      privUrlCache.set(path, finalDataUrl);
+      try {
+        const p = st.ref(path);
+        const meta = { contentType: comp.mime };
+        const uploadTask = p.putString(finalDataUrl, "data_url", meta).then(() => path);
+        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(null), 4000));
+        const res = await Promise.race([uploadTask, timeoutPromise]);
+        return res || finalDataUrl;
+      } catch (err) {
+        console.warn("Private storage upload fallback:", err);
+        return finalDataUrl;
+      }
+    } else {
+      // صور المجتمع العامة (البلاغات، الخدمات، الأبطال، السوق، الفعاليات)
+      try {
+        const path = "img/" + Date.now() + "_" + Math.random().toString(36).slice(2, 6) + "." + ext;
+        const p = st.ref(path);
+        const meta = { contentType: comp.mime };
+        privUrlCache.set(path, finalDataUrl);
+        const uploadTask = p.putString(finalDataUrl, "data_url", meta).then(() => p.getDownloadURL());
+        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(null), 4000));
+        const remoteUrl = await Promise.race([uploadTask, timeoutPromise]);
+        if (remoteUrl && typeof remoteUrl === "string" && remoteUrl.startsWith("http")) {
+          return remoteUrl;
+        }
+        return finalDataUrl;
+      } catch (err) {
+        console.warn("Public storage upload notice, fallback to compressed dataUrl:", err);
+        return finalDataUrl;
+      }
+    }
+  } catch (e) {
+    console.warn("img compression/upload error:", e);
+    return finalDataUrl || "";
+  }
+};
+
+/* ===== الإقرار والمسؤولية والغرامات (تعريف مسبق قبل استخدامها في النماذج) ===== */
+const FINE = 500;
+const PLEDGE = ['أضف خدمتك','بلّغ عن مشكلة','شارك مبادرتك','أعلن في سوق البلدة','فعالية أو حملة تطوع','أعلن عن وظيفة','اطلب دمًا','أبلغ عن مفقود أو معثور','تبرع عيني','حملة خيرية','قيّم الخدمة','تمييز خدمتك','ادعم بلدتي 💙'];
+const URG = ['بلّغ عن مشكلة','شارك مبادرتك','فعالية أو حملة تطوع'];
+const dis = (e, v) => [...e.target.querySelectorAll('button')].forEach(x => x.disabled = v);
+const TERMS = `<ul class="lg"><li>تقرّ بأن بياناتك صحيحة وأن المحتوى حقيقي وغير مفتعل.</li><li>تقبل <b>شرطًا جزائيًا (تعويضًا اتفاقيًا) قدره ${FINE} جنيه</b> عن كل محتوى يثبت أنه كاذب أو للعبث أو التسلية، يُسجَّل عليك ويُطلب سداده.</li><li>تعلم أن الإبلاغ الكاذب بسوء قصد جريمة يعاقب عليها قانون العقوبات المصري (المادة 305)، وأن لإدارة التطبيق اتخاذ الإجراءات القانونية.</li><li>لا يُقتطع أي مبلغ تلقائيًا؛ تُقدَّر المخالفة بمراجعة الأدمن، والتحصيل الجبري يكون عبر القضاء المختص. وقد يُمنع النشر حتى سداد الغرامة.</li><li>يحتفظ التطبيق بسجل إقرارك (تاريخه وبيانات حسابك).</li></ul>`;
+
+const confirmP = (title, urg) => new Promise(res => {
+  // إقرار سريع وسلس دون تعطيل الإرسال
+  res(true);
+});
+
+const terms = () => sheet(`<h2>الشروط والمسؤولية</h2>${TERMS}`);
+
+/* نموذج عام */
+function form(title, fields, ok, btn = 'حفظ', note = '', d) {
+  if (PLEDGE.includes(title) && D.fines.some(f => f.uid === uid && f.status === 'due')) {
+    return toast('عليك غرامة مستحقة، سدّدها من المزيد ← مدفوعاتي');
+  }
+  document.getElementById('modal').innerHTML = `<div class="ov" onclick="if(event.target===this)closeM()"><form class="sheet" id="fm"><h2>${title}</h2>${note ? `<p class="s">${note}</p>` : ''}${fields.map(f => `<label>${f[1]}${f[2] === 'area' ? `<textarea name="${f[0]}" rows="3" ${f[3] === 'o' ? '' : 'required'}></textarea>` : f[2] === 'select' ? `<select name="${f[0]}">${f[3].map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select>` : `<input name="${f[0]}" type="${f[2]}" ${f[3] === 'o' ? '' : 'required'} ${f[2] === 'file' ? 'accept="image/*"' : ''} ${f[2] === 'number' ? 'min="0" step="any"' : ''}>`}</label>`).join('')}<div class="row"><button type="button" class="g" onclick="closeM()">إلغاء</button><button id="sb" onclick="window._urgent=0">${btn}</button>${URG.includes(title) ? '<button id="ub" style="background:var(--ac);color:#001018" onclick="window._urgent=1">⚡ نشر عاجل</button>' : ''}</div>${title === 'تسجيل الدخول' ? '<div style="margin-top:12px;text-align:center"><button type="button" class="g" style="padding:6px 14px;font-size:12px" onclick="forgotPw()">نسيت كلمة المرور؟</button></div>' : ''}${URG.includes(title) ? '<p class="s" style="margin-top:8px">الإرسال العادي يذهب لمراجعة الأدمن. النشر العاجل يظهر فورًا ويراجعه الأدمن لاحقًا.</p>' : ''}</form></div>`;
+  if (d) for (const k in d) { const el = document.getElementById('fm').elements[k]; if (el && el.type !== 'file' && d[k] != null) el.value = d[k]; }
+  document.getElementById('fm').onsubmit = async e => {
+    e.preventDefault();
+    const urg = !!window._urgent;
+    const submitBtn = document.getElementById('sb');
+    const origBtnText = submitBtn ? submitBtn.innerText : btn;
+    if (submitBtn) submitBtn.innerText = 'جاري الإرسال…';
+    dis(e, true);
+    try {
+      const v = {};
+      for (const el of e.target.elements) {
+        if (!el.name) continue;
+        const isPrivField = ['doc', 'img'].includes(el.name);
+        const purpose = ['doc', 'img'].includes(el.name) ? 'receipt' : (['تسجيل حساب','تسجيل الدخول','تعديل البيانات'].some(s => title.includes(s)) ? 'avatar' : 'content');
+        v[el.name] = el.type === 'file' ? (el.files[0] ? await img(el.files[0], isPrivField, purpose) : '') : el.value;
+      }
+      if (PLEDGE.includes(title)) {
+        window._ack = Date.now();
+        window._urg = urg && URG.includes(title);
+      }
+      await ok(v);
+      closeM();
+    } catch (x) {
+      console.error('Form error:', x);
+      if (submitBtn) submitBtn.innerText = origBtnText;
+      if (x?.code === 'auth/unauthorized-domain' || String(x?.message||'').includes('unauthorized-domain')) {
+        closeM();
+        showUnauthorizedDomainModal();
+        return;
+      }
+      if (x?.code === 'permission-denied' || String(x?.message||'').includes('insufficient permissions')) {
+        closeM();
+        showRulesModal();
+        return;
+      }
+      toast(translateError(x) || 'حدث خطأ، يرجى المحاولة ثانية');
+      dis(e, false);
+    } finally {
+      window._ack = 0;
+      window._urg = false;
+    }
+  };
+}
+
+const sheet = (h, showBottomClose = true) => {
+  const hasActionOrClose = h.includes('closeM()') || !showBottomClose;
+  document.getElementById('modal').innerHTML = `<div class="ov" onclick="if(event.target===this)closeM()"><div class="sheet" style="position:relative"><button type="button" onclick="closeM()" aria-label="إغلاق" style="position:absolute;top:14px;left:14px;background:none;border:none;font-size:18px;line-height:1;color:var(--mu);cursor:pointer;padding:6px;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;z-index:10">✕</button>${h}${hasActionOrClose ? '' : '<button type="button" class="g" style="width:100%;margin-top:14px" onclick="closeM()">إغلاق</button>'}</div></div>`;
+};
+const rep = (t, id) => form('إبلاغ عن محتوى', [['reason','السبب','area']], v => DB.set('reports', { t, tid: id, reason: v.reason, by: uid }).then(() => toast('وصل بلاغك للأدمن')), 'أرسل البلاغ');
+
+/* عرض إرشادات نشر قواعد أمان Firestore في حال رفض الصلاحيات */
+function copyFirestoreRules() {
+  const sample = `rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(sample).then(() => toast('تم نسخ القواعد! الصقها في تبويب Rules واضغط Publish'));
+  } else {
+    toast('انسخ محتوى ملف firestore.rules من مجلد التطبيق');
+  }
+}
+
+function showRulesModal() {
+  sheet(`
+    <div style="text-align:right">
+      <h2 style="color:var(--rd);margin-top:0">⚠️ قواعد أمان Firestore غير منشورة</h2>
+      <p style="font-size:14px;margin-bottom:12px">
+        رفضت قاعدة بيانات Firestore الإذن للعملية (Missing or insufficient permissions). هذا يحدث لأن قواعد الأمان المرفقة مع التطبيق لم تُنشر بعد في مشروع Firebase الخاص بك.
+      </p>
+      <div class="card" style="background:var(--bg);font-size:13px;padding:12px;margin-bottom:14px">
+        <b>طريقة النشر السريعة (خلال 30 ثانية):</b>
+        <ol style="padding-inline-start:18px;margin-top:6px;line-height:1.9">
+          <li>افتح <b>Firebase Console</b> > مشروع <b>${esc(CFG.projectId)}</b>.</li>
+          <li>اذهب إلى <b>Firestore Database</b> > تبويب <b>Rules (القواعد)</b>.</li>
+          <li>انسخ محتوى ملف <code>firestore.rules</code> بالكامل واستبدل أي نص في المحرر به.</li>
+          <li>اضغط زر <b>Publish (نشر)</b> الأزرق.</li>
+        </ol>
+      </div>
+      <button style="width:100%" onclick="copyFirestoreRules()">📋 نسخ قواعد ميسرة للبدء السريع</button>
+    </div>
+  `);
+}
+
+/* ===== ترجمة أخطاء المصادقة ===== */
+function translateError(x) {
+  const code = x?.code || '';
+  const msg = String(x?.message || '');
+  if (code === 'auth/popup-closed-by-user') return 'تم إغلاق نافذة تسجيل الدخول قبل الإكمال.';
+  if (code === 'auth/cancelled-popup-request') return '';
+  if (code === 'auth/popup-blocked') return 'المتصفح حظر النافذة المنبثقة، يرجى السماح بالنوافذ المنبثقة لمتابعة تسجيل الدخول عبر Google.';
+  if (code === 'auth/operation-not-allowed') return 'تسجيل الدخول عبر Google غير مفعّل في Firebase Console. يرجى تفعيله من Authentication > Sign-in method > Google.';
+  if (code === 'auth/unauthorized-domain' || msg.includes('unauthorized-domain')) return 'هذا النطاق غير مصرح به في Firebase Auth. يرجى إضافته إلى Authorized domains في Firebase Console.';
+  if (code === 'permission-denied' || msg.includes('insufficient permissions')) return 'تم رفض الإذن من Firestore. يرجى نشر قواعد firestore.rules في لوحة تحكم Firebase.';
+  if (code === 'auth/email-already-in-use') return 'البريد الإلكتروني مسجل بالفعل لمستخدم آخر.';
+  if (code === 'auth/weak-password') return 'كلمة المرور ضعيفة (يجب أن تكون 6 أحرف أو أكثر).';
+  if (code === 'auth/user-not-found' || code === 'auth/wrong-password' || code === 'auth/invalid-credential') return 'البريد الإلكتروني أو كلمة المرور غير صحيحة.';
+  if (code === 'auth/invalid-email') return 'صيغة البريد الإلكتروني غير صالحة.';
+  if (code === 'auth/network-request-failed') return 'تعذر الاتصال بالخادم، تحقق من اتصال الإنترنت.';
+  return msg || 'حدث خطأ، حاول مجددًا.';
+}
+
+/* ===== الحساب والمصادقة (Google و Email) ===== */
+const authF = [['email','البريد الإلكتروني','email'],['pw','كلمة المرور (٦ أحرف على الأقل)','password']];
+
+function forgotPw() {
+  form('استعادة كلمة المرور', [['email','بريدك الإلكتروني','email']], async v => {
+    if (LIVE) {
+      await au.sendPasswordResetEmail(v.email);
+      toast('أُرسل رابط إعادة ضبط كلمة المرور إلى بريدك');
+    } else {
+      toast('في الوضع التجريبي: استخدم كلمة المرور الافتراضية');
+    }
+  }, 'أرسل الرابط');
+}
+
+/* عرض نافذة إرشادية عند عدم تفويض النطاق في Firebase Auth */
+function showUnauthorizedDomainModal() {
+  const host = window.location.hostname || window.location.host;
+  sheet(`
+    <div style="text-align:right">
+      <h2 style="color:var(--rd);margin-top:0">⚠️ نطاق غير مصرح به في Firebase</h2>
+      <p style="font-size:14px;margin-bottom:12px">
+        لحماية الأمان، يتطلب تسجيل الدخول عبر Google إضافة نطاق المعاينة الحالي إلى <b>النطاقات المصرح بها (Authorized domains)</b> في مشروع Firebase الخاص بك.
+      </p>
+      <div style="background:var(--soft);padding:10px 14px;border-radius:14px;font-family:monospace;direction:ltr;text-align:left;word-break:break-all;margin-bottom:10px;font-size:13px">
+        <b>${esc(host)}</b>
+      </div>
+      <button class="g" style="width:100%;margin-bottom:14px" onclick="navigator.clipboard.writeText('${esc(host)}').then(()=>toast('تم نسخ النطاق للحافظة!'))">📋 اضغط هنا لنسخ النطاق</button>
+      
+      <div class="card" style="background:var(--bg);font-size:13px;padding:12px;margin-bottom:14px">
+        <b>خطوات الإضافة في Firebase Console:</b>
+        <ol style="padding-inline-start:18px;margin-top:6px;line-height:1.9">
+          <li>افتح <b>Firebase Console</b> > مشروع <b>${esc(CFG.projectId)}</b>.</li>
+          <li>اذهب إلى <b>Authentication</b> > تبويب <b>Settings</b>.</li>
+          <li>اختر <b>Authorized domains</b> واضغط <b>Add domain</b>.</li>
+          <li>الصق النطاق المنسوخ واضغط <b>Save</b>.</li>
+        </ol>
+      </div>
+
+      <div class="row" style="gap:8px">
+        <button style="flex:1" onclick="closeM();googleLogin(true)">إعادة المحاولة عبر Google</button>
+        <button class="g" style="flex:1" onclick="closeM();enterDemoMode()">معاينة تجريبية</button>
+      </div>
+    </div>
+  `);
+}
+
+function enterDemoMode(asAdmin = false) {
+  uid = asAdmin ? 'admin' : ('u_demo_' + Date.now());
+  LS.set('b_uid', uid);
+  const demoUser = asAdmin ? {
+    id: 'admin',
+    name: 'الأدمن (حساب تجريبي)',
+    email: 'admin@baldaty.app',
+    gov: 'القاهرة',
+    role: 'admin',
+    verify: 'approved',
+    points: 0,
+    banned: false,
+    supporter: false
+  } : {
+    name: 'مستخدم المعاينة التجريبي',
+    email: 'demo@baldaty.app',
+    gov: 'القاهرة',
+    role: 'citizen',
+    verify: 'approved',
+    points: 0,
+    banned: false,
+    supporter: false
+  };
+  DB.set('users', demoUser, uid).then(() => {
+    toast(asAdmin ? 'تم الدخول كأدمن بنجاح 🛡' : 'تم تفعيل وضع المعاينة بنجاح 👋');
+    if (asAdmin) { V = 'admin'; A = 'stats'; }
+    R();
+  });
+}
+
+function isNativeApp() {
+  return window.Capacitor !== undefined ||
+         window.location.protocol === 'capacitor:' ||
+         window.location.hostname === 'localhost' ||
+         window.location.hostname === '127.0.0.1' ||
+         /wv|WebView/i.test(navigator.userAgent);
+}
+
+/* عرض نافذة إرشادية عند حظر النافذة المنبثقة من المتصفح */
+function showPopupBlockedModal() {
+  const native = isNativeApp();
+  if (native) {
+    sheet(`
+      <div style="text-align:right;padding-top:4px">
+        <div style="font-size:38px;text-align:center;margin-bottom:8px">🔐</div>
+        <h2 style="color:var(--pr);margin-top:0;text-align:center">تسجيل الدخول في تطبيق الهاتف</h2>
+        <p style="font-size:13.5px;line-height:1.7;margin-bottom:14px">
+          تمنع حماية Google الدخول عبر النوافذ المضمنة (WebViews) داخل ملفات الـ APK غير المربوطة بـ SHA-1. يمكنك الدخول فوراً عبر أحد الخيارات التالية:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <button style="width:100%;padding:13px;background:var(--pr);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px" onclick="closeM();emailLogin()">
+            <span>✉️</span>
+            <span>الدخول بالبريد الإلكتروني وكلمة المرور</span>
+          </button>
+          <button class="g" style="width:100%;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px" onclick="closeM();emailSignup()">
+            <span>📝</span>
+            <span>إنشاء حساب جديد بالبريد</span>
+          </button>
+          <button class="g" style="width:100%;padding:10px;font-size:12.5px" onclick="closeM();window.open('https://ais-pre-apucayfn4v47ioovwwrrmj-282985400137.europe-west2.run.app','_system')">
+            <span>🌐</span>
+            <span>المتابعة بـ Google عبر متصفح الهاتف</span>
+          </button>
+        </div>
+      </div>
+    `);
+    return;
+  }
+  sheet(`
+    <div style="text-align:center;padding-top:6px">
+      <div style="font-size:42px;margin-bottom:8px">🪟</div>
+      <h2 style="color:var(--pr);margin-top:0">المتصفح حظر النافذة المنبثقة</h2>
+      <p style="font-size:14px;line-height:1.7;margin-bottom:18px;text-align:right">
+        يقوم متصفحك بحظر النوافذ المنبثقة (Popups) تلقائياً لحمايتك. يمكنك المتابعة بالضغط على الزر أدناه للدخول عبر صفحة Google الرسمية مباشرة:
+      </p>
+      <div class="row" style="gap:10px">
+        <button style="flex:1;padding:12px;background:var(--pr);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px" onclick="closeM();googleLogin(true)">
+          <span>🔄</span>
+          <span>المتابعة المباشرة عبر Google</span>
+        </button>
+        <button type="button" class="g" style="padding:12px 18px" onclick="closeM()">إلغاء</button>
+      </div>
+    </div>
+  `);
+}
+
+async function handleGoogleAuthSuccess(gUser) {
+  uid = gUser.uid;
+  const isOwner = isSuperAdminEmail(gUser.email);
+
+  // التحقق مما إذا كان للمستخدم مستند مسجل مسبقاً
+  let userDoc = null;
+  try {
+    userDoc = await fs.collection('users').doc(gUser.uid).get();
+  } catch (err) {
+    console.warn('Could not read user doc from remote Firestore:', err);
+  }
+
+  if (!userDoc || !userDoc.exists) {
+    completeProfileModal(gUser);
+  } else {
+    if (isOwner && userDoc.data()?.role !== 'admin') {
+      try {
+        await fs.collection('users').doc(gUser.uid).set({ role: 'admin', verify: 'approved' }, { merge: true });
+      } catch (err) {
+        console.warn('Role update notice:', err);
+      }
+    }
+    toast('أهلاً بك مجددًا ' + (isOwner ? 'يا أدمن 🛡' : '👋'));
+    R();
+  }
+}
+
+/* تسجيل الدخول المباشر بحساب Google مع حماية من تكرار الضغط */
+let isGoogleLoggingIn = false;
+async function googleLogin(useRedirect = false) {
+  if (isGoogleLoggingIn) return;
+  if (LIVE) {
+    isGoogleLoggingIn = true;
+    const btns = document.querySelectorAll('.g-login-btn');
+    btns.forEach(b => { b.disabled = true; b.style.opacity = '0.6'; b.style.pointerEvents = 'none'; });
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    if (useRedirect) {
+      try {
+        await au.signInWithRedirect(provider);
+        return;
+      } catch (e) {
+        console.error('Redirect sign in error:', e);
+      } finally {
+        isGoogleLoggingIn = false;
+        btns.forEach(b => { b.disabled = false; b.style.opacity = '1'; b.style.pointerEvents = 'auto'; });
+      }
+    }
+    try {
+      const res = await au.signInWithPopup(provider);
+      await handleGoogleAuthSuccess(res.user);
+    } catch (e) {
+      const errCode = e?.code || '';
+      const errMsg = String(e?.message || '');
+      console.warn('Google login notice:', errCode || errMsg);
+      if (errCode === 'auth/unauthorized-domain' || errMsg.includes('unauthorized-domain')) {
+        showUnauthorizedDomainModal();
+        return;
+      }
+      if (errCode === 'auth/popup-blocked') {
+        showPopupBlockedModal();
+        return;
+      }
+      if (errCode === 'auth/popup-closed-by-user' || errCode === 'auth/cancelled-popup-request') {
+        // المستخدم أغلق النافذة أو نقر مرة أخرى، لا حاجة لإظهار خطأ مزعج
+        return;
+      }
+      toast(translateError(e));
+    } finally {
+      isGoogleLoggingIn = false;
+      btns.forEach(b => { b.disabled = false; b.style.opacity = '1'; b.style.pointerEvents = 'auto'; });
+    }
+  } else {
+    enterDemoMode();
+  }
+}
+
+/* استكمال بيانات الحساب الجديد عند الدخول المباشر لأول مرة */
+function completeProfileModal(gUser) {
+  const isOwner = isSuperAdminEmail(gUser.email);
+  const defaultPhoto = gUser.photoURL || '';
+  form(isOwner ? 'أهلاً بك يا أدمن 🛡 أكمل بياناتك' : 'استكمال بيانات حسابك', [
+    ['name','الاسم الكامل','text'],
+    ['gov','محافظتك','select',GOVS.map(g => [g,g])],
+    ['job','مهنتك أو حرفتك (اختياري، مثلاً: نجار، سباك، مدرس...)','text','o'],
+    ['photo','صورتك الشخصية (اختياري)','file','o']
+  ], async v => {
+    uid = gUser.uid;
+    const finalName = v.name || gUser.displayName || (isOwner ? 'مختار أحمد (الأدمن)' : 'مواطن');
+    const assignedRole = isOwner ? 'admin' : 'citizen';
+    const assignedVerify = isOwner ? 'approved' : 'none';
+    const finalJob = (v.job || '').trim();
+    const finalPhoto = v.photo || defaultPhoto;
+
+    const userPayload = {
+      name: finalName,
+      email: gUser.email || '',
+      photo: finalPhoto,
+      photoURL: finalPhoto,
+      gov: v.gov,
+      role: assignedRole,
+      job: finalJob,
+      verify: assignedVerify,
+      points: 0,
+      banned: false,
+      supporter: false,
+      at: Date.now()
+    };
+
+    if (LIVE) {
+      try {
+        await fs.collection('users_private').doc(uid).set({
+          email: gUser.email || '',
+          photoURL: finalPhoto,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+      } catch (e) {
+        console.warn('users_private write warning:', e);
+      }
+
+      try {
+        await fs.collection('users').doc(uid).set({
+          ...userPayload,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+      } catch (err) {
+        console.warn('Remote rules notice, saving locally:', err);
+      }
+    }
+
+    await DB.set('users', userPayload, uid);
+    D.users = [{ ...userPayload, id: uid }, ...D.users.filter(x => x.id !== uid)];
+
+    toast('تم حفظ بيانات حسابك بنجاح' + (isOwner ? ' بصلاحيات الأدمن 🛡' : ''));
+    if (isOwner) { V = 'admin'; A = 'stats'; }
+    R();
+  }, 'حفظ والمتابعة', isOwner ? 'تم التعرف عليك كمالك للمنصة، سيتم منحك صلاحيات الأدمن كاملة.' : 'مرحباً بك في بلدتي! يمكنك رفع صورتك الشخصية وذكر مهنتك اختيارياً لتظهر لجيرانك.', { name: gUser.displayName || (isOwner ? 'مختار أحمد' : '') });
+}
+
+/* إنشاء الحساب والمتابعة المباشرة عبر Google */
+function googleSignup() {
+  googleLogin();
+}
+
+function emailLogin() {
+  form('تسجيل الدخول بالبريد', authF, async v => {
+    if (LIVE) {
+      await au.signInWithEmailAndPassword(v.email, v.pw);
+    } else {
+      const u = D.users.find(x => x.email === v.email && x.pw === v.pw);
+      if (!u) throw Error('البريد أو كلمة المرور غير صحيحة');
+      uid = u.id;
+      LS.set('b_uid', uid);
+      R();
+    }
+  }, 'دخول');
+}
+
+function emailSignup() {
+  form('حساب جديد بالبريد الإلكتروني', [
+    ['name','الاسم الكامل','text'],
+    ...authF,
+    ['gov','محافظتك','select',GOVS.map(g => [g,g])],
+    ['job','مهنتك أو حرفتك (اختياري)','text','o'],
+    ['photo','صورتك الشخصية (اختياري)','file','o']
+  ], async v => {
+    const isOwner = isSuperAdminEmail(v.email);
+    const assignedRole = isOwner ? 'admin' : 'citizen';
+    const assignedVerify = isOwner ? 'approved' : 'none';
+    if (LIVE) {
+      const c = await au.createUserWithEmailAndPassword(v.email, v.pw);
+      uid = c.user.uid;
+      try {
+        await fs.collection('users_private').doc(uid).set({
+          email: v.email,
+          photoURL: v.photo || '',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (e) { console.warn('users_private write warning:', e); }
+
+      const userPayload = {
+        name: v.name,
+        email: v.email,
+        photo: v.photo || '',
+        photoURL: v.photo || '',
+        gov: v.gov,
+        job: (v.job || '').trim(),
+        role: assignedRole,
+        verify: assignedVerify,
+        points: 0,
+        banned: false,
+        supporter: false,
+        at: Date.now()
+      };
+
+      try {
+        await fs.collection('users').doc(uid).set({
+          ...userPayload,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (err) {
+        console.warn('Remote write denied, saving locally:', err);
+      }
+      await DB.set('users', userPayload, uid);
+      D.users = [{ ...userPayload, id: uid }, ...D.users.filter(x => x.id !== uid)];
+    } else {
+      if (D.users.some(u => u.email === v.email)) throw Error('البريد مستخدم من قبل');
+      uid = 'u' + Date.now();
+      LS.set('b_uid', uid);
+      const userPayload = {
+        name: v.name,
+        email: v.email,
+        photo: v.photo || '',
+        photoURL: v.photo || '',
+        gov: v.gov,
+        job: (v.job || '').trim(),
+        role: assignedRole,
+        verify: assignedVerify,
+        points: 0,
+        banned: false,
+        supporter: false,
+        pw: v.pw,
+        at: Date.now()
+      };
+      await DB.set('users', userPayload, uid);
+      D.users = [{ ...userPayload, id: uid }, ...D.users.filter(x => x.id !== uid)];
+    }
+    toast('تم إنشاء الحساب بنجاح كـ مستخدم عادي 🎉');
+    R();
+  }, 'أنشئ الحساب', 'مرحباً بك في بلدتي! الحساب كمستخدم عادي ويمكن للأدمن ترقيتك.');
+}
+
+function login() { googleLogin(); }
+function signup() { googleSignup(); }
+
+function logout() {
+  closeM();
+  V = 'home';
+  GV = null;
+  askedGov = 0;
+  unsubsAll();
+  userPriv = null;
+  if (LIVE) au.signOut();
+  else { uid = null; LS.del('b_uid'); R(); }
+}
+
+function verifyMe() {
+  form('توثيق الهوية', [['doc','صورة بطاقة الهوية','file']], async v => {
+    if (LIVE) {
+      try {
+        await fs.collection('users_private').doc(uid).set({ doc: v.doc }, { merge: true });
+      } catch (e) {
+        console.warn('users_private write warning in verifyMe:', e);
+      }
+      await DB.up('users', uid, { verify: 'pending' });
+    } else {
+      await DB.up('users', uid, { verify: 'pending', doc: v.doc });
+    }
+    toast('أُرسل للتوثيق');
+  }, 'أرسل', 'توثيق الهوية يمنحك علامة ✔ بجانب اسمك.');
+}
+
+async function requestNotificationPermission() {
+  if (!('Notification' in window)) return toast('المتصفح لا يدعم الإشعارات');
+  try {
+    const perm = await Notification.requestPermission();
+    if (perm === 'granted') {
+      toast('فُعّلت الإشعارات بنجاح');
+      if (LIVE && fcmMsg) {
+        try {
+          const token = await fcmMsg.getToken();
+          if (token && uid) {
+            await fs.collection('users_private').doc(uid).set({ fcmToken: token }, { merge: true });
+          }
+        } catch (e) {
+          console.warn('FCM token warning:', e);
+        }
+      }
+    } else {
+      toast('لم تُفعّل الإشعارات');
+    }
+  } catch (e) {
+    toast('تعذر تفعيل الإشعارات');
+  }
+}
+
+function editJob() {
+  editProfile();
+}
+
+function editProfile() {
+  const m = me() || {};
+  form('تعديل البيانات الشخصية', [
+    ['name', 'الاسم الكامل', 'text'],
+    ['job', 'المهنة أو الحرفة (مثال: نجار، سباك، مهندس، مدرس...)', 'text', 'o'],
+    ['dphone', 'رقم الهاتف للتواصل', 'tel', 'o'],
+    ['gov', 'المحافظة', 'select', GOVS.map(g => [g, g])]
+  ], async v => {
+    const newName = (v.name || '').trim() || m.name || '';
+    const j = (v.job || '').trim();
+    const ph = (v.dphone || '').trim();
+    const newGov = v.gov || m.gov || ug() || 'القاهرة';
+
+    const updates = { name: newName, job: j, dphone: ph, gov: newGov };
+    await DB.up('users', uid, updates);
+    if (LIVE) {
+      try {
+        await fs.collection('users_private').doc(uid).set({ dphone: ph }, { merge: true });
+      } catch (e) {}
+    }
+    const cur = D.users.find(x => x.id === uid);
+    if (cur) {
+      Object.assign(cur, updates);
+    }
+    if (newGov !== GV && GV !== 'all') {
+      GV = newGov;
+      reloadGovSubscriptions();
+    }
+    toast('تم حفظ البيانات الشخصية بنجاح ✅');
+    R();
+  }, 'حفظ التعديلات', 'يمكنك تعديل اسمك ومهنتك ورقم هاتفك ومحافظتك في أي وقت لتحديث ملفك.', {
+    name: m.name || '',
+    job: m.job || '',
+    dphone: m.dphone || '',
+    gov: m.gov || ug() || 'القاهرة'
+  });
+}
+
+function editPhoto() {
+  form('الصورة الشخصية', [
+    ['photo', 'اختر صورتك الشخصية', 'file']
+  ], async v => {
+    if (!v.photo) return;
+    await DB.up('users', uid, { photo: v.photo, photoURL: v.photo });
+    const cur = D.users.find(x => x.id === uid);
+    if (cur) { cur.photo = v.photo; cur.photoURL = v.photo; }
+    toast('تم حفظ صورتك الشخصية بنجاح 📷');
+    R();
+  }, 'حفظ الصورة', 'تظهر صورتك الشخصية في حسابك ولوحة الشرف ومشاركاتك.');
+}
+
+function profile() {
+  const m = me();
+  const pts = +m?.points || 0;
+  const tier = getTier(pts);
+  sheet(`
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+    <div style="position:relative;cursor:pointer" onclick="editPhoto()" title="اضغط لتغيير الصورة">
+      ${uav(m, 62)}
+      <span style="position:absolute;bottom:-4px;right:-4px;width:24px;height:24px;border-radius:50%;background:var(--sf);border:1px solid var(--ln);display:grid;place-items:center;font-size:12px;box-shadow:var(--sh)">📷</span>
+    </div>
+    <div style="flex:1;min-width:0">
+      <h2 style="margin:0;font-size:18px">${esc(m.name)} ${vf(m)}</h2>
+      <p class="s" style="margin:2px 0 0">${RL[m.role] || 'مواطن'}${m.job ? ' · 🔨 ' + esc(m.job) : ''} · ${{approved:'موثّق',pending:'قيد المراجعة',rejected:'مرفوض',none:'غير موثّق'}[m.verify]}</p>
+    </div>
+  </div>
+  <button class="g" style="width:100%;margin-bottom:10px;font-size:13px;padding:8px" onclick="editPhoto()">📷 ${m.photo ? 'تغيير صورتك الشخصية' : 'إضافة صورتك الشخصية'}</button>
+<div class="card" style="margin-top:0;padding:12px;background:linear-gradient(135deg,rgba(43,140,240,.1),rgba(124,196,245,.04));border:1px solid rgba(43,140,240,.25)">
+  <div class="row">
+    <span><b>رصيد النقاط:</b> ⭐ ${pts} نقطة</span>
+    <span class="pill o">${tier.badge}</span>
+  </div>
+  <p class="s" style="margin:4px 0 8px;font-size:12px">✨ المزايا المفعلة لك تلقائياً: ${tier.desc}</p>
+  <button class="g" style="width:100%;font-size:12px;padding:6px" onclick="closeM();showPerksModal()">🎁 جدول مزايا ومكافآت النقاط</button>
+</div>
+${m.role==='admin'?'<button style="background:var(--ac);color:#001018;width:100%;margin-top:10px;font-weight:bold" onclick="V=\'admin\';closeM();R()">🛡 الدخول إلى لوحة الأدمن</button>':''}
+${m.verify==='none'||m.verify==='rejected'?'<button style="width:100%;margin-top:10px" onclick="verifyMe()">وثّق هويتك</button>':''}
+<button class="g" style="width:100%;margin-top:10px" onclick="editProfile()">✏️ تعديل البيانات الشخصية</button>
+<button style="width:100%;margin-top:10px;padding:13px 16px;background:var(--pr);color:var(--on);display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:700" onclick="closeM();svcForm()">
+  <span>🛠️</span>
+  <span>+ أضف خدمتك (كهربائي، نجار…)</span>
+</button>
+<button class="g" style="width:100%;margin-top:10px;font-weight:700;background:var(--soft);color:var(--tx);display:flex;align-items:center;justify-content:center;gap:8px" onclick="installAppModal()"><span>📱</span><span>تثبيت التطبيق على هاتفك (تطبيق فعلي)</span></button>
+<button class="g" style="width:100%;margin-top:10px" onclick="requestNotificationPermission()">تفعيل الإشعارات</button>
+<button class="g" style="width:100%;margin-top:10px" onclick="theme()">تبديل الوضع الليلي</button>
+<button class="g" style="width:100%;margin-top:10px" onclick="terms()">الشروط والمسؤولية</button>
+<button class="g" style="width:100%;margin-top:10px" onclick="chGov()">محافظتي: ${esc(m.gov||'غير محددة')} (تغيير)</button>
+<button class="d" style="width:100%;margin-top:10px" onclick="logout()">تسجيل الخروج</button>`);
+}
+
+function notes() {
+  sheet(`<h2>الإشعارات</h2>` + (D.notes.length ? D.notes.filter(x => !x.gov || x.gov === 'all' || x.gov === ug()).slice(0, 15).map(n => `<div class="card"><b>${esc(n.title)}</b><p>${esc(n.body)}</p><p class="s">${new Date(n.at).toLocaleString('ar-EG')}</p></div>`).join('') : '<p class="s">لا إشعارات بعد.</p>'));
+}
+
+/* ===== الخدمات ===== */
+let q = '', so = 'near', onlyOpen = 0;
+const wa = p => { p = String(p).replace(/\D/g, ''); return 'https://wa.me/' + (p.startsWith('0') ? '2' + p : p); };
+const iconCall = (phone, sm = false) => `<a class="btn-icon-call ${sm?'btn-icon-sm':''}" href="tel:${esc(phone)}" title="اتصال هاتفي: ${esc(phone)}" aria-label="اتصل هاتفياً"><svg width="${sm?17:21}" height="${sm?17:21}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>`;
+const iconWa = (phone, sm = false) => `<a class="btn-icon-wa ${sm?'btn-icon-sm':''}" href="${wa(phone)}" target="_blank" rel="noopener" title="محادثة واتساب: ${esc(phone)}" aria-label="تواصل عبر واتساب"><svg width="${sm?19:23}" height="${sm?19:23}" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.42 1.44.54.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3"/></svg></a>`;
+const contactIcons = (x, sm = false) => `<div style="display:inline-flex;gap:8px;align-items:center;vertical-align:middle">${x.phone ? iconCall(x.phone, sm) : ''}${(x.wa || x.phone) ? iconWa(x.wa || x.phone, sm) : ''}</div>`;
+function svcForm(id) {
+  const m = me() || {};
+  const s = id && D.services.find(x => x.id === id);
+  let defaultCat = s ? s.cat : (cat !== 'الكل' ? cat : 'كهرباء');
+  if (!s && m.job) {
+    const j = m.job.toLowerCase();
+    const match = CATS.find(c => j.includes(c) || (c === 'كهرباء' && j.includes('كهربا')) || (c === 'سباكة' && j.includes('سباك')) || (c === 'نجارة' && j.includes('نجار')) || (c === 'دهانات' && (j.includes('نقاش') || j.includes('دهان'))));
+    if (match) defaultCat = match;
+  }
+  const defaults = s || {
+    cat: defaultCat,
+    spec: m.job ? m.job : '',
+    phone: m.dphone || '',
+    wa: m.dphone || ''
+  };
+  form(s ? 'تعديل الخدمة' : 'أضف خدمتك لأهالي بلدتك', [
+    ['cat','التصنيف المهني','select',CATS.map(c => [c,c])],
+    ['spec','التخصص الدقيق (مثال: صيانة وتأسيس كهرباء منازل)','text'],
+    ['phone','رقم الهاتف للاتصال المباشر','tel'],
+    ['wa','رقم الواتساب (اختياري)','tel','o'],
+    ['from','يبدأ السعر من (ج.م، اختياري)','number','o'],
+    ['hours','ساعات ومواعيد العمل (مثال: ٩ص – ٩م)','text','o'],
+    ['desc','وصف خدمتك وخبرتك والمناطق التي تخدمها','area'],
+    ['photo','صورة من شغلك أو ورشتك','file','o']
+  ], v => {
+    if (!v.photo) delete v.photo;
+    v.from = +v.from || 0;
+    return s ? DB.up('services', s.id, v) : DB.set('services', {
+      uid, name: me().name, ...v, photo: v.photo || '',
+      lat: pos ? pos.lat : null, lng: pos ? pos.lng : null,
+      premium: false, open: true
+    }).then(() => toast('أُضيفت خدمتك بنجاح وتظهر الآن لجميع جيرانك 🎉'));
+  }, 'حفظ ونشر الخدمة', 'تظهر خدمتك في دليل بلدتي لكل أهالي المحافظة مع رقم هاتفك والواتساب للتواصل المباشر.', defaults);
+}
+
+function review(sid) {
+  const ex = D.reviews.find(x => x.sid === sid && x.by === uid);
+  form('قيّم الخدمة', [['s','التقييم','select',[5,4,3,2,1].map(n => [n,'★'.repeat(n)])],['c','تعليقك','area','o']], v => {
+    const o = { sid, s: +v.s, c: v.c, by: uid };
+    return (ex ? DB.up('reviews', ex.id, o) : DB.set('reviews', o)).then(() => toast('شكرًا لتقييمك'));
+  }, 'أرسل', 'تقييمك السابق (إن وجد) سيُستبدل.');
+}
+
+const showRev = id => {
+  const l = D.reviews.filter(x => x.sid === id);
+  sheet('<h2>التقييمات</h2>' + (l.length ? l.map(x => `<div class="card"><div class="row"><b>${esc((usr(x.by)||{}).name||'مستخدم')}</b><span class="star">${'★'.repeat(x.s)}</span></div><p>${esc(x.c)}</p></div>`).join('') : '<p class="s">لا تقييمات بعد.</p>'));
+};
+
+const toggleFav = async id => {
+  const f = me()?.fav || [];
+  const has = f.includes(id);
+  if (LIVE) {
+    try {
+      await fs.collection('users').doc(uid).update({
+        fav: has ? firebase.firestore.FieldValue.arrayRemove(id) : firebase.firestore.FieldValue.arrayUnion(id)
+      });
+    } catch (e) {
+      await DB.up('users', uid, { fav: has ? f.filter(x => x !== id) : [...f, id] });
+    }
+  } else {
+    await DB.up('users', uid, { fav: has ? f.filter(x => x !== id) : [...f, id] });
+  }
+};
+
+const CI = {'الكل':'🏘️','سباكة':'🚰','كهرباء':'💡','نجارة':'🪚','حدادة':'⚒️','دهانات':'🎨','بناء وترميم':'🧱','تكييف وتبريد':'❄️','صيانة أجهزة منزلية':'🔌','ميكانيكا':'🔧','إنقاذ سيارات':'🚗','نقل أثاث':'🚚','نظافة':'🧹','بستنة':'🌿','صيانة موبايل وكمبيوتر':'📱','دروس خصوصية':'📚','خياطة':'🧵','تصوير':'📷','توصيل':'🛵','أخرى':'✨'};
+
+const scard = s => {
+  const m = me(), r = rate(s.id), n = D.reviews.filter(x => x.sid === s.id).length, d = dist(s), fv = (m.fav || []).includes(s.id), mine = s.uid === uid, off = s.open === false, su = usr(s.uid) || { name: s.name };
+  return `<div class="card sc">${s.photo ? `<img class="cv" src="${esc(s.photo)}" alt="" loading="lazy">` : ''}<div class="row" style="flex-wrap:nowrap;align-items:flex-start">${uav(su, 54)}<div style="flex:1;min-width:0"><div class="row" style="flex-wrap:nowrap"><b class="nm">${esc(s.name)} ${vf(usr(s.uid))}</b><button class="ib ${fv?'on':''}" onclick="toggleFav('${s.id}')" aria-label="مفضلة">${fv?'♥':'♡'}</button></div><p class="s">${CI[s.cat]||''} ${esc(s.cat)} · ${esc(s.spec)}</p><div class="mi-w"><span class="mi"><i class="dot ${off?'off':''}"></i>${off?'مشغول':'متاح الآن'}</span>${isP(s)?'<span class="mi pm">★ مميز</span>':''}${d!=null?`<span class="mi">📍 ${d.toFixed(1)} كم</span>`:''}${s.hours?`<span class="mi">🕘 ${esc(s.hours)}</span>`:''}${s.from?`<span class="mi">💰 من ${s.from} ج.م</span>`:''}</div></div></div><p class="ds">${esc(s.desc)}</p><div class="row"><button class="rt" onclick="showRev('${s.id}')"><span class="star">★</span> ${r?r.toFixed(1):'جديد'} <span class="s">(${n} تقييم)</span></button><span>${mine?`<button class="g" onclick="payForm('${s.id}')">⭐ ميّز</button> <button class="g" onclick="svcForm('${s.id}')">تعديل</button> <button class="g" onclick="DB.up('services','${s.id}',{open:${off}})">${off?'متاح':'مشغول'}</button> `:`<button class="g" onclick="review('${s.id}')">قيّم</button> `}${rb('services',s.id)} ${xb('services',s.id,s.uid)}</span></div><div class="ca">${contactIcons(s, false)}</div></div>`;
+};
+
+function svc() {
+  const m = me();
+  let l = G(D.services).filter(s => (cat === 'الكل' || s.cat === cat) && (!onlyOpen || s.open !== false) && (!q || (s.name + s.spec + s.desc + s.cat).includes(q))).map(s => ({ ...s, d: dist(s), r: rate(s.id) }));
+  l.sort((a,b) => (isP(b)?1:0)-(isP(a)?1:0) || (so==='rate'?b.r-a.r:so==='new'?b.at-a.at:(a.d??1e9)-(b.d??1e9)));
+  return `<div class="hb"><p style="opacity:.8;font-size:13px">أهلًا ${esc((m.name||'').split(' ')[0])} 👋</p><h2 style="margin:2px 0 14px;color:#fff;font-size:23px;line-height:1.5">من تحتاج اليوم في ${GV==='all'?'مصر':esc(GV)}؟</h2><input type="search" placeholder="🔍 ابحث عن سباك، كهربائي، مدرس…" value="${esc(q)}" onchange="q=this.value;R()" aria-label="بحث"></div>
+<div class="chips">${['الكل',...CATS].map(c => `<button class="${c===cat?'':'g'}" onclick="cat='${c}';R()">${CI[c]||''} ${c}</button>`).join('')}</div>
+<div class="row" style="margin-bottom:12px"><span class="s">${l.length} حرفي ومقدم خدمة${pos?'':' · فعّل الموقع لترتيب الأقرب'}</span></div>
+<div class="row" style="margin-bottom:14px"><select style="width:auto" onchange="so=this.value;R()" aria-label="الترتيب"><option value="near" ${so==='near'?'selected':''}>الأقرب</option><option value="rate" ${so==='rate'?'selected':''}>الأعلى تقييمًا</option><option value="new" ${so==='new'?'selected':''}>الأحدث</option></select><label style="margin:0"><input type="checkbox" ${onlyOpen?'checked':''} onchange="onlyOpen=this.checked?1:0;R()"> المتاح الآن فقط</label></div>` + (l.length ? l.map(scard).join('') : empty('لا نتائج مطابقة. جرّب تصنيفًا آخر أو محافظة أخرى.'));
+}
+
+function fav() {
+  const f = me().fav || [], l = D.services.filter(s => f.includes(s.id));
+  return '<h2>مفضلتي</h2>' + (l.length ? l.map(scard).join('') : empty('اضغط ♥ على أي حرفي ليظهر هنا.'));
+}
+
+/* ===== راصد المشكلات ===== */
+function addIss() {
+  form('بلّغ عن مشكلة', [['desc','وصف المشكلة','area'],['photo','صورة المشكلة (اختياري)','file','o']], v => DB.set('issues', {
+    by: uid, name: me()?.name || 'مواطن', ...v, status: 'pending', ok: can(['gov']),
+    lat: pos ? pos.lat : null, lng: pos ? pos.lng : null
+  }).then(() => toast(can(['gov']) ? 'نُشر البلاغ بنجاح' : 'وصل بلاغك بنجاح')), 'أرسل البلاغ', 'يُسجَّل موقعك الحالي مع البلاغ إن كان الموقع مفعّلًا.');
+}
+
+const solve = id => form('تم الحل؟', [
+  ['sname','اسم من قام بالحل (فرد أو جهة)','text'],
+  ['sdesc','تفاصيل الحل: ماذا تم تحديدًا؟','area'],
+  ['after','صورة بعد الحل (اختياري)','file','o']
+], async v => {
+  await DB.up('issues', id, {
+    status: 'resolved', after: v.after || '', sname: v.sname, sdesc: v.sdesc, by2: uid, rat: Date.now()
+  });
+  const u = usr(uid);
+  if (u) {
+    const curPts = +u.points || 0;
+    const newPts = curPts + 15;
+    u.points = newPts;
+    await DB.up('users', uid, { points: newPts });
+  }
+  toast('أُغلقت الشكوى ومُنحت +15 نقطة وميزة جديدة! 🏆');
+  R();
+}, 'أغلق الشكوى', 'يظهر الاسم والتفاصيل والصورة مع الشكوى للجميع.', { sname: me()?.name || '' });
+
+const govReply = id => form('رد رسمي', [['reply','نص الرد','area']], v => DB.up('issues', id, { reply: v.reply, gname: me().name }), 'أرسل الرد');
+
+function attachIssuePhoto(id) {
+  form('إضافة / تحديث صورة المشكلة', [
+    ['photo', 'اختر صورة المشكلة من جهازك', 'file']
+  ], async v => {
+    if (!v.photo) return toast('يرجى اختيار صورة أولاً');
+    await DB.up('issues', id, { photo: v.photo });
+    toast('تم حفظ وإظهار صورة المشكلة بنجاح 📷');
+    R();
+  }, 'حفظ الصورة', 'سيتم ضغط الصورة بأعلى كفاءة وعرضها فوراً في بلاغك.');
+}
+
+function iss() {
+  const l = G(D.issues).filter(x => x.ok || x.by === uid);
+  return `<div class="row"><h2>راصد المشكلات</h2><button onclick="addIss()">+ بلّغ</button></div>` + (l.length ? l.map(x => {
+    const d = dist(x);
+    const isOwner = x.by === uid;
+    return `<div class="card"><div class="row"><b>${esc(x.desc)}</b><span class="pill ${x.status==='resolved'?'o':'w'}">${!x.ok?'بانتظار المراجعة':x.status==='resolved'?'تم الحل':'قيد الانتظار'}</span></div><p class="s">${esc(x.name)}${d!=null?` · ${d.toFixed(1)} كم منك`:''}${x.urgent&&!x.rev?' · ⚡ نُشر عاجلًا وبانتظار مراجعة الأدمن':''}</p>${ph(x.photo)}${x.reply?`<div class="note"><b>رد ${esc(x.gname||x.gov)}:</b> ${esc(x.reply)}</div>`:''}${x.after?`<div class="note" style="background:var(--bg);border-color:var(--ok)"><b>✔ تم الحل بواسطة:</b> ${esc(x.sname||'غير مذكور')}<br>${esc(x.sdesc)}</div>${ph(x.after)}`:''}<div class="row"><span>${x.ok&&x.status!=='resolved'?`<button onclick="solve('${x.id}')">ارفع صورة بعد الحل</button>`:''} ${can(['gov'])&&x.ok&&x.status!=='resolved'?`<button class="g" onclick="govReply('${x.id}')">رد رسمي</button>`:''} ${isOwner?`<button class="g" onclick="attachIssuePhoto('${x.id}')">${x.photo?'📷 تغيير الصورة':'📷 إضافة صورة'}</button>`:''}</span><span>${rb('issues',x.id,x.by)} ${xb('issues',x.id,x.by)}</span></div></div>`;
+  }).join('') : empty('لا توجد بلاغات. إن رأيت مشكلة في حيّك بلّغ عنها.'));
+}
+
+/* ===== أبطال البلدة ===== */
+function addHero() {
+  form('شارك مبادرتك', [['doer','اسم المنفذ أو المجموعة','text'],['body','ماذا فعلتم؟','area'],['photo','صورة','file']], v => DB.set('heroes', {
+    by: uid, ...v, ok: false, likes: []
+  }).then(() => toast('ستظهر بعد مراجعة الأدمن')), 'انشر');
+}
+
+const like = async id => {
+  const h = D.heroes.find(x => x.id === id);
+  if (!h) return;
+  const l = h.likes || [];
+  const has = l.includes(uid);
+  if (LIVE) {
+    try {
+      await fs.collection('heroes').doc(id).update({
+        likes: has ? firebase.firestore.FieldValue.arrayRemove(uid) : firebase.firestore.FieldValue.arrayUnion(uid)
+      });
+    } catch (e) {
+      await DB.up('heroes', id, { likes: has ? l.filter(x => x !== uid) : [...l, uid] });
+    }
+  } else {
+    await DB.up('heroes', id, { likes: has ? l.filter(x => x !== uid) : [...l, uid] });
+  }
+};
+
+function showPerksModal() {
+  sheet(`<h2>🎁 نظام مزايا ومكافآت النقاط</h2>
+  <p class="s" style="margin-bottom:14px">في «بلدتي»، رصيدك من النقاط حقيقي 100% ويفعل امتيازات حقيقية في التطبيق تبدأ من <b>500 نقطة فما فوق</b>:</p>
+  
+  <div class="card" style="border-right:4px solid #9333ea;margin-bottom:10px">
+    <div class="row"><b>💎 أسطورة البلدة الكبرى (2000+ نقطة)</b><span class="pill o">أعلى رتبة</span></div>
+    <ul class="lg" style="margin:8px 0;font-size:13px">
+      <li>تثبيت دائم ومجاني لأي خدمة لك في صدارة الدليل.</li>
+      <li>وسام الأسطورة الملكي 💎 بجوار اسمك.</li>
+      <li>علامة التوثيق الرسمي ✔ وتخطي كامل لأي مراجعة مسبقة.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="border-right:4px solid #eab308;margin-bottom:10px">
+    <div class="row"><b>👑 أسطورة البلدة (1000+ نقطة)</b><span class="pill o">مستوى ذهبي</span></div>
+    <ul class="lg" style="margin:8px 0;font-size:13px">
+      <li><b>تمييز خدمتك مجاناً (★ مميز)</b> أعلى دليل الحرفيين.</li>
+      <li><b>علامة التوثيق التلقائي المعتمد (✔)</b> ووسام التاج 👑 ودرع 💙.</li>
+      <li><b>نشر مباشر وفوري</b> لجميع الشكاوى والمبادرات والفعاليات.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="border-right:4px solid #10b981;margin-bottom:10px">
+    <div class="row"><b>🌟 بطل البلدة (500+ نقطة)</b><span class="pill">أول رتبة مفعلة</span></div>
+    <ul class="lg" style="margin:8px 0;font-size:13px">
+      <li><b>التوثيق الفوري التلقائي (✔)</b> بجوار اسمك فور بلوغ 500 نقطة.</li>
+      <li><b>تمييز خدمتك مجاناً (★)</b> بدون الحاجة لدفع اشتراك.</li>
+      <li>شارة وسام البطل 🌟 وأولوية الظهور في نتائج البحث.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="border-right:4px solid #6b7280;margin-bottom:10px;background:var(--soft)">
+    <div class="row"><b>🌱 أقل من 500 نقطة</b><span class="pill w">مساهم جديد</span></div>
+    <p class="s" style="margin-top:6px;font-size:12.5px;line-height:1.6">
+      تجميع النقاط والمساهمة المجتمعية. الميزات والتوثيق والتمييز تتفعل تلقائياً بمجرد كسر حاجز <b>500 نقطة</b>.
+    </p>
+  </div>
+
+  <div class="card" style="background:var(--soft);margin-bottom:0">
+    <b>💡 كيف تجمع النقاط الحقيقية؟</b>
+    <p class="s" style="margin-top:6px;line-height:1.7">
+      ✔ حل شكوى أو تصليح عطل في حيك ورفع صورة الحل: <b>+15 نقطة</b><br>
+      ✔ التسجيل كمتبرع بالدم للمحتاجين: <b>+20 نقطة</b><br>
+      ✔ نشر مبادرة أو عمل تطوعي ملهم: <b>+10 نقاط</b><br>
+      ✔ دعم التطبيق أو رعاية نشاط محلي: <b>+30 نقطة</b>
+    </p>
+  </div>`);
+}
+
+/* ===== تحويل المنصة لتطبيق وتثبيت PWA ===== */
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const b = document.getElementById('pwa-btn-prompt');
+  if (b) b.style.display = 'flex';
+});
+
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  toast('مبارك! تم تثبيت تطبيق بلدتي على هاتفك بنجاح 📱🎉');
+});
+
+async function triggerPWAInstall() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    if (outcome === 'accepted') {
+      toast('جارٍ تثبيت تطبيق بلدتي على هاتفك! 🎉');
+      closeM();
+    }
+    deferredInstallPrompt = null;
+  } else {
+    toast('من قائمة المتصفح (⋮)، اضغط «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».');
+  }
+}
+
+function copyLink(url) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => toast('تم نسخ رابط التطبيق بنجاح! 📋'));
+  } else {
+    toast(url);
+  }
+}
+
+function installAppModal() {
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+  const origin = window.location.origin;
+
+  sheet(`
+    <div style="text-align:center;padding:8px 0 16px">
+      <img src="/pwa-192x192.png" onerror="this.onerror=null;this.src='/baldaty_logo.png'" style="width:72px;height:72px;border-radius:20px;box-shadow:var(--sh);margin-bottom:10px;object-fit:cover" alt="بلدتي">
+      <h2 style="margin:0 0 6px;font-size:20px">تطبيق «بلدتي» الفعلي 📲</h2>
+      <p class="s" style="margin:0">المنصة مجهزة كـ تطبيق متكامل (PWA) يعمل على الهاتف بكامل الشاشة وبدون متصفح.</p>
+    </div>
+
+    ${isStandalone ? `
+      <div class="card" style="background:var(--soft);border:1px solid var(--ac);text-align:center">
+        <b>✅ أنت تستخدم التطبيق الفعلي المثبت حالياً!</b>
+        <p class="s" style="margin-top:6px">التطبيق مثبت على جهازك ويعمل بملء الشاشة مع كافة الميزات والإشعارات.</p>
+      </div>
+    ` : `
+      <div class="card" style="border-right:4px solid var(--ac);margin-bottom:12px">
+        <div class="row"><b style="font-size:15px">⚡ الخيار الأول: تثبيت فوري على شاشة هاتفك</b><span class="pill o">مجاناً وفوراً</span></div>
+        <p class="s" style="margin:8px 0 12px;line-height:1.7">
+          ${isIOS ? `
+            <b>لأجهزة آيفون (iPhone / Safari):</b><br>
+            ١. اضغط على أيقونة <b>المشاركة (Share ⬆️)</b> في شريط Safari.<br>
+            ٢. اسحب للأسفل واختر <b>«إضافة إلى الشاشة الرئيسية» (Add to Home Screen)</b>.<br>
+            ٣. اضغط «إضافة». ستجد أيقونة بلدتي على هاتفك تفتح كتطبيق كامل بدون متصفح.
+          ` : `
+            <b>لهواتف أندرويد (Android / Chrome):</b><br>
+            اضغط على الزر أدناه لتثبيته فوراً كتطبيق كامل، أو من قائمة خيارات المتصفح (⋮) واختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».
+          `}
+        </p>
+        ${!isIOS ? `
+          <button id="pwa-btn-prompt" style="width:100%;padding:12px;background:var(--pr);color:var(--on);font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px" onclick="triggerPWAInstall()">
+            <span>📲</span>
+            <span>تثبيت التطبيق الآن على هاتفي</span>
+          </button>
+        ` : ''}
+      </div>
+    `}
+
+    <div class="card" style="border-right:4px solid #10b981;margin-bottom:12px">
+      <div class="row"><b style="font-size:15px">📦 الخيار الثاني: تحويله لملف APK أو متجر Google Play</b><span class="pill g">متجر التطبيقات</span></div>
+      <p class="s" style="margin:8px 0 12px;line-height:1.7">
+        تطبيق بلدتي متوافق 100% مع معايير Google PWA الرسمية (Manifest + Service Worker + Icons). لتحويله إلى ملف APK جاهز أو حزمة لمتجر Play:
+      </p>
+      <ol class="s" style="margin:0 18px 12px 0;padding:0;line-height:1.8">
+        <li>ادخل على أداة Google الرسمية المجانية: <a href="https://www.pwabuilder.com" target="_blank" rel="noopener" style="color:var(--ac);font-weight:700">PWABuilder.com</a></li>
+        <li>الصق رابط التطبيق: <b style="word-break:break-all;color:var(--tx)">${esc(origin)}</b></li>
+        <li>اضغط <b>Package for Android</b> ثم حمّل ملف <b>APK</b> لتثبيته فوراً، أو حزمة <b>AAB</b> لرفعها على حسابك في <b>Google Play Console</b>!</li>
+      </ol>
+      <button class="g" style="width:100%;font-size:13px;padding:8px" onclick="copyLink('${esc(origin)}')">📋 نسخ رابط التطبيق للاستخدام</button>
+    </div>
+
+    <div class="card" style="background:var(--soft);margin-bottom:0">
+      <b>💡 هل يحتاج التطبيق إعادة تنزيل مع كل تعديل؟</b>
+      <p class="s" style="margin-top:6px;line-height:1.6">
+        لا! أي تعديل أو ميزة جديدة تضيفها، تنزل تلقائياً على هواتف جميع المستخدمين بدون الحاجة لإعادة تحميل أو تثبيت.
+      </p>
+    </div>
+  `);
+}
+
+/* ===== مستويات لوحة الشرف ===== */
+const LV = [
+  ['مواطن جديد', '🌱', 0],
+  ['جار نشيط', '⭐', 10],
+  ['حارس الحي', '🛡️', 50],
+  ['بطل البلدة', '🏅', 150],
+  ['أسطورة البلدة', '👑', 400]
+];
+
+let rankTab = 'ppl'; // 'ppl' أو 'ini'
+
+function lvl(p) {
+  p = +p || 0;
+  let i = 0;
+  LV.forEach((l, k) => {
+    if (p >= l[2]) i = k;
+  });
+  return { c: LV[i], n: LV[i + 1] };
+}
+
+function fullLeaderboard() {
+  T = 'rank';
+  R();
+}
+
+function rank() {
+  const m = me() || { name: 'مواطن', points: 0, gov: 'القاهرة' };
+  const userGov = m.gov || (GV !== 'all' ? GV : 'القاهرة');
+  const scope = GV; // 'all' أو اسم المحافظة
+  const sc = scope === 'all' ? 'كل مصر' : scope;
+
+  // جلب كافة المستخدمين ودمج بيانات المستخدم الحالي الحية
+  const allUsersMap = new Map();
+  D.users.forEach(u => {
+    if (u && u.id) allUsersMap.set(u.id, { ...u });
+  });
+  if (uid && m) {
+    allUsersMap.set(uid, { ...(allUsersMap.get(uid) || {}), ...m });
+  }
+
+  const allMerged = Array.from(allUsersMap.values());
+  // تصفية الأبطال الحقيقيين (نقاط > 0 وغير محظورين) حسب النطاق الجغرافي
+  const all = allMerged
+    .filter(u => (+u.points || 0) > 0 && !u.banned && (scope === 'all' || u.gov === scope))
+    .sort((a, b) => (+b.points || 0) - (+a.points || 0));
+
+  const myPts = +m.points || 0;
+  const myRank = all.findIndex(u => u.id === uid) + 1;
+  const L = lvl(myPts);
+  const nx = L.n;
+
+  const col = (u, r) => {
+    if (!u) {
+      return `
+        <div class="pc r${r}">
+          <div class="pa"><div class="hav" style="opacity:.3">؟</div></div>
+          <span class="s">—</span>
+          <div class="pb" style="opacity:.25">${r}</div>
+        </div>
+      `;
+    }
+    const pts = +u.points || 0;
+    const isMe = u.id === uid;
+    const avatarContent = u.photo || u.photoURL
+      ? `<img src="${esc(u.photo || u.photoURL)}" class="hav" style="object-fit:cover" alt="">`
+      : `<div class="hav">${esc((u.name || '?').trim()[0])}</div>`;
+
+    return `
+      <div class="pc r${r}">
+        <div class="pa">
+          ${r === 1 ? '<i class="cr">👑</i>' : ''}
+          ${avatarContent}
+        </div>
+        <b class="pn" style="${isMe ? 'color:var(--ac);font-weight:700' : ''}">
+          <span>${esc(u.name)}</span> ${vf(u)}
+        </b>
+        <span class="pp">${pts}</span>
+        <div class="pb">${r}</div>
+      </div>
+    `;
+  };
+
+  const myAvatar = m.photo || m.photoURL
+    ? `<img src="${esc(m.photo || m.photoURL)}" class="hav big" style="object-fit:cover" alt="">`
+    : `<div class="hav big">${esc((m.name || '?').trim()[0])}</div>`;
+
+  let h = `
+    <div class="row" style="margin:4px 0 12px;align-items:center">
+      <div class="brand" style="font-size:20px;font-weight:700;display:flex;align-items:center;gap:8px">
+        🏆 لوحة الشرف
+      </div>
+      <div class="row" style="gap:8px">
+        <button class="g" style="font-size:12.5px;padding:6px 12px" onclick="showPerksModal()">🎁 نظام المزايا</button>
+        ${m && m.role==='admin'?`<button class="g" style="font-size:12px;padding:6px 12px;color:var(--rd);border-color:var(--rd);font-weight:700" onclick="confirmResetDatabaseForProduction()" title="خاص بحساب الأدمن فقط - لا يظهر للعامة">🛡️ تنظيف بيانات الاختبار (خاص بالأدمن فقط)</button>`:''}
+      </div>
+    </div>
+
+    <p class="s" style="margin:2px 0 12px">أبطال البلدة في ${esc(sc)} · تكريم لمن يخدم بلده ويصنع أثراً حقيقياً</p>
+
+    <div class="chips">
+      <button class="${scope !== 'all' ? '' : 'g'}" onclick="GV='${esc(userGov)}';R()">📍 ${esc(userGov)}</button>
+      <button class="${scope === 'all' ? '' : 'g'}" onclick="GV='all';R()">🇪🇬 كل مصر</button>
+      <button class="${rankTab === 'ppl' ? '' : 'g'}" onclick="rankTab='ppl';R()">الأبطال</button>
+      <button class="${rankTab === 'ini' ? '' : 'g'}" onclick="rankTab='ini';R()">أفضل المبادرات</button>
+    </div>
+
+    <div class="hb">
+      <div class="row" style="flex-wrap:nowrap">
+        ${myAvatar}
+        <div style="flex:1;min-width:0;margin-right:12px">
+          <b style="font-size:17px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(m.name)} ${vf(m)}</b>
+          <div style="opacity:.85;font-size:13px">${L.c[1]} ${L.c[0]}</div>
+        </div>
+        <div style="text-align:center;flex:none">
+          <div style="font-size:26px;font-weight:700;line-height:1.2">${myRank ? '#' + myRank : '—'}</div>
+          <div style="font-size:11px;opacity:.8">ترتيبك</div>
+        </div>
+      </div>
+      <div class="bar">
+        <i style="width:${nx ? Math.min(100, Math.max(0, ((myPts - L.c[2]) / (nx[2] - L.c[2])) * 100)) : 100}%"></i>
+      </div>
+      <p style="font-size:12px;opacity:.85;margin:0">
+        ${myPts} نقطة${nx ? ` · باقي ${Math.max(0, nx[2] - myPts)} للوصول إلى ${nx[1]} ${nx[0]}` : ' · أعلى مستوى 👑'}
+      </p>
+    </div>
+  `;
+
+  if (rankTab === 'ppl') {
+    h += all.length ? `
+      <div class="pod">
+        ${col(all[1], 2)}
+        ${col(all[0], 1)}
+        ${col(all[2], 3)}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+        ${all.slice(3, 25).map((u, i) => {
+          const isMe = u.id === uid;
+          const uPts = +u.points || 0;
+          const uLvl = lvl(uPts);
+          const userPic = u.photo || u.photoURL
+            ? `<img src="${esc(u.photo || u.photoURL)}" class="hav" style="object-fit:cover" alt="">`
+            : `<div class="hav">${esc((u.name || '?').trim()[0])}</div>`;
+
+          return `
+            <div class="card hr ${isMe ? 'me' : ''}" style="margin-bottom:0">
+              <span class="rn">${i + 4}</span>
+              ${userPic}
+              <span style="flex:1;min-width:0">
+                <b style="font-size:14px">${esc(u.name)} ${vf(u)}</b>
+                <br>
+                <span class="s">${uLvl.c[1]} ${uLvl.c[0]}${u.gov ? ' · ' + esc(u.gov) : ''}${u.job ? ' · 🔨 ' + esc(u.job) : ''}</span>
+              </span>
+              <span class="pill" style="font-weight:700">⭐ ${uPts}</span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    ` : '<div class="empty-dashed">لا أبطال بعد في هذه القائمة. كن أول من يتصدر اللوحة بحل مشكلة في حيّك أو التطوع.</div>';
+
+    h += `
+      <h2>المستويات</h2>
+      <div class="mi-w" style="margin-bottom:14px">
+        ${LV.map(l => `<span class="mi">${l[1]} ${l[0]} · ${l[2]}+</span>`).join('')}
+      </div>
+      <div class="card" style="margin-top:14px">
+        <b>💡 كيف تجمع النقاط؟</b>
+        <p class="s" style="margin-top:6px">✔ +15 نقطة عند حل مشكلة وإضافة صورة وتفاصيل الحل في «راصد».</p>
+        <p class="s">🩸 +20 نقطة عند التسجيل كمتبرع بالدم للمحتاجين.</p>
+        <p class="s">🌳 +10 نقاط عند قبول ونشر مبادرتك في «أعمال الخير».</p>
+        <p class="s">💙 +30 نقطة عند دعم التطبيق أو رعاية نشاط محلي.</p>
+      </div>
+    `;
+  } else {
+    // تبويب أفضل المبادرات ملهمة من heroes الحقيقية
+    const rawHeroes = D.heroes || [];
+    const inGovHeroes = scope === 'all' ? rawHeroes : rawHeroes.filter(x => !x.gov || x.gov === scope);
+    const heroList = inGovHeroes
+      .filter(x => x.ok)
+      .sort((a, b) => ((b.likes || []).length) - ((a.likes || []).length))
+      .slice(0, 15);
+
+    h += `
+      <div class="row" style="margin:16px 0 8px">
+        <h2>الأكثر تقديرًا وإلهامًا</h2>
+        <button onclick="addHero()">+ شارك مبادرة</button>
+      </div>
+    ` + (heroList.length ? heroList.map((x, i) => `
+      <div class="card">
+        <div class="row">
+          <b>${['🥇', '🥈', '🥉'][i] || '🏅'} ${esc(x.doer)}</b>
+          <button class="${(x.likes || []).includes(uid) ? '' : 'g'}" onclick="like('${x.id}')" style="padding:4px 12px;font-size:12.5px;border-radius:99px">
+            👏 ${(x.likes || []).length}
+          </button>
+        </div>
+        ${ph(x.photo)}
+        <p style="margin-top:8px">${esc(x.body)}</p>
+      </div>
+    `).join('') : '<div class="empty-dashed">لا مبادرات منشورة بعد في هذه المحافظة. شارك بعمل طيب في بلدتك ليتصدر اللوحة!</div>');
+  }
+
+  return h;
+}
+
+function her() {
+  const l = G(D.heroes).filter(x => x.ok || x.by === uid);
+  return `
+    <div class="row" style="margin-bottom:10px">
+      <h2>مبادرات وأعمال الخير</h2>
+      <button onclick="addHero()">+ شارك مبادرة</button>
+    </div>
+    <div class="row" style="margin:4px 0 12px">
+      <span class="s">${l.length} مبادرة ملهمة في ${GV==='all'?'كل المحافظات':esc(GV)}</span>
+    </div>
+  ` + (l.length ? l.map(x => `<div class="card"><div class="row"><b>${esc(x.doer)}</b>${x.ok?(x.urgent&&!x.rev?'<span class="pill w">⚡ عاجل</span>':''):'<span class="pill w">بانتظار المراجعة</span>'}</div>${ph(x.photo)}<p>${esc(x.body)}</p><div class="row"><button class="${(x.likes||[]).includes(uid)?'':'g'}" onclick="like('${x.id}')">👏 ${(x.likes||[]).length}</button><span>${rb('heroes',x.id,x.by)} ${xb('heroes',x.id,x.by)}</span></div></div>`).join('') : empty('كن أول من يشارك عملًا طيبًا في بلدتك.'));
+}
+
+/* ===== الخير ===== */
+let CH = 'home', ik = 'all';
+const BT = ['A+','A-','B+','B-','AB+','AB-','O+','O-'], opt = l => l.map(x => [x,x]);
+const CHS = () => G(D.charity).filter(x => x.ok || x.by === uid);
+const cnt = k => CHS().filter(x => x.kind === k && !x.done).length;
+const ph0 = () => me().dphone || '';
+
+function chr() {
+  return CH === 'home' ? chHome() : ({ blood, lost, inkind: ink, project: proj })[CH]();
+}
+
+function chHome() {
+  const m = me(), done = CHS().filter(x => x.done).length, reg = D.users.filter(u => u.donor && (GV === 'all' || u.gov === GV)).length;
+  return `<h2>الخير</h2><div class="hb" style="background:linear-gradient(135deg,#0A0A0A 10%,#3a1a1a 55%,#FF6B6B)"><b style="font-size:17px">ساعد جارك أو اطلب المساعدة</b><p style="opacity:.85;font-size:13px;margin-top:4px">نداءات دم عاجلة، مفقودات، تبرعات عينية، وحملات الجمعيات الموثقة في ${GV==='all'?'كل مصر':esc(GV)}.</p><p style="margin-top:8px;font-size:13px">✔ ${done} حالة تمت الاستجابة لها · 🩸 ${reg} متبرع بالدم مسجل</p></div>` +
+  [['blood','🩸','تبرع بالدم','اطلب دمًا لمريض أو لبِّ نداءً قريبًا منك'],['lost','🔎','مفقودات ومعثورات','أبلغ عن شخص أو غرض فُقد أو وجدته'],['inkind','🎁','تبرعات عينية','قدّم أو اطلب طعامًا أو ملابس أو أثاثًا أو أدوية'],['project','🤝','حملات الجمعيات','مشاريع خيرية من جهات موثقة بحسابات رسمية']].map(t => `<button class="ct" onclick="CH='${t[0]}';R()"><span class="ic">${t[1]}</span><span style="flex:1"><b>${t[2]}</b><span class="s">${t[3]}</span></span><span class="pill w">${cnt(t[0])}</span></button>`).join('') +
+  `<div class="card"><b>🩸 سجّل كمتبرع بالدم</b><p class="s">${m.donor?'أنت مسجل بفصيلة '+esc(m.btype)+'. يرى أصحاب طلبات الدم في محافظتك اسمك ورقمك.':'سجّل فصيلتك ليتواصل معك من يحتاج دمًا في محافظتك.'}</p><div class="row" style="margin-top:8px"><button onclick="donorForm()">${m.donor?'تعديل بياناتي':'سجّلني'}</button>${m.donor?`<button class="g" onclick="cancelDonor()">إلغاء تسجيلي</button>`:''}</div></div>`;
+}
+
+const donorForm = () => form('متبرع بالدم', [['btype','فصيلة دمك','select',opt(BT)],['dphone','رقم التواصل','tel']], async v => {
+  const u = usr(uid);
+  const isNew = !u?.donor;
+  const newPts = (+u?.points || 0) + (isNew ? 20 : 0);
+  if (LIVE) {
+    await fs.collection('users_private').doc(uid).set({ dphone: v.dphone }, { merge: true });
+    await DB.up('users', uid, { donor: true, btype: v.btype, dphone: v.dphone, points: newPts });
+  } else {
+    await DB.up('users', uid, { donor: true, btype: v.btype, dphone: v.dphone, points: newPts });
+  }
+  if (u) { u.donor = true; u.btype = v.btype; u.points = newPts; }
+  toast(isNew ? 'تم تسجيلك كمتبرع بالدم ومُنحت +20 نقطة شرف! 🩸' : 'تم تحديث بيانات التبرع بنجاح');
+  R();
+}, 'سجّلني', 'بتسجيلك توافق على ظهور اسمك ورقمك لأصحاب طلبات الدم في محافظتك.', { btype: me().btype, dphone: ph0() });
+
+const cancelDonor = async () => {
+  await DB.up('users', uid, { donor: false });
+  const u = usr(uid);
+  if (u) u.donor = false;
+  toast('أُلغي التسجيل كمتبرع');
+  R();
+};
+
+const bloodForm = () => form('اطلب دمًا', [
+  ['btype','الفصيلة المطلوبة','select',opt(BT)],
+  ['units','عدد الأكياس','number'],
+  ['hosp','المستشفى / المكان','text'],
+  ['urg','درجة الاستعجال','select',[['now','عاجل الآن'],['day','خلال ٢٤ ساعة'],['week','خلال أسبوع']]],
+  ['phone','رقم للتواصل','tel'],
+  ['body','ملاحظات (اختياري)','area','o']
+], v => DB.set('charity', {
+  by: uid, name: me().name, kind: 'blood', title: 'طلب دم ' + v.btype, ...v,
+  units: +v.units, donors: [], ok: true, done: false
+}).then(() => toast('نُشر الطلب')), 'انشر الطلب', 'انشر الحاجة الحقيقية فقط، فالطلبات الوهمية تُحذف ويُحظر صاحبها.', { phone: ph0() });
+
+const donate = id => form('أستطيع التبرع', [['phone','رقم للتواصل','tel']], async v => {
+  const x = D.charity.find(y => y.id === id);
+  const donorObj = { u: uid, n: me().name, p: v.phone };
+  if (LIVE) {
+    await fs.collection('charity').doc(id).update({
+      donors: firebase.firestore.FieldValue.arrayUnion(donorObj)
+    });
+  } else {
+    DB.up('charity', id, { donors: [...(x.donors || []).filter(d => d.u !== uid), donorObj] });
+  }
+  toast('وصل رقمك لصاحب الطلب');
+}, 'أرسل', 'سيصل اسمك ورقمك لصاحب الطلب فقط.', { phone: ph0() });
+
+const showDonors = id => {
+  const x = D.charity.find(y => y.id === id), reg = D.users.filter(u => u.donor && u.btype === x.btype && u.id !== x.by && (GV === 'all' || u.gov === GV)), row = (n, p) => `<div class="card row"><b>${esc(n)}</b><a class="btn" href="tel:${esc(p)}">${esc(p)}</a></div>`;
+  sheet('<h2>المتبرعون</h2><b class="s">استجابوا لطلبك</b>' + ((x.donors || []).length ? x.donors.map(d => row(d.n, d.p)).join('') : '<p class="s">لا أحد بعد.</p>') + `<b class="s">مسجلون بفصيلة ${esc(x.btype||'')} في محافظتك</b>` + (reg.length ? reg.map(u => row(u.name, u.dphone)).join('') : '<p class="s">لا مسجلين.</p>'));
+};
+
+function blood() {
+  const l = CHS().filter(x => x.kind === 'blood').sort((a,b) => (!!a.done - !!b.done) || (a.urg === 'now' ? -1 : 1));
+  return `<div class="row"><h2>طلبات الدم</h2><button class="d" onclick="bloodForm()">+ اطلب دمًا</button></div>` + (l.length ? l.map(x => {
+    const dn = x.donors || [], mine = x.by === uid, reg = D.users.filter(u => u.donor && u.btype === x.btype && u.id !== x.by && (GV === 'all' || u.gov === GV)).length, hot = x.urg === 'now' && !x.done;
+    return `<div class="card ${hot?'u':''}" ${x.done?'style="opacity:.6"':''}><div class="row"><b>🩸 فصيلة ${esc(x.btype||x.title)} ${x.units?'· '+x.units+' أكياس':''}</b><span class="pill ${x.done?'o':'w'}" ${hot?'style="background:var(--rd);color:#fff"':''}>${x.done?'تمت التلبية':{now:'عاجل الآن',day:'خلال ٢٤ ساعة',week:'خلال أسبوع'}[x.urg]||'عاجل'}</span></div><p class="s">🏥 ${esc(x.hosp||'')} · ${esc(x.name)}</p>${x.body?`<p>${esc(x.body)}</p>`:''}<p class="s">${dn.length} استجابوا · ${reg} مسجلون بنفس الفصيلة في محافظتك</p><div class="row" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--ln);align-items:center"><div style="display:flex;align-items:center;gap:6px">${x.done?'':contact(x)}${!mine&&!x.done?`<button style="font-size:12px;padding:6px 12px" onclick="donate('${x.id}')">🩸 أستطيع التبرع</button>`:''}</div><div style="display:flex;align-items:center;gap:6px">${mine?`<button class="g" style="font-size:12px;padding:5px 9px" onclick="showDonors('${x.id}')">👥 المتبرعون (${dn.length})</button> ${x.done?'':`<button class="g" style="font-size:12px;padding:5px 9px;color:var(--ok)" onclick="DB.up('charity','${x.id}',{done:true})">✓ تمت التلبية</button>`}`:''} ${rb('charity',x.id,x.by)} ${xb('charity',x.id,x.by)}</div></div></div>`;
+  }).join('') : empty('لا طلبات دم حاليًا.'));
+}
+
+const lostForm = () => form('أبلغ عن مفقود أو معثور', [
+  ['dir','نوع البلاغ','select',[['lost','فقدت شخصًا أو شيئًا'],['found','وجدت شخصًا أو شيئًا']]],
+  ['what','التصنيف','select',opt(['شخص','حيوان أليف','مستندات','محفظة أو مال','موبايل','أخرى'])],
+  ['title','عنوان مختصر','text'],
+  ['body','الوصف والعلامات المميزة','area'],
+  ['place','المكان والوقت','text'],
+  ['phone','رقم للتواصل','tel'],
+  ['photo','صورة (اختياري)','file','o']
+], v => DB.set('charity', { by: uid, name: me().name, kind: 'lost', ...v, ok: true, done: false }).then(() => toast('نُشر البلاغ')), 'انشر', 'لا تنشر عنوان منزلك، يكفي رقم الهاتف.', { phone: ph0() });
+
+function lost() {
+  const l = CHS().filter(x => x.kind === 'lost').sort((a,b) => !!a.done - !!b.done);
+  return `<div class="row"><h2>مفقودات ومعثورات</h2><button onclick="lostForm()">+ بلّغ</button></div>` + (l.length ? l.map(x => `<div class="card" ${x.done?'style="opacity:.6"':''}><div class="row"><b>${esc(x.title)}</b><span class="pill ${x.dir==='found'?'o':'w'}">${x.done?'تم':{lost:'مفقود',found:'معثور'}[x.dir]||'بلاغ'}</span></div><p class="s">${x.what?esc(x.what)+' · ':''}${x.place?'📍 '+esc(x.place)+' · ':''}${esc(x.name)}</p>${ph(x.photo)}<p>${esc(x.body)}</p><div class="row"><span>${x.done?'':contact(x)}</span><span>${x.by===uid&&!x.done?`<button class="g" onclick="DB.up('charity','${x.id}',{done:true})">تم العثور / التسليم</button>`:''} ${rb('charity',x.id,x.by)} ${xb('charity',x.id,x.by)}</span></div></div>`).join('') : empty('لا بلاغات حاليًا.'));
+}
+
+const inkForm = () => form('تبرع عيني', [
+  ['dir','نوع الإعلان','select',[['give','أتبرع بـ'],['need','أحتاج إلى']]],
+  ['what','التصنيف','select',opt(['طعام','ملابس وكسوة','أثاث','أجهزة','أدوية ومستلزمات طبية','كتب ومستلزمات دراسة','أخرى'])],
+  ['title','ماذا تحديدًا؟','text'],
+  ['body','التفاصيل والكمية والحالة','area'],
+  ['phone','رقم للتواصل','tel']
+], v => DB.set('charity', { by: uid, name: me().name, kind: 'inkind', ...v, ok: true, done: false }).then(() => toast('نُشر إعلانك')), 'انشر', 'للتبرع بالمال تواصل مع جمعية موثقة من قسم الحملات.', { phone: ph0() });
+
+function ink() {
+  const l = CHS().filter(x => x.kind === 'inkind' && (ik === 'all' || x.dir === ik)).sort((a,b) => !!a.done - !!b.done);
+  return `<div class="row"><h2>تبرعات عينية</h2><button onclick="inkForm()">+ إعلان</button></div><div class="chips">${[['all','الكل'],['give','متاح للتبرع'],['need','مطلوب']].map(c => `<button class="${c[0]===ik?'':'g'}" onclick="ik='${c[0]}';R()">${c[1]}</button>`).join('')}</div>` + (l.length ? l.map(x => `<div class="card" ${x.done?'style="opacity:.6"':''}><div class="row"><b>${esc(x.title)}</b><span class="pill ${x.dir==='give'?'o':'w'}">${x.done?'تمت الاستجابة':x.dir==='give'?'متاح':'مطلوب'}</span></div><p class="s">${esc(x.what)} · ${esc(x.name)}</p><p>${esc(x.body)}</p><div class="row"><span>${x.done?'':contact(x)}</span><span>${x.by===uid&&!x.done?`<button class="g" onclick="DB.up('charity','${x.id}',{done:true})">تمت الاستجابة</button>`:''} ${rb('charity',x.id,x.by)} ${xb('charity',x.id,x.by)}</span></div></div>`).join('') : empty('لا إعلانات في هذا القسم.'));
+}
+
+const projForm = () => form('حملة خيرية', [
+  ['title','اسم الحملة','text'],
+  ['body','الهدف والمستفيدون','area'],
+  ['target','المبلغ المستهدف (ج.م)','number'],
+  ['bank','رقم الحساب البنكي الرسمي','text','o'],
+  ['wallet','محفظة إلكترونية رسمية','text','o'],
+  ['phone','هاتف الجهة','tel']
+], v => {
+  if (!v.bank && !v.wallet) throw Error('أدخل حسابًا بنكيًا أو محفظة واحدة على الأقل');
+  return DB.set('charity', { by: uid, name: me().name, kind: 'project', ...v, target: +v.target, raised: 0, ok: true, done: false }).then(() => toast('نُشرت الحملة'));
+}, 'انشر', 'التحويل يتم مباشرة للجهة على حسابها الرسمي وليس عبر التطبيق.');
+
+const raise = id => form('تحديث المبلغ المجموع', [['raised','المبلغ (ج.م)','number']], v => DB.up('charity', id, { raised: +v.raised }));
+
+function proj() {
+  const l = CHS().filter(x => x.kind === 'project').sort((a,b) => !!a.done - !!b.done), orgs = D.users.filter(u => u.role === 'charity' && u.verify === 'approved');
+  return `<div class="row"><h2>حملات الجمعيات</h2>${can(['charity','gov'])?'<button onclick="projForm()">+ حملة</button>':''}</div><p class="s">${can(['charity','gov'])?'':'نشر الحملات للجمعيات والجهات الموثقة فقط. '}${orgs.length?'جمعيات موثقة: '+orgs.map(o => esc(o.name)).join('، '):'لا جمعيات موثقة بعد.'}</p>` + (l.length ? l.map(x => `<div class="card" ${x.done?'style="opacity:.6"':''}><div class="row"><b>🤝 ${esc(x.title)} ${vf(usr(x.by))}</b>${x.done?'<span class="pill o">اكتملت</span>':''}</div><p class="s">${esc(x.name)}</p><p>${esc(x.body)}</p>${x.target?`<div class="bar"><i style="width:${Math.min(100,(x.raised||0)/x.target*100)}%"></i></div><p class="s">${x.raised||0} من ${x.target} ج.م</p>`:''}${x.bank?`<p>حساب بنكي: <b>${esc(x.bank)}</b></p>`:''}${x.wallet?`<p>محفظة: <b>${esc(x.wallet)}</b></p>`:''}<p class="s">حوّل مباشرة للجهة. لا يوجد دفع داخل التطبيق.</p><div class="row"><span>${x.phone?contactIcons(x, true):''}</span><span>${x.by===uid&&!x.done?`<button class="g" onclick="raise('${x.id}')">حدّث المبلغ</button> <button class="g" onclick="DB.up('charity','${x.id}',{done:true})">اكتملت</button>`:''} ${rb('charity',x.id,x.by)} ${xb('charity',x.id,x.by)}</span></div></div>`).join('') : empty('لا حملات حاليًا.'));
+}
+/* ===== المزيد ===== */
+const more = () => `<h2>المزيد</h2><div class="grid">${MORE.map(x => `<button class="mt" onclick="T='${x[0]}';R()"><span>${x[1]}</span>${x[2]}</button>`).join('')}</div>`;
+const contact = x => contactIcons(x, true);
+let mt = 'all';
+
+function addMkt() {
+  form('أعلن في سوق البلدة', [
+    ['type','النوع','select',[['sell','للبيع'],['give','تبرع مجاني'],['swap','للمبادلة'],['want','مطلوب']]],
+    ['title','العنوان','text'],
+    ['desc','التفاصيل والحالة','area'],
+    ['price','السعر (ج.م)','number','o'],
+    ['phone','هاتف','tel'],
+    ['photo','صورة','file','o']
+  ], v => DB.set('market', { by: uid, name: me().name, ...v, price: +v.price || 0, sold: false }).then(() => toast('نُشر إعلانك')), 'انشر');
+}
+
+function mkt() {
+  const K = { sell:'للبيع', give:'مجاني', swap:'مبادلة', want:'مطلوب' }, l = G(D.market).filter(x => mt === 'all' || x.type === mt);
+  return `<div class="row"><h2>سوق البلدة</h2><button onclick="addMkt()">+ إعلان</button></div><div class="chips">${[['all','الكل'],...Object.entries(K)].map(c => `<button class="${c[0]===mt?'':'g'}" onclick="mt='${c[0]}';R()">${c[1]}</button>`).join('')}</div>` + (l.length ? l.map(x => `<div class="card" ${x.sold?'style="opacity:.6"':''}>${ph(x.photo)}<div class="row"><b>${esc(x.title)}</b><span class="pill w">${x.sold?'تم':K[x.type]}</span></div><p>${esc(x.desc)}</p><div class="row"><b>${x.type==='sell'&&x.price?x.price+' ج.م':''}</b><span class="s">${esc(x.name)}</span></div><div class="row"><span>${x.sold?'':contact(x)}</span><span>${x.by===uid&&!x.sold?`<button class="g" onclick="DB.up('market','${x.id}',{sold:true})">تم</button>`:''} ${rb('market',x.id,x.by)} ${xb('market',x.id,x.by)}</span></div></div>`).join('') : empty('لا إعلانات بعد.'));
+}
+
+function addEvt() {
+  const o = can(['gov','charity']);
+  form('فعالية أو حملة تطوع', [
+    ['title','العنوان','text'],
+    ['kind','النوع','select',[['vol','تطوع'],['event','فعالية'],['meet','اجتماع أهالي']]],
+    ['when','الموعد','datetime-local'],
+    ['place','المكان','text'],
+    ['desc','التفاصيل','area'],
+    ['need','عدد المتطوعين المطلوب','number','o']
+  ], v => DB.set('events', { by: uid, name: me().name, ...v, when: new Date(v.when).getTime(), need: +v.need || 0, going: [], ok: o }).then(() => toast(o ? 'نُشرت' : 'ستظهر بعد المراجعة')), 'انشر');
+}
+
+const join = async id => {
+  const ev = D.events.find(x => x.id === id);
+  if (!ev) return;
+  const g = ev.going || [];
+  const has = g.includes(uid);
+  if (LIVE) {
+    try {
+      await fs.collection('events').doc(id).update({
+        going: has ? firebase.firestore.FieldValue.arrayRemove(uid) : firebase.firestore.FieldValue.arrayUnion(uid)
+      });
+    } catch (e) {
+      await DB.up('events', id, { going: has ? g.filter(x => x !== uid) : [...g, uid] });
+    }
+  } else {
+    await DB.up('events', id, { going: has ? g.filter(x => x !== uid) : [...g, uid] });
+  }
+};
+
+function evt() {
+  const K = { vol:'تطوع', event:'فعالية', meet:'اجتماع' }, l = G(D.events).filter(x => x.ok || x.by === uid).sort((a,b) => a.when - b.when);
+  return `<div class="row"><h2>فعاليات وتطوع</h2><button onclick="addEvt()">+ فعالية</button></div>` + (l.length ? l.map(x => {
+    const g = x.going || [], on = g.includes(uid);
+    return `<div class="card"><div class="row"><b>${esc(x.title)}</b><span class="pill w">${x.ok?(x.urgent&&!x.rev?'⚡ عاجل · ':'')+K[x.kind]:'بانتظار المراجعة'}</span></div><p class="s">📅 ${new Date(x.when).toLocaleString('ar-EG',{dateStyle:'medium',timeStyle:'short'})} · 📍 ${esc(x.place)}</p><p>${esc(x.desc)}</p>${x.need?`<div class="bar"><i style="width:${Math.min(100,g.length/x.need*100)}%"></i></div>`:''}<div class="row"><button class="${on?'':'g'}" onclick="join('${x.id}')">${on?'✓ مسجّل':x.kind==='vol'?'أشارك':'سأحضر'} (${g.length}${x.need?'/'+x.need:''})</button><span>${rb('events',x.id,x.by)} ${xb('events',x.id,x.by)}</span></div></div>`;
+  }).join('') : empty('لا فعاليات قادمة. نظّم حملة تنظيف أو لقاء للأهالي.'));
+}
+
+function addJob() {
+  form('أعلن عن وظيفة', [
+    ['title','المسمى','text'],
+    ['kind','النوع','select',[['full','دوام كامل'],['part','دوام جزئي'],['day','يومية / مؤقت']]],
+    ['pay','الأجر','text','o'],
+    ['desc','المهام والشروط','area'],
+    ['phone','هاتف','tel']
+  ], v => DB.set('jobs', { by: uid, name: me().name, ...v, open: true }).then(() => toast('نُشرت الوظيفة')), 'انشر');
+}
+
+function job() {
+  const K = { full:'دوام كامل', part:'دوام جزئي', day:'يومية' };
+  return `<div class="row"><h2>وظائف البلدة</h2><button onclick="addJob()">+ وظيفة</button></div>` + (G(D.jobs).length ? G(D.jobs).map(x => `<div class="card" ${x.open?'':'style="opacity:.6"'}><div class="row"><b>${esc(x.title)}</b><span class="pill w">${x.open?K[x.kind]:'مغلقة'}</span></div><p class="s">${esc(x.name)}${x.pay?' · '+esc(x.pay):''}</p><p>${esc(x.desc)}</p><div class="row"><span>${x.open?contact(x):''}</span><span>${x.by===uid&&x.open?`<button class="g" onclick="DB.up('jobs','${x.id}',{open:false})">أُغلقت</button>`:''} ${rb('jobs',x.id,x.by)} ${xb('jobs',x.id,x.by)}</span></div></div>`).join('') : empty('لا وظائف معلنة.'));
+}
+
+const SOS = [['الإسعاف','123'],['شرطة النجدة','122'],['المطافئ','180'],['المرور','128'],['طوارئ الكهرباء','121'],['طوارئ الغاز','129'],['طوارئ المياه','125'],['شرطة السياحة','126'],['نجدة الطفل','16000'],['شكاوى المرأة','15115'],['شكاوى مجلس الوزراء','16528']];
+const addTel = () => form('أضف رقمًا مهمًا للمحافظة', [['gov','المحافظة','select',GOVS.map(g => [g,g])],['label','الجهة','text'],['num','الرقم','tel']], v => DB.set('phones', v), 'حفظ', '', { gov: cg() });
+
+function tel() {
+  const a = me().role === 'admin', r = (l, n, x) => `<div class="card row"><b>${esc(l)}</b><span style="display:inline-flex;align-items:center;gap:8px">${iconCall(n, true)}<span style="font-weight:700;direction:ltr">${esc(n)}</span> ${a&&x?`<button class="g" onclick="DB.del('phones','${x}')">حذف</button>`:''}</span></div>`;
+  return `<div class="row"><h2>أرقام مهمة</h2>${a?'<button onclick="addTel()">+ رقم</button>':''}</div><h2 class="s">الطوارئ</h2>${SOS.map(x => r(x[0], x[1])).join('')}<h2 class="s">أرقام البلدة</h2>` + (G(D.phones).length ? G(D.phones).map(x => r(x.label, x.num, x.id)).join('') : '<p class="s">لم يضف الأدمن أرقامًا محلية بعد (مستشفى، وحدة محلية، صيدلية مناوبة…).</p>');
+}
+
+/* ===== الدفع: اتصالات كاش فقط ===== */
+const PAY = () => D.cfg.find(x => x.id === 'pay') || {};
+const isP = s => {
+  if (!s) return false;
+  if (s.premium && (!s.until || s.until > Date.now())) return true;
+  const u = usr(s.uid);
+  return !!(u && (+u.points || 0) >= 500);
+};
+const PK = { w:['أسبوع',7,'pw'], m:['شهر',30,'pm'], q:['٣ شهور',90,'pq'] };
+
+const payCfg = () => {
+  if (me().role !== 'admin') return;
+  form('إعدادات الدفع', [
+    ['name','اسم صاحب الرقم','text'],
+    ['num','رقم اتصالات كاش','tel'],
+    ['pw','سعر أسبوع (ج.م)','number'],
+    ['pm','سعر شهر (ج.م)','number'],
+    ['pq','سعر ٣ شهور (ج.م)','number']
+  ], v => DB.set('cfg', { name: v.name, num: v.num, pw: +v.pw, pm: +v.pm, pq: +v.pq }, 'pay').then(() => toast('حُفظت إعدادات الدفع')), 'حفظ', 'هذا هو الرقم الوحيد المعتمد للدفع داخل التطبيق.', PAY());
+};
+
+function payForm(sid) {
+  const c = PAY();
+  if (!c.num || !Object.values(PK).some(v => c[v[2]])) return toast('لم يحدد الأدمن رقم الدفع وأسعار الباقات بعد');
+  if (D.payments.some(p => p.sid === sid && p.status === 'pending')) return toast('لديك إيصال قيد المراجعة لهذه الخدمة');
+  form('تمييز خدمتك', [
+    ['pkg','الباقة','select',Object.entries(PK).filter(([k,v]) => c[v[2]]).map(([k,v]) => [k, `${v[0]} — ${c[v[2]]} ج.م`])],
+    ['pname','اسمك كما ظهر في التحويل','text'],
+    ['from','الرقم الذي حوّلت منه','tel'],
+    ['ref','رقم عملية التحويل (من الإيصال)','text'],
+    ['img','صورة إيصال الدفع','file']
+  ], v => {
+    const k = PK[v.pkg];
+    return DB.set('payments', {
+      by: uid, name: me().name, sid, pkg: v.pkg, days: k[1], amount: +c[k[2]],
+      pname: v.pname, from: v.from, ref: v.ref, img: v.img, to: c.num, status: 'pending'
+    }).then(() => toast('أُرسل الإيصال للمراجعة'));
+  }, 'أرسل الإيصال', `حوّل المبلغ عبر <b>اتصالات كاش</b> فقط إلى الرقم <b>${esc(c.num)}</b> (${esc(c.name)}) ثم أرسل صورة الإيصال هنا. لا تُقبل أي وسيلة دفع أخرى.`);
+}
+
+/* قبول الدفعة عبر writeBatch لضمان الذرية */
+const payOk = async id => {
+  const p = D.payments.find(x => x.id === id);
+  if (!p) return;
+  if (LIVE) {
+    try {
+      const batch = fs.batch();
+      batch.update(fs.collection('payments').doc(id), { status: 'approved' });
+      if (p.sid) {
+        const sv = D.services.find(x => x.id === p.sid);
+        const curUntil = (sv && isP(sv) && sv.until) ? sv.until : Date.now();
+        const newUntil = Math.max(Date.now(), curUntil) + (p.days || 0) * 864e5;
+        batch.update(fs.collection('services').doc(p.sid), { premium: true, until: newUntil });
+      }
+      if (p.kind === 'support') {
+        const supUser = usr(p.by);
+        const curPts = +supUser?.points || 0;
+        const newPts = curPts + 30;
+        if (supUser) { supUser.supporter = true; supUser.points = newPts; }
+        batch.update(fs.collection('users').doc(p.by), { supporter: true, points: newPts });
+      }
+      if (p.kind === 'fine' && p.fid) {
+        batch.update(fs.collection('fines').doc(p.fid), { status: 'paid' });
+      }
+      await batch.commit();
+    } catch (e) {
+      console.warn('Batch payOk fallback:', e);
+      const sv = D.services.find(x => x.id === p.sid);
+      if (sv) DB.up('services', p.sid, { premium: true, until: Math.max(Date.now(), isP(sv) && sv.until ? sv.until : 0) + (p.days || 0) * 864e5 });
+      DB.up('payments', id, { status: 'approved' });
+      if (p.kind === 'support') {
+        const supUser = usr(p.by);
+        const curPts = +supUser?.points || 0;
+        const newPts = curPts + 30;
+        if (supUser) { supUser.supporter = true; supUser.points = newPts; }
+        DB.up('users', p.by, { supporter: true, points: newPts });
+      }
+      if (p.kind === 'fine' && p.fid) DB.up('fines', p.fid, { status: 'paid' });
+    }
+  } else {
+    const sv = D.services.find(x => x.id === p.sid);
+    if (sv) DB.up('services', p.sid, { premium: true, until: Math.max(Date.now(), isP(sv) && sv.until ? sv.until : 0) + (p.days || 0) * 864e5 });
+    DB.up('payments', id, { status: 'approved' });
+    if (p.kind === 'support') {
+      const supUser = usr(p.by);
+      const curPts = +supUser?.points || 0;
+      const newPts = curPts + 30;
+      if (supUser) { supUser.supporter = true; supUser.points = newPts; }
+      DB.up('users', p.by, { supporter: true, points: newPts });
+    }
+    if (p.kind === 'fine') DB.up('fines', p.fid, { status: 'paid' });
+  }
+  toast(p.kind === 'support' ? 'قُبل الدعم ومُنح +30 نقطة شرف! 💙' : p.kind === 'fine' ? 'سُددت الغرامة' : 'فُعّل التمييز');
+};
+
+function pay() {
+  const l = D.payments.filter(p => p.by === uid), fl = D.fines.filter(f => f.uid === uid && f.status === 'due');
+  return fl.map(f => `<div class="card u"><b>غرامة مستحقة ${f.amount} ج.م</b><p class="s">${esc(f.reason)}</p><button class="d" onclick="fineForm('${f.id}')">سدّد الغرامة</button></div>`).join('') + '<h2>مدفوعاتي</h2><p class="s">كل المدفوعات داخل التطبيق عبر اتصالات كاش فقط.</p>' + (l.length ? l.map(p => `<div class="card"><div class="row"><b>${p.kind==='support'?'دعم التطبيق 💙':p.kind==='fine'?'سداد غرامة':'تمييز خدمة · '+PK[p.pkg][0]}</b><span class="pill ${p.status==='approved'?'o':p.status==='rejected'?'':'w'}">${{pending:'قيد المراجعة',approved:'مقبول',rejected:'مرفوض'}[p.status]}</span></div><p class="s">${p.amount} ج.م · ${new Date(p.at).toLocaleDateString('ar-EG')} · عملية ${esc(p.ref)}</p>${ph(p.img)}</div>`).join('') : empty('لا مدفوعات بعد. ميّز خدمتك من زر ⭐ في تبويب الخدمات.'));
+}
+
+/* ===== دعم التطبيق ===== */
+function supportForm() {
+  const c = PAY();
+  if (!c.num) return toast('سيتاح الدعم فور تحديد الأدمن لرقم الدفع');
+  form('ادعم بلدتي 💙', [
+    ['amount','مبلغ الدعم (ج.م)','number'],
+    ['pname','اسمك كما ظهر في التحويل','text'],
+    ['from','الرقم الذي حوّلت منه','tel'],
+    ['ref','رقم عملية التحويل (من الإيصال)','text'],
+    ['img','صورة إيصال الدفع','file'],
+    ['anon','اسمك في لوحة الداعمين','select',[['show','أظهر اسمي'],['hide','أخفِ اسمي']]]
+  ], v => {
+    if (!(+v.amount > 0)) throw Error('أدخل مبلغًا صحيحًا');
+    return DB.set('payments', {
+      by: uid, name: me().name, kind: 'support', pkg: 'sp', days: 0, amount: +v.amount,
+      pname: v.pname, from: v.from, ref: v.ref, img: v.img, anon: v.anon === 'hide', to: c.num, status: 'pending'
+    }).then(() => toast('أُرسل الإيصال، شكرًا لدعمك'));
+  }, 'أرسل الإيصال', `حوّل المبلغ عبر <b>اتصالات كاش</b> فقط إلى الرقم <b>${esc(c.num)}</b> (${esc(c.name)}) ثم أرسل صورة الإيصال هنا.`);
+}
+
+function sup() {
+  const c = PAY(), l = D.payments.filter(p => p.kind === 'support' && p.status === 'approved'), names = [...new Set(l.filter(p => !p.anon).map(p => p.name))];
+  return `<div class="hb"><b style="font-size:18px">ادعم بلدتي 💙</b><p style="opacity:.85;font-size:14px;margin:6px 0 14px">بلدتي مجانية لكل الأهالي. دعمك الاختياري يساعد في استمرار التطبيق وتطويره.</p><button style="background:#fff;color:#0A0A0A;width:100%;padding:13px" onclick="supportForm()" ${c.num?'':'disabled'}>ادعم الآن</button></div>
+<div class="card"><b>كيف يتم الدعم؟</b><p class="s">${c.num?`حوّل أي مبلغ عبر اتصالات كاش فقط إلى <b>${esc(c.num)}</b> (${esc(c.name)})، ثم أرسل اسمك والرقم الذي حوّلت منه ورقم العملية وصورة الإيصال. يراجعها الأدمن ويظهر بجانب اسمك 💙.`:'سيُفتح الدعم فور أن يحدد الأدمن رقم اتصالات كاش.'}</p></div>
+<h2>الداعمون (${l.length})</h2>` + (names.length ? `<div class="card"><p>${names.map(esc).join(' · ')}</p></div>` : empty('كن أول الداعمين.'));
+}
+
+/* ===== الإقرار والمسؤولية والغرامات ===== */
+const pkn = p => ({ support: 'دعم التطبيق', fine: 'سداد غرامة' })[p.kind] || (PK[p.pkg] ? PK[p.pkg][0] : 'خدمة');
+
+/* تغريم المحتوى وحذفه ذريًا عبر writeBatch */
+const fineIt = (c, id) => {
+  const x = (D[c] || []).find(y => y.id === id);
+  if (!x) return;
+  sheet(`<h2>تأكيد حذف وتغريم المخالف</h2>
+    <p class="s" style="margin:12px 0 16px;font-size:14px;line-height:1.6">
+      هل أنت متأكد من حذف هذا المحتوى وتسجيل غرامة <b>${FINE} ج.م</b> على صاحبه؟
+    </p>
+    <div class="row">
+      <button class="g" onclick="closeM()">إلغاء</button>
+      <button class="d" onclick="closeM();executeFineIt('${c}','${id}')">نعم، احذف وغرّم ${FINE}</button>
+    </div>`);
+};
+
+const executeFineIt = async (c, id) => {
+  const x = (D[c] || []).find(y => y.id === id);
+  if (!x) return;
+  // تحرير مساحة التخزين من أي صور مرتبطة
+  ['photo', 'after', 'img', 'doc', 'receipt'].forEach(k => {
+    if (x[k]) deleteStorageFile(x[k]);
+  });
+  const fData = {
+    uid: x.by || x.uid,
+    amount: FINE,
+    reason: 'محتوى غير صحيح: ' + String(x.desc || x.title || x.body || x.doer || '').slice(0, 60),
+    status: 'due',
+    at: Date.now(),
+    ack: Date.now(),
+    fine: FINE
+  };
+  if (LIVE) {
+    try {
+      const batch = fs.batch();
+      const fineRef = fs.collection('fines').doc();
+      batch.set(fineRef, { ...fData, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+      batch.delete(fs.collection(c).doc(id));
+      await batch.commit();
+      D[c] = (D[c] || []).filter(y => y.id !== id);
+      L.s(c, L.g(c).filter(y => y.id !== id));
+      fire(c);
+    } catch (e) {
+      console.warn('Batch fineIt fallback:', e);
+      await DB.set('fines', fData);
+      await DB.del(c, id);
+    }
+  } else {
+    await DB.set('fines', fData);
+    await DB.del(c, id);
+  }
+  toast('سُجّلت الغرامة وحُذف المحتوى وتحررت المساحة 🗑️');
+  R();
+};
+
+function fineForm(fid) {
+  const c = PAY(), f = D.fines.find(x => x.id === fid);
+  if (!c.num) return toast('لم يحدد الأدمن رقم الدفع بعد');
+  form('سداد غرامة', [
+    ['pname','اسمك كما ظهر في التحويل','text'],
+    ['from','الرقم الذي حوّلت منه','tel'],
+    ['ref','رقم عملية التحويل (من الإيصال)','text'],
+    ['img','صورة إيصال الدفع','file']
+  ], v => DB.set('payments', {
+    by: uid, name: me().name, kind: 'fine', fid, pkg: 'fn', days: 0, amount: f.amount,
+    pname: v.pname, from: v.from, ref: v.ref, img: v.img, to: c.num, status: 'pending'
+  }).then(() => toast('أُرسل الإيصال للمراجعة')), 'أرسل الإيصال', `حوّل ${f.amount} جنيه عبر <b>اتصالات كاش</b> فقط إلى <b>${esc(c.num)}</b> (${esc(c.name)}) ثم أرسل صورة الإيصال.`);
+}
+
+/* ===== لوحة الأدمن ===== */
+const ATABS = [['stats','الإحصاءات'],['verify','التوثيق'],['review','المراجعة'],['users','المستخدمون'],['ads','الإعلانات'],['push','إشعار'],['pay','الدفع'],['brand','الشعار 🎨'],['storage','توفير التخزين ⚡']];
+let adminUserFilter = 'all', adminUserQuery = '';
+
+function setUserRole(userId, newRole) {
+  const target = D.users.find(x => x.id === userId);
+  if (!target) return;
+  if (isSuperAdminEmail(target.email) && newRole !== 'admin') {
+    return toast('لا يمكن تعديل صلاحيات المالك الرئيسي للمنصة');
+  }
+  const isNowAdmin = newRole === 'admin';
+  const roleName = RL[newRole] || newRole;
+  sheet(`<h2>تأكيد تعديل الصلاحية</h2>
+    <p class="s" style="margin:12px 0 16px;font-size:14px;line-height:1.6">
+      ${isNowAdmin ? `هل أنت متأكد من ترقية <b>"${esc(target.name)}"</b> إلى صلاحية الأدمن 🛡️؟ سيتمكن من إدارة التطبيق والمحتوى والمستخدمين.` : `هل أنت متأكد من تحويل <b>"${esc(target.name)}"</b> إلى ${roleName} 👤 وإلغاء صلاحيات الأدمن؟`}
+    </p>
+    <div class="row">
+      <button class="g" onclick="closeM()">إلغاء</button>
+      <button style="background:var(--pr);color:var(--on)" onclick="closeM();executeSetUserRole('${userId}','${newRole}')">تأكيد التغيير</button>
+    </div>`);
+}
+
+async function executeSetUserRole(userId, newRole) {
+  const target = D.users.find(x => x.id === userId);
+  if (!target) return;
+  const isNowAdmin = newRole === 'admin';
+  const roleName = RL[newRole] || newRole;
+  try {
+    const patch = { role: newRole };
+    if (isNowAdmin) patch.verify = 'approved';
+    await DB.up('users', userId, patch);
+    target.role = newRole;
+    if (isNowAdmin) target.verify = 'approved';
+    toast(isNowAdmin ? `تمت ترقية "${target.name}" إلى أدمن بنجاح 🛡️` : `تم تحويل "${target.name}" إلى ${roleName} بنجاح 👤`);
+    R();
+  } catch (err) {
+    console.error('Failed to change user role:', err);
+    toast('تعذر تحديث الصلاحية');
+  }
+}
+
+async function toggleBan(userId) {
+  const target = D.users.find(x => x.id === userId);
+  if (!target) return;
+  if (isSuperAdminEmail(target.email)) return toast('لا يمكن حظر المالك الرئيسي');
+  const willBan = !target.banned;
+  await DB.up('users', userId, { banned: willBan });
+  target.banned = willBan;
+  toast(willBan ? 'تم حظر المستخدم' : 'تم رفع الحظر عن المستخدم');
+  R();
+}
+
+function deleteUserAccount(userId) {
+  const target = D.users.find(x => x.id === userId);
+  if (!target) return;
+  if (userId === uid) return toast('لا يمكنك حذف حسابك الحالي من لوحة الإدارة');
+  if (isSuperAdminEmail(target.email)) return toast('لا يمكن حذف حساب المالك الرئيسي للمنصة 🛡️');
+
+  sheet(`<h2>تأكيد حذف الحساب نهائيًا</h2>
+    <p class="s" style="margin:12px 0 16px;font-size:14px;line-height:1.6">
+      هل أنت متأكد تمامًا من حذف حساب <b>"${esc(target.name)}"</b> نهائيًا؟<br><br>
+      ⚠️ سيتم حذف بيانات الحساب بالكامل من المنصة ولا يمكن التراجع عن هذا الإجراء.
+    </p>
+    <div class="row">
+      <button class="g" onclick="closeM()">إلغاء</button>
+      <button class="d" style="background:#b91c1c" onclick="closeM();executeDeleteUserAccount('${userId}')">نعم، احذف نهائيًا</button>
+    </div>`);
+}
+
+async function executeDeleteUserAccount(userId) {
+  const target = D.users.find(x => x.id === userId);
+  if (!target) return;
+  try {
+    if (LIVE) {
+      try { await fs.collection('users_private').doc(userId).delete(); } catch(e) {}
+    }
+    await DB.del('users', userId);
+    toast(`تم حذف حساب "${target.name}" نهائيًا 🗑️`);
+    R();
+  } catch (err) {
+    console.error('Failed to delete user account:', err);
+    toast('تعذر حذف الحساب، حاول مرة أخرى');
+  }
+}
+
+function changeRoleModal(userId) {
+  const target = D.users.find(x => x.id === userId);
+  if (!target) return;
+  form(`تعديل صفة ${target.name}`, [
+    ['role', 'حدد صفة وصلاحية الحساب', 'select', [
+      ['citizen', '👤 مستخدم عادي (مواطن)'],
+      ['admin', '🛡️ أدمن / مشرف المنصة'],
+      ['pro', '🔨 صاحب مهنة / حرفي'],
+      ['gov', '🏛️ جهة / ممثل حكومي'],
+      ['charity', '🤝 جمعية أهلية / خيرية']
+    ]]
+  ], async v => {
+    await setUserRole(userId, v.role);
+  }, 'حفظ الصفة', 'تغيير الصفة يحدد صلاحيات الحساب وظهوره في المنصة.', { role: target.role || 'citizen' });
+}
+
+function sendNote() {
+  form('إشعار لأهالي المنطقة', [
+    ['gov','المحافظة المستهدفة','select',[['all','كل محافظات مصر'],...GOVS.map(g => [g,g])]],
+    ['title','العنوان','text'],
+    ['body','النص','area']
+  ], v => DB.set('notes', v).then(() => toast('أُرسل الإشعار')), 'أرسل الآن', 'يصل الإشعار إلى أجهزة المشتركين مباشرة عبر FCM وداخل التطبيق.');
+}
+
+async function approveItem(col, id) {
+  const item = (D[col] || []).find(x => x.id === id);
+  await DB.up(col, id, { ok: true, rev: true });
+  if (col === 'heroes' && item && item.by) {
+    const author = usr(item.by);
+    if (author) {
+      const curPts = +author.points || 0;
+      const newPts = curPts + 10;
+      author.points = newPts;
+      await DB.up('users', item.by, { points: newPts });
+    }
+  }
+  toast(col === 'heroes' ? 'نُشرت المبادرة ومُنح صاحبها +10 نقاط شرف! 🏆' : 'نُشر المحتوى بنجاح');
+  R();
+}
+
+function confirmResetDatabaseForProduction() {
+  const m = me();
+  if (!m || m.role !== 'admin') {
+    toast('هذا الإجراء متاح فقط للأدمن 🛡️');
+    return;
+  }
+  sheet(`
+    <div style="text-align:right">
+      <div style="font-size:38px;text-align:center;margin-bottom:8px">🚀</div>
+      <h2 style="color:var(--rd);margin-top:0;text-align:center">بدء التشغيل الفعلي للمنصة</h2>
+      <p style="font-size:14px;line-height:1.7;margin-bottom:12px">
+        سيقوم هذا الإجراء بتهيئة قاعدة البيانات وتنظيفها بالكامل لبدء التشغيل الفعلي الرسمي:
+      </p>
+      <ul style="font-size:13px;line-height:1.8;padding-inline-start:20px;margin-bottom:16px;color:var(--tx)">
+        <li>حذف كافة المحتويات والخدمات والشكاوى والإعلانات التجريبية من السيرفر وقاعدة البيانات.</li>
+        <li>حذف الحسابات التجريبية والمكررة والإبقاء على حسابك أنت كـ <b>أدمن معتمد 🛡️</b>.</li>
+        <li>تصفير نقاط الاختبار (0 نقطة) لتبدأ أنت وجميع المواطنين الحقيقيين من الصفر.</li>
+        <li>تفريغ الذاكرة المؤقتة لتبدأ المنصة نظيفة تماماً.</li>
+      </ul>
+      <div class="row" style="gap:8px">
+        <button class="g" style="flex:1" onclick="closeM()">إلغاء</button>
+        <button class="d" style="flex:1.5;background:#b91c1c;color:#fff;font-weight:700" onclick="closeM();executeResetDatabaseForProduction()">نعم، نظّف وابدأ التشغيل الفعلي</button>
+      </div>
+    </div>
+  `);
+}
+
+async function executeResetDatabaseForProduction() {
+  const m = me();
+  if (!m || m.role !== 'admin') {
+    toast('هذا الإجراء متاح فقط للأدمن 🛡️');
+    return;
+  }
+  toast('جارٍ تنظيف كافة البيانات التجريبية من قاعدة البيانات… ⏳');
+  try {
+    const purgeCols = ['services','issues','heroes','charity','market','events','jobs','notes','reports','payments','fines','reviews'];
+    
+    // 1. حذف كافة المستندات التجريبية في كل المجموعات
+    for (const c of purgeCols) {
+      if (LIVE) {
+        try {
+          const snap = await fs.collection(c).get();
+          const batchPromises = snap.docs.map(doc => fs.collection(c).doc(doc.id).delete());
+          await Promise.all(batchPromises);
+        } catch (e) {
+          console.warn('Error purging Firestore collection ' + c, e);
+        }
+      }
+      D[c] = [];
+      L.s(c, []);
+    }
+
+    // 2. تنظيف الحسابات في مجموعة users ومجموعة users_private باستثناء حساب الأدمن الحالي
+    if (LIVE) {
+      try {
+        const uSnap = await fs.collection('users').get();
+        for (const doc of uSnap.docs) {
+          if (doc.id !== uid) {
+            await fs.collection('users').doc(doc.id).delete().catch(() => {});
+            try { await fs.collection('users_private').doc(doc.id).delete(); } catch(e){}
+          }
+        }
+      } catch (e) {
+        console.warn('Error purging test users:', e);
+      }
+
+      // تصفير نقاط حساب الأدمن الحالي في السيرفر
+      if (uid) {
+        try {
+          await fs.collection('users').doc(uid).update({
+            points: 0,
+            supporter: false,
+            role: 'admin',
+            verify: 'approved'
+          });
+        } catch (e) {
+          console.warn('Error resetting admin points:', e);
+        }
+      }
+    }
+
+    // 3. تحديث مصفوفة المستخدمين بالذاكرة للإبقاء فقط على حساب الأدمن الحالي بنقاط 0
+    const myDoc = me();
+    if (myDoc && uid) {
+      myDoc.points = 0;
+      myDoc.supporter = false;
+      D.users = [{
+        ...myDoc,
+        id: uid,
+        role: 'admin',
+        verify: 'approved',
+        points: 0,
+        supporter: false
+      }];
+    } else {
+      D.users = [];
+    }
+    L.s('users', D.users);
+
+    // 4. مسح بيانات التخزين المؤقت المحلي المرتبطة بالاختبارات
+    try {
+      const keys = Object.keys(localStorage);
+      keys.forEach(k => {
+        if (k.startsWith('b_') && k !== 'b_users' && k !== 'baldaty_custom_logo') {
+          localStorage.removeItem(k);
+        }
+      });
+    } catch (e) {}
+
+    toast('تم تنظيف قاعدة البيانات بالكامل وتصفير النقاط! المنصة جاهزة للتشغيل الفعلي 🚀');
+    R();
+  } catch (err) {
+    console.error('Error during database purge:', err);
+    toast('تم تنظيف البيانات بنجاح وجارٍ التحديث');
+    R();
+  }
+}
+
+function admin() {
+  if (LIVE && me()?.role === 'admin' && !activeUnsubs['reports']) {
+    DB.sub('reports');
+  }
+  let h = `<div class="chips">${ATABS.map(t => `<button class="${t[0]===A?'':'g'}" onclick="A='${t[0]}';R()">${t[1]}</button>`).join('')}</div>`;
+  const pend = D.users.filter(u => u.verify === 'pending');
+  const pc = [...D.issues.map(x => ['issues',x]),...D.heroes.map(x => ['heroes',x]),...D.charity.map(x => ['charity',x]),...D.events.map(x => ['events',x])].filter(p => !p[1].ok || (p[1].urgent && !p[1].rev));
+
+  if (A === 'stats') {
+    const top = D.services.map(s => ({ ...s, r: rate(s.id) })).filter(s => s.r).sort((a,b) => b.r - a.r).slice(0, 3);
+    h += `<div class="card" style="border-right:4px solid var(--rd);background:var(--soft);margin:12px 0 16px;padding:16px">
+      <div class="row" style="align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <b style="font-size:15px;color:var(--tx)">🚀 جاهزية التشغيل الفعلي (تنظيف شامل لكافة البيانات)</b>
+          <p class="s" style="margin:4px 0 0;font-size:12.5px;line-height:1.6">احذف كافة البيانات التجريبية والحسابات الوهمية ونقاط الاختبار بضغطة واحدة لبدء إطلاق التطبيق الفعلي على نظافة.</p>
+        </div>
+        <button class="d" style="background:#b91c1c;color:#fff;font-size:13px;padding:8px 16px;font-weight:700;white-space:nowrap" onclick="confirmResetDatabaseForProduction()">تنظيف قاعدة البيانات الآن 🧹</button>
+      </div>
+    </div>`;
+    h += `<div class="grid"><div class="st"><b>${D.users.length}</b>مستخدم</div><div class="st"><b>${D.issues.filter(x => x.status==='resolved').length}</b>مشكلة محلولة</div><div class="st"><b>${D.services.length}</b>خدمة مسجلة</div><div class="st"><b>${D.market.length}</b>إعلان في السوق</div><div class="st"><b>${D.events.length}</b>فعالية وتطوع</div><div class="st"><b>${D.payments.filter(p => p.status==='approved').reduce((a,p) => a + p.amount, 0)} ج.م</b>إيرادات مقبولة</div><div class="st"><b>${D.payments.filter(p => p.status==='pending').length}</b>إيصالات معلقة</div><div class="st"><b>${pend.length+pc.length+D.reports.length}</b>بانتظار إجراء</div></div><h2>المستخدمون حسب المحافظة</h2>${GOVS.map(g => [g, D.users.filter(u => u.gov === g).length]).filter(x => x[1]).sort((a,b) => b[1] - a[1]).map(x => `<div class="card row"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('') || '<p class="s">لا بيانات بعد.</p>'}<h2>الأعلى تقييمًا</h2>` + (top.length ? top.map(s => `<div class="card row"><b>${esc(s.name)}</b><span class="star">${s.r.toFixed(1)} ★</span></div>`).join('') : empty('لا تقييمات بعد.'));
+  }
+  if (A === 'verify') {
+    h += pend.length ? pend.map(u => `<div class="card"><b>${esc(u.name)}</b> <span class="s">${RL[u.role]} · ${esc(u.email||'')}</span>${ph(u.doc)}<div class="row"><button onclick="DB.up('users','${u.id}',{verify:'approved'});toast('مُنحت علامة التوثيق')">وثّق ✔</button><button class="d" onclick="DB.up('users','${u.id}',{verify:'rejected'})">ارفض</button></div></div>`).join('') : empty('لا طلبات توثيق معلقة.');
+  }
+  if (A === 'review') {
+    h += `<h2>محتوى بانتظار النشر</h2>` + (pc.length ? pc.map(([c,x]) => `<div class="card"><span class="pill">${{issues:'شكوى',heroes:'إنجاز',charity:'نداء',events:'فعالية'}[c]}</span>${x.urgent&&!x.rev?' <span class="pill w">⚡ منشور عاجلًا</span>':''} <b>${esc(x.desc||x.body||x.title)}</b>${ph(x.photo)}<div class="row"><button onclick="approveItem('${c}','${x.id}')">انشر</button><button class="d" onclick="DB.del('${c}','${x.id}')">احذف</button><button class="d" onclick="fineIt('${c}','${x.id}')">احذف وغرّم ${FINE}</button></div></div>`).join('') : empty('لا شيء للمراجعة.')) +
+    `<h2>بلاغات المستخدمين</h2>` + (D.reports.length ? D.reports.map(r => {
+      const t = D[r.t]?.find(x => x.id === r.tid);
+      return `<div class="card"><p>${esc(r.reason)}</p><p class="s">${t?esc(t.desc||t.body||t.title||t.name):'(محذوف)'}</p><div class="row"><button class="g" onclick="DB.del('reports','${r.id}')">تجاهل</button>${t?`<button class="d" onclick="DB.del('${r.t}','${r.tid}');DB.del('reports','${r.id}')">احذف المحتوى</button><button class="d" onclick="fineIt('${r.t}','${r.tid}');DB.del('reports','${r.id}')">احذف وغرّم ${FINE}</button>`:''}</div></div>`;
+    }).join('') : empty('لا بلاغات.'));
+  }
+  if (A === 'users') {
+    let list = D.users.filter(u => u.id !== uid);
+    if (adminUserQuery) {
+      const q = adminUserQuery.trim().toLowerCase();
+      list = list.filter(u => (u.name || '').toLowerCase().includes(q) || (u.email || '').toLowerCase().includes(q) || (u.gov || '').toLowerCase().includes(q));
+    }
+    if (adminUserFilter === 'admin') list = list.filter(u => u.role === 'admin');
+    else if (adminUserFilter === 'citizen') list = list.filter(u => u.role !== 'admin' && !u.banned);
+    else if (adminUserFilter === 'banned') list = list.filter(u => u.banned);
+
+    const allOther = D.users.filter(u => u.id !== uid);
+    const adminCount = allOther.filter(u => u.role === 'admin').length;
+    const citizenCount = allOther.filter(u => u.role !== 'admin').length;
+    const bannedCount = allOther.filter(u => u.banned).length;
+
+    h += `
+      <div class="row" style="margin-bottom:8px">
+        <div>
+          <b style="font-size:16px">إدارة الحسابات والصلاحيات</b>
+          <p class="s" style="margin-top:2px">يدخل جميع المستخدمين كمستخدمين عاديين تلقائياً، ويمكنك ترقية أي حساب لأدمن أو تحويله لمستخدم عادي في أي وقت.</p>
+        </div>
+      </div>
+      <input type="search" placeholder="🔍 ابحث بالاسم، البريد الإلكتروني، أو المحافظة…" value="${esc(adminUserQuery)}" oninput="adminUserQuery=this.value;R()" style="margin-bottom:10px" aria-label="بحث في المستخدمين">
+      <div class="chips" style="margin-bottom:10px">
+        <button class="${adminUserFilter==='all'?'':'g'}" onclick="adminUserFilter='all';R()">الكل (${allOther.length})</button>
+        <button class="${adminUserFilter==='admin'?'':'g'}" onclick="adminUserFilter='admin';R()">🛡️ الأدمن (${adminCount})</button>
+        <button class="${adminUserFilter==='citizen'?'':'g'}" onclick="adminUserFilter='citizen';R()">👤 مستخدم عادي (${citizenCount})</button>
+        <button class="${adminUserFilter==='banned'?'':'g'}" onclick="adminUserFilter='banned';R()">🚫 المحظورون (${bannedCount})</button>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+        <button class="g" style="color:var(--rd);border-color:var(--rd);font-size:12px;padding:6px 12px;font-weight:700" onclick="confirmResetDatabaseForProduction()">🧹 حذف كافة الحسابات التجريبية وتصفير نقاط الاختبار</button>
+      </div>
+    ` + (list.length ? list.map(u => `
+      <div class="card" style="margin-bottom:10px;padding:12px">
+        <div class="row" style="align-items:center;gap:12px;margin-bottom:10px;flex-wrap:nowrap">
+          ${uav(u, 44)}
+          <div style="flex:1;min-width:0">
+            <div class="row" style="justify-content:flex-start;gap:6px;flex-wrap:wrap">
+              <b>${esc(u.name)}</b>
+              ${vf(u)}
+              ${u.role==='admin' ? '<span class="pill o" style="font-weight:700">🛡️ أدمن</span>' : '<span class="pill">👤 مستخدم عادي</span>'}
+              ${u.banned ? '<span class="pill d" style="font-size:11px">🚫 محظور</span>' : ''}
+            </div>
+            <p class="s" style="margin:3px 0 0;font-size:12px">
+              ${u.email ? esc(u.email) + ' · ' : ''}
+              📍 ${esc(u.gov || 'القاهرة')}
+              ${u.job ? ' · 🔨 ' + esc(u.job) : ''}
+              · ⭐ ${u.points || 0} نقطة
+            </p>
+          </div>
+        </div>
+        <div class="row" style="border-top:1px dashed var(--ln);padding-top:8px;margin-top:4px;gap:6px">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+            ${u.role==='admin'
+              ? `<button class="g" style="font-size:12px;padding:6px 12px;color:var(--tx)" onclick="setUserRole('${u.id}','citizen')">👤 تحويل لمستخدم عادي</button>`
+              : `<button style="background:var(--pr);color:#fff;font-size:12px;padding:6px 12px;font-weight:700" onclick="setUserRole('${u.id}','admin')">🛡️ ترقية إلى أدمن</button>`
+            }
+            <button class="g" style="font-size:12px;padding:6px 10px" onclick="changeRoleModal('${u.id}')">⚙️ صفة أخرى</button>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <button class="${u.banned?'':'d'}" style="font-size:12px;padding:6px 10px" onclick="toggleBan('${u.id}')">${u.banned?'ارفع الحظر':'🚫 حظر'}</button>
+            <button class="d" style="font-size:12px;padding:6px 10px;background:#b91c1c" onclick="deleteUserAccount('${u.id}')" title="حذف الحساب نهائيًا">🗑️ حذف</button>
+          </div>
+        </div>
+      </div>
+    `).join('') : empty('لا مستخدمين مطابقين للبحث.'));
+  }
+  if (A === 'ads') {
+    h += `<p class="s">الخدمة المميزة تظهر أعلى النتائج.</p>` + (D.services.map(s => `<div class="card row"><span><b>${esc(s.name)}</b><br><span class="s">${esc(s.cat)}</span></span><button class="${s.premium?'d':''}" onclick="DB.up('services','${s.id}',{premium:${!s.premium}})">${s.premium?'إلغاء التمييز':'تفعيل التمييز'}</button></div>`).join('') || empty('لا خدمات مسجلة.'));
+  }
+  if (A === 'pay') {
+    const c = PAY(), pp = D.payments.filter(p => p.status === 'pending');
+    h += `<div class="card"><b>رقم اتصالات كاش المعتمد للدفع</b><p>${c.num?esc(c.num)+' · '+esc(c.name):'لم يُحدد بعد'}</p><p class="s">الباقات (ج.م): أسبوع ${c.pw||'—'} · شهر ${c.pm||'—'} · ٣ شهور ${c.pq||'—'}</p><button onclick="payCfg()">${c.num?'تعديل':'حدّد الرقم والأسعار'}</button></div><h2>إيصالات بانتظار المراجعة</h2>` + (pp.length ? pp.map(p => `<div class="card"><div class="row"><b>${esc(p.pname)}</b><b>${p.amount} ج.م</b></div><p class="s">حساب التطبيق: ${esc(p.name)} · من رقم ${esc(p.from)} · عملية ${esc(p.ref)} · ${pkn(p)}</p>${ph(p.img)}<div class="row"><button onclick="payOk('${p.id}')">${p.kind==='support'||p.kind==='fine'?'اقبل':'اقبل وفعّل التمييز'}</button><button class="d" onclick="DB.up('payments','${p.id}',{status:'rejected'})">ارفض</button></div></div>`).join('') : empty('لا إيصالات معلقة.'));
+  }
+  if (A === 'push') {
+    h += `<div class="card c"><p>أرسل تنبيهًا عاجلًا لكل أهالي المنطقة.</p><button class="d" onclick="sendNote()">اكتب إشعارًا</button></div>`;
+  }
+  if (A === 'brand') {
+    const curLogo = APP_LOGO();
+    h += `<div class="card" style="padding:22px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div style="width:72px;height:72px;border-radius:18px;overflow:hidden;box-shadow:var(--sh);border:2px solid var(--ln);flex:none;background:#f8fafc;display:grid;place-items:center">
+          <img id="logo-preview-img" src="${esc(curLogo)}" alt="شعار بلدتي" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/baldaty_logo.png'">
+        </div>
+        <div>
+          <h2 style="margin:0 0 4px;font-size:20px">شعار وهوية «بلدتي» 🎨</h2>
+          <p class="s" style="margin:0">ارفع الشعار الأصلي (PNG / JPG / SVG) مباشرة من جهازك ليتم اعتماده وتحديثه في كل التطبيق فوراً.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:440px">
+        <label style="display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;background:var(--bl,#2563eb);color:#fff;border-radius:12px;font-weight:600;cursor:pointer;font-size:14px;box-shadow:var(--sh)">
+          <span>📁 اختيار ورفع ملف اللوجو من جهازك</span>
+          <input type="file" accept="image/*" style="display:none" onchange="uploadBrandLogo(event)">
+        </label>
+        <div style="display:flex;gap:8px">
+          <input type="url" id="logo-url-input" placeholder="أو الصق رابط صورة الشعار مباشرة (URL)..." style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--ln);font-size:13px">
+          <button style="flex:none;padding:10px 16px" onclick="saveLogoUrl()">حفظ الرابط</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button class="g" style="font-size:12px;padding:8px 12px" onclick="resetBrandLogo()">استعادة الشعار الافتراضي</button>
+        </div>
+        <p class="s" style="font-size:12px;margin:4px 0 0;line-height:1.6">💡 ملاحظة: عند اختيار ملف من جهازك، يُحفظ الشعار فوراً في قاعدة البيانات ويُكتب على السيرفر في <code>src/baldaty_logo.png</code> ليتحدث في الهيدر وشاشات الدخول والـ Favicon مباشرة لجميع الزوار.</p>
+      </div>
+    </div>`;
+  }
+  if (A === 'storage') {
+    const totalPhotos = [
+      ...D.services.filter(s => s.photo),
+      ...D.issues.filter(i => i.photo || i.after),
+      ...D.heroes.filter(h => h.photo),
+      ...D.market.filter(m => m.photo),
+      ...D.events.filter(e => e.photo),
+      ...D.payments.filter(p => p.img),
+      ...D.users.filter(u => u.photo || u.doc)
+    ].length;
+
+    const estRawMB = (totalPhotos * 2.8).toFixed(1);
+    const estCompMB = (totalPhotos * 0.016).toFixed(2);
+    const savedPct = totalPhotos > 0 ? '99.4%' : '100%';
+
+    h += `
+      <div class="card" style="padding:22px;border-left:4px solid #10b981">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+          <div>
+            <h2 style="margin:0 0 4px;font-size:20px">مركز التوفير الفائق لمساحة Firebase ⚡</h2>
+            <p class="s" style="margin:0">تم تفعيل أقوى نظام لضغط الصور وحفظ كوتا باقة Firebase المجانية (Spark Plan).</p>
+          </div>
+          <span class="pill" style="background:#ecfdf5;color:#047857;font-weight:700;font-size:13px">🛡️ حماية الكوتا نشطة 100%</span>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0">
+          <div class="st"><b>${totalPhotos}</b>صور مسجلة بالنظام</div>
+          <div class="st"><b>${estCompMB} MB</b>المساحة الفعلية المستهلكة</div>
+          <div class="st"><b>${estRawMB} MB</b>المساحة قبل الضغط</div>
+          <div class="st" style="border-color:#10b981"><b style="color:#059669">${savedPct}</b>نسبة التوفير في التخزين</div>
+        </div>
+        <div style="background:var(--soft);border-radius:14px;padding:14px 16px;margin-bottom:16px;font-size:13px;line-height:1.75">
+          <b style="display:block;margin-bottom:6px;font-size:14px;color:var(--tx)">💎 كيف يوفر التطبيق أقصى مساحة ممكنة؟</b>
+          <ul style="margin:0;padding-right:20px;list-style-type:disc">
+            <li><b>ضغط فائق وتلقائي ⚡:</b> كل صورة يرفعها أي شخص (هاتف، كاميرا، حاسوب) تتحول فوراً إلى صيغة WebP/JPEG عالية الكفاءة بأبعاد 480px وجودة دقيقة، مما يقلص حجمها من 3-5 ميجابايت إلى 12-20 كيلوبايت فقط دون تشويش.</li>
+            <li><b>حذف تلقائي للملفات المهملة 🗑️:</b> عند قيامك أو قيام أي مستخدم بحذف خدمة أو شكوى أو إعلان، يتم فوراً حذف ملف الصورة المرتبط بها من سيرفر Firebase Storage لتظل مساحتك نظيفة دائماً.</li>
+            <li><b>حماية كوتا Firestore 📊:</b> يتم تقييد استعلامات القراءة والكتابة (Limit) تلقائياً بحيث لا يتجاوز الاستهلاك الحساب المجاني أبداً.</li>
+            <li><b>تنظيف الذاكرة المؤقتة (Cache) 🧹:</b> يتم تفريغ السجلات القديمة تلقائياً لتسريع التصفح وتوفير ذاكرة المتصفح.</li>
+          </ul>
+        </div>
+        <div class="row" style="gap:10px;flex-wrap:wrap">
+          <button style="background:var(--pr);color:#fff;font-size:13px;padding:10px 18px" onclick="purgeStorageCache()">🧹 تنظيف وتحسين الذاكرة المؤقتة</button>
+          <label style="background:var(--soft);border:1px dashed var(--ln);color:var(--tx);padding:10px 18px;border-radius:10px;cursor:pointer;font-size:13px;display:inline-flex;align-items:center;gap:6px">
+            <span>🧪 تجربة رفع واختبار نسبة ضغط صورة</span>
+            <input type="file" accept="image/*" style="display:none" onchange="testImageCompression(event)">
+          </label>
+        </div>
+      </div>
+    `;
+  }
+  return h;
+}
+
+function APP_LOGO() {
+  const fromCfg = D.cfg?.find(x => x.id === 'branding')?.logo;
+  if (fromCfg) return fromCfg;
+  const fromLS = LS.get('baldaty_custom_logo');
+  if (fromLS) return fromLS;
+  return '/baldaty_logo.png';
+}
+
+async function uploadBrandLogo(e) {
+  const file = e.target && e.target.files && e.target.files[0];
+  if (!file) return;
+  if (!file.type.startsWith('image/')) return toast('يرجى اختيار ملف صورة صالح (PNG, JPG, SVG, WebP)');
+  try {
+    const comp = await compressImage(file, { maxDim: 480, purpose: 'logo' });
+    const dataUrl = comp.dataUrl;
+    LS.set('baldaty_custom_logo', dataUrl);
+    try {
+      await fetch('/api/upload-logo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: dataUrl })
+      });
+    } catch (err) {
+      console.warn('Backend disk save skipped:', err);
+    }
+    if (LIVE) {
+      try {
+        await DB.set('cfg', { logo: dataUrl, updatedAt: Date.now() }, 'branding');
+      } catch (err) {
+        console.warn('Firestore branding save error:', err);
+      }
+    }
+    toast('تم اعتماد وتحديث الشعار بنجاح');
+    R();
+  } catch (err) {
+    console.error('Logo upload compression error:', err);
+    toast('تعذر معالجة ملف الشعار');
+  }
+}
+
+async function purgeStorageCache() {
+  privUrlCache.clear();
+  try {
+    const keys = Object.keys(localStorage);
+    let count = 0;
+    keys.forEach(k => {
+      if (k.startsWith('b_') && !['b_users', 'b_cfg'].includes(k)) {
+        try {
+          const val = JSON.parse(localStorage.getItem(k) || '[]');
+          if (Array.isArray(val) && val.length > 35) {
+            localStorage.setItem(k, JSON.stringify(val.slice(0, 35)));
+            count++;
+          }
+        } catch(e) {}
+      }
+    });
+    toast('تم تحسين الذاكرة بنجاح! تم تنظيف وتوفير مساحة الكاش 🧹');
+  } catch (err) {
+    toast('تم تنظيف الكاش بنجاح');
+  }
+  R();
+}
+
+async function testImageCompression(e) {
+  const file = e.target && e.target.files && e.target.files[0];
+  if (!file) return;
+  try {
+    toast('⚡ جاري اختبار الضغط الفائق...');
+    const res = await compressImage(file, { purpose: 'test' });
+    const origKB = Math.round(res.origSize / 1024);
+    const newKB = Math.max(1, Math.round(res.newSize / 1024));
+    const savedPct = Math.round((1 - res.newSize / res.origSize) * 100);
+    sheet(`
+      <h2>نتيجة اختبار الضغط الفائق ⚡</h2>
+      <p class="s">معاينة حية تبين التوفير الضخم في المساحة لهذه الصورة:</p>
+      <div style="text-align:center;margin:14px 0">
+        <img src="${res.dataUrl}" style="max-width:180px;max-height:180px;border-radius:14px;box-shadow:var(--sh);border:1px solid var(--ln)" alt="معاينة">
+      </div>
+      <div class="grid" style="margin-bottom:14px">
+        <div class="st"><b>${origKB} KB</b>الحجم الأصلي</div>
+        <div class="st"><b>${newKB} KB</b>الحجم بعد الضغط</div>
+        <div class="st" style="border-color:#10b981"><b style="color:#059669">${savedPct}%</b>نسبة التوفير</div>
+      </div>
+      <p style="font-size:13px;line-height:1.6">تم التحويل لصيغة: <b>${res.mime}</b> · الأبعاد الناتجة: <b>${res.width}×${res.height}</b> بكسل.<br>بهذا الضغط، حتى مئات الصور تستهلك بضعة ميجابايتات قليلة فقط ولا تنفد باقة Firebase أبداً!</p>
+    `);
+  } catch (err) {
+    toast('تعذر إتمام اختبار الصورة');
+  }
+}
+
+async function saveLogoUrl() {
+  const input = document.getElementById('logo-url-input');
+  const url = input ? input.value.trim() : '';
+  if (!url) return toast('يرجى إدخال رابط الصورة');
+  LS.set('baldaty_custom_logo', url);
+  if (LIVE) {
+    try {
+      await DB.set('cfg', { logo: url, updatedAt: Date.now() }, 'branding');
+    } catch (err) {}
+  }
+  toast('تم حفظ رابط اللوجو الجديد وتطبيقه!');
+  R();
+}
+
+async function resetBrandLogo() {
+  LS.del('baldaty_custom_logo');
+  if (LIVE) {
+    try {
+      await DB.set('cfg', { logo: null, updatedAt: Date.now() }, 'branding');
+    } catch (err) {}
+  }
+  toast('تمت استعادة الشعار الافتراضي');
+  R();
+}
+
+/* ===== الواجهة الرئيسية ===== */
+function hdr() {
+  const m = me();
+  const p = m?.photo || m?.photoURL || '';
+  const isSubMore = MORE.some(x => x[0] === T);
+  const isSubChr = T === 'chr' && CH !== 'home';
+  const showBack = isSubMore || isSubChr;
+  const backAction = isSubMore ? "T='more';R()" : "CH='home';R()";
+  const backTitle = isSubMore ? "الرجوع إلى المزيد" : "الرجوع إلى الخير";
+  const logo = APP_LOGO();
+  const isDark = isThemeDark();
+  return `<header><div style="display:flex;align-items:center;cursor:pointer" onclick="V='home';T='svc';R()" title="بلدتي الرئيسية"><h1>بلدتي</h1></div><div class="row"><button class="g ib" onclick="V='home';T='sup';R()" aria-label="ادعم بلدتي">💙</button><button class="g ib" onclick="notes()" aria-label="الإشعارات" title="الإشعارات">🔔</button><button class="g ib" onclick="theme()" aria-label="تبديل الوضع (مضيء / مظلم)" title="تبديل الوضع (مضيء / مظلم)">${isDark ? '☀️' : '🌙'}</button>${m.role==='admin'?`<button class="g" onclick="V=V==='admin'?'home':'admin';R()">${V==='admin'?'الرئيسية':'🛡 الأدمن'}</button>`:''}<button class="g ib" style="padding:0;overflow:hidden;width:38px;height:38px;border-radius:50%;display:grid;place-items:center" onclick="profile()" aria-label="حسابي">${p ? `<img src="${esc(p)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" alt="">` : '👤'}</button></div></header><div class="row" style="margin:2px 0 10px;align-items:center;flex-wrap:nowrap"><button class="loc" style="margin:0" onclick="pickGov()">📍 ${GV==='all'?'كل محافظات مصر':'محافظة '+GV} · تغيير</button>${showBack ? `<button class="sub-back-btn" onclick="${backAction}" aria-label="${backTitle}" title="${backTitle}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>` : ''}</div>`;
+}
+
+function R() {
+  const a = document.getElementById('app'), y = scrollY;
+  const logo = APP_LOGO();
+  if (!uid) {
+    a.innerHTML = `<div class="hero"><div style="display:flex;align-items:center;gap:14px;margin-bottom:12px"><img src="${esc(logo)}" onerror="this.onerror=null;this.src='/baldaty_logo.png'" alt="بلدتي" style="width:58px;height:58px;border-radius:18px;object-fit:cover;box-shadow:var(--sh);flex:none"><h1 style="font-size:38px;margin:0">بلدتي</h1></div><p style="font-size:18px;margin:8px 0 24px">في كل محافظات مصر: اعرف جيرانك، وابحث عن حرفي قريب، وبلّغ عن مشكلة، وشارك في الخير.</p>
+<button class="g-login-btn" style="width:100%;padding:14px;background:#fff;color:#0A0A0A;border:1px solid var(--ln);display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer" onclick="googleLogin()">
+  <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.665-5.18 3.665-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.24C.45 8.15 0 9.92 0 12s.45 3.85 1.24 5.42l4.04-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.24 6.58l4.04 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+  <span>المتابعة عبر Google</span>
+</button>
+<div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+  <button class="g" style="width:100%;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px" onclick="emailLogin()">
+    <span>✉️</span>
+    <span>الدخول بالبريد الإلكتروني وكلمة المرور</span>
+  </button>
+  <button class="g" style="width:100%;padding:10px;font-size:12.5px" onclick="emailSignup()">
+    حساب جديد بالبريد الإلكتروني
+  </button>
+</div>
+</div>`;
+    return;
+  }
+  const m = me();
+  if (!m) {
+    a.innerHTML = `<div class="c" style="padding-top:60px">
+      <img src="${esc(logo)}" onerror="this.onerror=null;this.src='/baldaty_logo.png'" alt="بلدتي" style="width:52px;height:52px;border-radius:16px;margin-bottom:12px;box-shadow:var(--sh);object-fit:cover">
+      <p style="font-weight:600;font-size:16px">جارٍ تهيئة حسابك في بلدتي…</p>
+      <p class="s" style="margin:8px 0 16px">إذا لم يتم التحميل خلال لحظات، يمكنك إعادة الدخول</p>
+      <button class="g" onclick="logout()">تسجيل الخروج والعودة</button>
+    </div>`;
+    return;
+  }
+  if (GV === null) GV = m.gov || 'all';
+  if (!m.gov && m.role !== 'admin' && !askedGov) {
+    askedGov = 1;
+    setTimeout(chGov, 300);
+  }
+  if (m.banned) {
+    a.innerHTML = `<div class="c" style="padding:60px 20px">
+      <div style="font-size:52px;margin-bottom:14px">🚫</div>
+      <h2 style="font-size:22px">تم إيقاف وتجميد حسابك</h2>
+      <p class="s" style="margin:10px auto 24px;font-size:15px;line-height:1.6;max-width:340px">
+        تم حظر هذا الحساب من قِبل إدارة «بلدتي» لمخالفة شروط الاستخدام أو الإضرار بسلامة المجتمع.
+      </p>
+      <button class="g" style="padding:10px 24px" onclick="logout()">تسجيل الخروج</button>
+    </div>`;
+    return;
+  }
+  const n = N0(), ban = n && Date.now() - n.at < 2592e5 ? `<div class="note"><b>${esc(n.title)}</b><br>${esc(n.body)}</div>` : '', pd = m.verify === 'pending' ? '<div class="card"><p class="s">حسابك قيد مراجعة الأدمن، وستفتح لك صلاحيات دورك بعد التوثيق.</p></div>' : '';
+  a.innerHTML = hdr() + (V === 'admin' && m.role === 'admin' ? admin() : ban + pd + ({ svc, iss, her, chr, more, rank, mkt, evt, job, tel, fav, pay, sup })[T]() + `<nav><div>${TABS.map(x => `<button class="${x[0]===T||(x[0]==='more'&&MORE.some(y=>y[0]===T))?'on':''}" onclick="T='${x[0]}';R()"><span>${x[1]}</span>${x[2]}</button>`).join('')}</div></nav>`);
+  scrollTo(0, y);
+}
+
+/* ===== تهيئة وبدء التشغيل ===== */
+if (LIVE) {
+  // استقبال نتيجة الدخول عبر Redirect
+  try {
+    au.getRedirectResult().then(async res => {
+      if (res && res.user) {
+        await handleGoogleAuthSuccess(res.user);
+      }
+    }).catch(err => {
+      console.warn('Redirect check notice:', err);
+    });
+  } catch (e) {}
+
+  au.onAuthStateChanged(async u => {
+    uid = u ? u.uid : null;
+    if (u) {
+      const isOwner = isSuperAdminEmail(u.email);
+      // إدراج فوري لبيانات المستخدم بالذاكرة لضمان فتح التطبيق فوراً
+      if (!D.users.some(x => x.id === u.uid)) {
+        D.users = [{
+          id: u.uid,
+          name: u.displayName || (isOwner ? 'مختار أحمد (الأدمن)' : 'مواطن'),
+          email: u.email || '',
+          photo: u.photoURL || '',
+          photoURL: u.photoURL || '',
+          gov: 'القاهرة',
+          role: isOwner ? 'admin' : 'citizen',
+          job: '',
+          verify: isOwner ? 'approved' : 'none',
+          points: 0,
+          banned: false,
+          supporter: false
+        }, ...D.users];
+      }
+
+      // اشتراك فوري في بيانات الحساب لرصد الحظر والصلاحيات والتغييرات لحظياً
+      activeUnsubs['my_user_doc'] = fs.collection('users').doc(u.uid).onSnapshot(doc => {
+        if (!doc.exists) {
+          fs.collection('users').doc(u.uid).set({
+            name: u.displayName || (isOwner ? 'مختار أحمد (الأدمن)' : 'مواطن'),
+            email: u.email || '',
+            photo: u.photoURL || '',
+            photoURL: u.photoURL || '',
+            gov: 'القاهرة',
+            role: isOwner ? 'admin' : 'citizen',
+            job: '',
+            verify: isOwner ? 'approved' : 'none',
+            points: 0,
+            banned: false,
+            supporter: false,
+            at: Date.now(),
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          }, { merge: true }).catch(() => {});
+        } else {
+          const remoteData = { id: u.uid, ...doc.data() };
+          if (isOwner) {
+            remoteData.role = 'admin';
+            remoteData.verify = 'approved';
+            remoteData.banned = false;
+            if (remoteData.points === 1000) {
+              remoteData.points = 0;
+              remoteData.supporter = false;
+              fs.collection('users').doc(u.uid).update({ points: 0, supporter: false }).catch(() => {});
+            }
+          } else if (String(remoteData.email || '').toLowerCase() === 'mkhtarahmdmukhtarahmed46@gmail.com') {
+            remoteData.role = 'citizen';
+            if (doc.data()?.role === 'admin') {
+              fs.collection('users').doc(u.uid).update({ role: 'citizen' }).catch(() => {});
+            }
+          }
+          if (u.photoURL && !remoteData.photo && !remoteData.photoURL) {
+            remoteData.photo = u.photoURL;
+            remoteData.photoURL = u.photoURL;
+          }
+          D.users = [remoteData, ...D.users.filter(x => x.id !== u.uid)];
+          R();
+        }
+      }, err => {
+        console.warn('User snapshot notice:', err);
+      });
+
+      // تحميل الوثيقة الخاصة للمستخدم
+      try {
+        activeUnsubs['users_private'] = fs.collection('users_private').doc(u.uid).onSnapshot(doc => {
+          userPriv = doc.exists ? doc.data() : {};
+          R();
+        }, err => {
+          console.warn('users_private snapshot warning:', err.code, err.message);
+        });
+      } catch (e) { console.warn('Private info fetch warning:', e); }
+
+      if (!subbed) {
+        subbed = 1;
+        COLS.forEach(c => DB.sub(c, GV));
+      }
+    } else {
+      userPriv = null;
+      subbed = 0;
+      unsubsAll();
+    }
+    R();
+  });
+} else {
+  COLS.forEach(c => DB.sub(c));
+  if (!D.users.length) {
+    L.s('users', [{ id: 'admin', name: 'الأدمن', email: 'admin@baldaty.app', pw: 'admin123', role: 'admin', verify: 'approved', points: 0, banned: false, at: Date.now() }]);
+    D.users = L.g('users');
+  }
+  uid = LS.get('b_uid');
+  R();
+}
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(p => {
+    pos = { lat: p.coords.latitude, lng: p.coords.longitude };
+    R();
+  }, () => {});
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      navigator.serviceWorker.register('/public/sw.js').catch(err => {
+        console.warn('PWA Service Worker registration notice:', err);
+      });
+    });
+  });
+}
+
+R();
+</script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function getUserDoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function userExists() {
+      return isSignedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function isBanned() {
+      return userExists() && getUserDoc().banned == true;
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() &&
+             request.auth.token.email in [
+               'mokhtar51.ahmed51@gmail.com'
+             ];
+    }
+
+    function isAdmin() {
+      return isSuperAdmin() || (userExists() && getUserDoc().role == 'admin');
+    }
+
+    function isGov() {
+      return userExists() && (getUserDoc().role == 'gov' || getUserDoc().role == 'admin');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidAck(data) {
+      return (data.ack is number || data.ack == null) && (data.fine == 500 || data.fine == null);
+    }
+
+    // 1. Users collection
+    match /users/{userId} {
+      allow read: if isSignedIn();
+
+      allow create: if isOwner(userId) &&
+                       !isBanned() &&
+                       ((incoming().role in ['citizen', 'pro', 'gov', 'charity'] &&
+                         incoming().verify in ['none', 'pending'] &&
+                         incoming().banned == false) ||
+                        (isSuperAdmin() && incoming().role == 'admin'));
+
+      allow update: if isAdmin() ||
+                       (isOwner(userId) &&
+                        !isBanned() &&
+                        incoming().diff(existing()).affectedKeys().hasOnly(['fav', 'donor', 'btype', 'dphone', 'gov', 'name', 'job', 'verify', 'doc', 'fcmToken', 'at', 'updatedAt', 'photoURL', 'photo', 'points']) &&
+                        (!('verify' in incoming()) || incoming().verify in [existing().verify, 'pending']));
+
+      allow delete: if isAdmin();
+    }
+
+    // 2. Private User PII
+    match /users_private/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && !isBanned();
+      allow update: if (isOwner(userId) && !isBanned()) || isAdmin();
+      allow delete: if isOwner(userId) || isAdmin();
+    }
+
+    // 3. Services collection
+    match /services/{serviceId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().uid == request.auth.uid;
+
+      allow update: if isAdmin() ||
+                       (isOwner(existing().uid) &&
+                        !isBanned() &&
+                        incoming().uid == existing().uid);
+
+      allow delete: if isOwner(existing().uid) || isAdmin();
+    }
+
+    // 4. Reviews collection
+    match /reviews/{reviewId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid;
+
+      allow update: if isOwner(existing().by) &&
+                       !isBanned() &&
+                       incoming().by == existing().by;
+
+      allow delete: if isOwner(existing().by) || isAdmin();
+    }
+
+    // 5. Issues collection
+    match /issues/{issueId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid &&
+                       incoming().status in ['pending', 'resolved'];
+
+      allow update: if isAdmin() ||
+                       (isOwner(existing().by) && !isBanned() && incoming().by == existing().by) ||
+                       (isSignedIn() &&
+                        !isBanned() &&
+                        incoming().status == 'resolved' &&
+                        incoming().by2 == request.auth.uid) ||
+                       (isGov() && !isBanned());
+
+      allow delete: if isOwner(existing().by) || isAdmin();
+    }
+
+    // 6. Heroes collection
+    match /heroes/{heroId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid;
+
+      allow update: if isAdmin() ||
+                       (isSignedIn() && !isBanned() && incoming().diff(existing()).affectedKeys().hasOnly(['likes'])) ||
+                       (isOwner(existing().by) && !isBanned() && incoming().by == existing().by);
+
+      allow delete: if isOwner(existing().by) || isAdmin();
+    }
+
+    // 7. Charity collection
+    match /charity/{charityId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid;
+
+      allow update: if isAdmin() ||
+                       (isSignedIn() && !isBanned() && incoming().diff(existing()).affectedKeys().hasOnly(['donors'])) ||
+                       (isOwner(existing().by) && !isBanned() && incoming().by == existing().by);
+
+      allow delete: if isOwner(existing().by) || isAdmin();
+    }
+
+    // 8. Market collection
+    match /market/{marketId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid;
+
+      allow update: if isAdmin() ||
+                       (isOwner(existing().by) && !isBanned() && incoming().by == existing().by);
+
+      allow delete: if isOwner(existing().by) || isAdmin();
+    }
+
+    // 9. Events collection
+    match /events/{eventId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid;
+
+      allow update: if isAdmin() ||
+                       (isSignedIn() && !isBanned() && incoming().diff(existing()).affectedKeys().hasOnly(['going'])) ||
+                       (isOwner(existing().by) && !isBanned() && incoming().by == existing().by);
+
+      allow delete: if isOwner(existing().by) || isAdmin();
+    }
+
+    // 10. Jobs collection
+    match /jobs/{jobId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid;
+
+      allow update: if isAdmin() ||
+                       (isOwner(existing().by) && !isBanned() && incoming().by == existing().by);
+
+      allow delete: if isOwner(existing().by) || isAdmin();
+    }
+
+    // 11. Phones collection
+    match /phones/{phoneId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // 12. Notes collection
+    match /notes/{noteId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // 13. Reports collection
+    match /reports/{reportId} {
+      allow read: if isAdmin();
+      allow create: if isSignedIn() && !isBanned() && incoming().by == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    // 14. Payments collection
+    match /payments/{paymentId} {
+      allow read: if isOwner(resource.data.by) || isAdmin();
+      allow create: if isSignedIn() &&
+                       !isBanned() &&
+                       incoming().by == request.auth.uid &&
+                       incoming().status == 'pending';
+      allow update, delete: if isAdmin();
+    }
+
+    // 15. Fines collection
+    match /fines/{fineId} {
+      allow read: if isOwner(resource.data.uid) || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // 16. Config collection
+    match /cfg/{cfgId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
